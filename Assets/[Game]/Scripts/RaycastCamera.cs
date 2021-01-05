@@ -10,20 +10,19 @@ public class RaycastCamera : MonoBehaviour
     private float yRotation = 0f;
     private float mouseX = 0f;
     private float mouseY = 0f;    
-    public CustomJoystick joystick;   
+    public Joystick joystick;   
     private void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
-        joystick.GetComponent<CustomJoystick>();
+        //Cursor.lockState = CursorLockMode.Locked;        
     }
 
     void Update()
     {        
         
-        mouseY = joystick.Vertical * mouseSensivity * Time.deltaTime;
-        mouseX = joystick.Horizontal * mouseSensivity * Time.deltaTime;
-        if (Input.GetAxis("Mouse X") == 0) mouseX = 0;
-        if (Input.GetAxis("Mouse Y") == 0) mouseY = 0;
+        mouseY = joystick.Vertical * mouseSensivity * Time.deltaTime*Mathf.Abs(Input.GetAxis("Mouse Y"));
+        mouseX = joystick.Horizontal * mouseSensivity * Time.deltaTime * Mathf.Abs(Input.GetAxis("Mouse X"));
+        //if (Input.GetAxis("Mouse X") == 0) mouseX = 0;
+        //if (Input.GetAxis("Mouse Y") == 0) mouseY = 0;
 
         xRotation -= mouseY;
         yRotation += mouseX;
