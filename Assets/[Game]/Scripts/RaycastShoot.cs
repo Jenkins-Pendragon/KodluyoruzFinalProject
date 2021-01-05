@@ -6,6 +6,7 @@ public class RaycastShoot : MonoBehaviour
 {
     public Camera raycastCam;
     public Transform handEndPoint;
+    public Transform handVisual;
     private LineRenderer laserLine;
     private float rayRange = 100f;
     
@@ -19,6 +20,7 @@ public class RaycastShoot : MonoBehaviour
     {    
         if (Input.GetMouseButtonDown(0))
         {
+            DrawLaser();
             laserLine.enabled = true;
         }
 
@@ -29,17 +31,26 @@ public class RaycastShoot : MonoBehaviour
 
         else if (Input.GetMouseButton(0))
         {
-            Vector3 rayOrigin = raycastCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
-            RaycastHit hit;
-            laserLine.SetPosition(0, handEndPoint.position);
-            if (Physics.Raycast(rayOrigin, raycastCam.transform.forward, out hit, rayRange))
-            {
-                laserLine.SetPosition(1, hit.point);
-            }
-            else
-            {
-                laserLine.SetPosition(1, rayOrigin + (raycastCam.transform.forward * rayRange));
-            }
+            DrawLaser();
+        }
+    }
+
+    private void DrawLaser()
+    {
+        Vector3 rayOrigin = raycastCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
+        RaycastHit hit;
+
+        laserLine.SetPosition(0, handEndPoint.position);
+        if (Physics.Raycast(rayOrigin, raycastCam.transform.forward, out hit, rayRange))
+        {
+            laserLine.SetPosition(1, hit.point);
+            handVisual.LookAt(hit.point);
+        }
+        else
+        {
+            var pos = rayOrigin + (raycastCam.transform.forward * rayRange);
+            laserLine.SetPosition(1, pos);
+            handVisual.LookAt(pos);
         }
     }
 }
