@@ -6,7 +6,7 @@ public class RaycastShoot : MonoBehaviour
 {
     public Camera raycastCam;
     public Transform handEndPoint;
-    public Transform handVisual;
+    public Transform handVisual;    
     private LineRenderer laserLine;
     private float rayRange = 100f;
     

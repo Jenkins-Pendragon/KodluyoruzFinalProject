@@ -40,6 +40,10 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     private Vector2 input = Vector2.zero;
 
+    #region MyAdjusments
+    public bool isDragging;
+    #endregion
+
     protected virtual void Start()
     {
         HandleRange = handleRange;
@@ -74,7 +78,20 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         FormatInput();
         HandleInput(input.magnitude, input.normalized, radius, cam);
         handle.anchoredPosition = input * radius * handleRange;
+
+        if (eventData.IsPointerMoving())
+        {
+            isDragging = true;
+        }
+        else isDragging = false;
     }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        isDragging = false;        
+    }
+
+
 
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
     {
@@ -144,7 +161,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
             return localPoint - (background.anchorMax * baseRect.sizeDelta) + pivotOffset;
         }
         return Vector2.zero;
-    }
+    }   
 }
 
 public enum AxisOptions { Both, Horizontal, Vertical }
