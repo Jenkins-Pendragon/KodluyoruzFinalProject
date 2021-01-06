@@ -46,6 +46,8 @@ public class LaserController : MonoBehaviour
         if (Physics.Raycast(gunEndPoint.position, gunVisual.forward, out hit, rayRange))
         {
             laserLine.SetPosition(1, hit.point);  
+
+
         }
         else
         {            
