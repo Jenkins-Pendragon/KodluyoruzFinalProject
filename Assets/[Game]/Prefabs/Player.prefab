@@ -490,7 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9236b286c924734c88e1ab464d593fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raycastCam: {fileID: 6124895831384895063}
+  gunCamera: {fileID: 6124895831384895063}
   gunEndPoint: {fileID: 6124895831402907957}
   gunVisual: {fileID: 6124895832127434758}
   destination: {fileID: 6124895830575730179}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LaserController : MonoBehaviour
 {
-    public Camera raycastCam;
+    public Camera gunCamera;
     public Transform gunEndPoint;
     public Transform gunVisual;
     public Transform destination;    
@@ -18,7 +18,7 @@ public class LaserController : MonoBehaviour
 
     
     void Update()
-    {    
+    {        
         if (Input.GetMouseButtonDown(0))
         {            
             DrawLaser();            
@@ -39,19 +39,18 @@ public class LaserController : MonoBehaviour
     private void DrawLaser()
     {
         
-        Vector3 rayOrigin = raycastCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
+        Vector3 rayOrigin = gunCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
         laserLine.SetPosition(0, gunEndPoint.position);
-        if (Physics.Raycast(rayOrigin, raycastCam.transform.forward, out hit, rayRange))
+        var pos = rayOrigin + (gunCamera.transform.forward * rayRange);
+        if (Physics.Raycast(gunEndPoint.position, gunVisual.forward, out hit, rayRange))
         {
-            laserLine.SetPosition(1, hit.point);
-            gunVisual.LookAt(hit.point);
+            laserLine.SetPosition(1, hit.point);  
         }
         else
-        {
-            var pos = rayOrigin + (raycastCam.transform.forward * rayRange);
-            laserLine.SetPosition(1, pos);
-            gunVisual.LookAt(pos);
+        {            
+            laserLine.SetPosition(1, pos);                      
         }
-    }    
+        gunVisual.LookAt(pos);
+    }  
 }
