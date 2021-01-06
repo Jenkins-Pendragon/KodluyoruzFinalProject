@@ -25,8 +25,7 @@ public class RaycastCamera : MonoBehaviour
     {        
         float mouseY = Mathf.Abs(joystick.Vertical) * mouseSensivity * Time.deltaTime*Input.GetAxis("Mouse Y");
         float mouseX = Mathf.Abs(joystick.Horizontal) * mouseSensivity * Time.deltaTime * Input.GetAxis("Mouse X");
-        //if (Input.GetAxis("Mouse X") == 0) mouseX = 0;
-        //if (Input.GetAxis("Mouse Y") == 0) mouseY = 0;
+        
 
         xRotation -= mouseY;
         yRotation += mouseX;

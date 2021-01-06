@@ -21,7 +21,7 @@ public class RaycastShoot : MonoBehaviour
     {    
         if (Input.GetMouseButtonDown(0))
         {
-            //SetLaserDirection();
+            SetLaserDirection();
             DrawLaser();            
             laserLine.enabled = true;
         }
@@ -60,6 +60,6 @@ public class RaycastShoot : MonoBehaviour
     {
         var mousePos = Input.mousePosition;
         mousePos.z = Mathf.Abs(raycastCam.transform.position.z - destination.position.z);
-        raycastCam.transform.LookAt(raycastCam.ScreenToWorldPoint(mousePos));
+        raycastCam.transform.LookAt(Camera.main.ScreenToWorldPoint(mousePos));
     }
 }
