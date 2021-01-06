@@ -5,6 +5,6 @@ using UnityEngine;
 public interface IInteractable
 {
     bool IsInteractable { get; set; }
-    void OnInteractStart();
+    void OnInteractStart(Transform parent, Transform destination);
     void OnInteractEnd();
 }

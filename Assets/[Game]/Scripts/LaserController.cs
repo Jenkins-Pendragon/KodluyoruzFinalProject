@@ -7,9 +7,11 @@ public class LaserController : MonoBehaviour
     public Camera gunCamera;
     public Transform gunEndPoint;
     public Transform gunVisual;
-    public Transform destination;    
+    public Transform destination;
+    public float rayRange = 100f;
     private LineRenderer laserLine;
-    private float rayRange = 100f;
+    private GameObject lastSelection = null;
+    
     
     void Start()
     {        
@@ -27,7 +29,8 @@ public class LaserController : MonoBehaviour
 
         else if (Input.GetMouseButtonUp(0))
         {
-            laserLine.enabled = false;
+            RealaseInteractableObject();
+            laserLine.enabled = false;            
         }
 
         else if (Input.GetMouseButton(0))
@@ -45,9 +48,8 @@ public class LaserController : MonoBehaviour
         var pos = rayOrigin + (gunCamera.transform.forward * rayRange);
         if (Physics.Raycast(gunEndPoint.position, gunVisual.forward, out hit, rayRange))
         {
-            laserLine.SetPosition(1, hit.point);  
-
-
+            laserLine.SetPosition(1, hit.point);
+            CheckInteractableObject(hit);
         }
         else
         {            
@@ -55,4 +57,27 @@ public class LaserController : MonoBehaviour
         }
         gunVisual.LookAt(pos);
     }  
+
+    private void CheckInteractableObject(RaycastHit hit) 
+    {
+        if (lastSelection == null)
+        {
+            GameObject obj = hit.collider.gameObject;
+            IInteractable interactable = lastSelection.GetComponent<IInteractable>();
+            if (interactable != null && interactable.IsInteractable)
+            {
+                lastSelection = obj;
+                interactable.OnInteractStart(gunCamera.transform, destination);
+            }
+        }
+    }
+
+    private void RealaseInteractableObject() 
+    {
+        if (lastSelection != null)
+        {
+            lastSelection.GetComponent<IInteractable>().OnInteractEnd();
+            lastSelection = null;
+        }
+    }
 }
