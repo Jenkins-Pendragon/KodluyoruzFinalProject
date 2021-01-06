@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaycastShoot : MonoBehaviour
+public class LaserController : MonoBehaviour
 {
     public Camera raycastCam;
     public Transform gunEndPoint;
