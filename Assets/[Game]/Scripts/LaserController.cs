@@ -63,7 +63,7 @@ public class LaserController : MonoBehaviour
         if (lastSelection == null)
         {
             GameObject obj = hit.collider.gameObject;
-            IInteractable interactable = lastSelection.GetComponent<IInteractable>();
+            IInteractable interactable = obj.GetComponent<IInteractable>();
             if (interactable != null && interactable.IsInteractable)
             {
                 lastSelection = obj;

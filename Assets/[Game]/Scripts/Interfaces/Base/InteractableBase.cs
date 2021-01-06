@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody))]
 public class InteractableBase : MonoBehaviour, IInteractable
 {
-    public bool IsInteractable { get;}
+    public bool IsInteractable { get; set; }
     private Rigidbody rb;
     private readonly float throwForce = 100f;
     private void Start()
     {
+        IsInteractable = true;
         rb = GetComponent<Rigidbody>();
     }
 
