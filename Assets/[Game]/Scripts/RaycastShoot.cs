@@ -5,10 +5,9 @@ using UnityEngine;
 public class RaycastShoot : MonoBehaviour
 {
     public Camera raycastCam;
-    public Transform handEndPoint;
-    public Transform handVisual;
-    public Transform destination;
-    public Transform cameraParent;
+    public Transform gunEndPoint;
+    public Transform gunVisual;
+    public Transform destination;    
     private LineRenderer laserLine;
     private float rayRange = 100f;
     
@@ -21,8 +20,7 @@ public class RaycastShoot : MonoBehaviour
     void Update()
     {    
         if (Input.GetMouseButtonDown(0))
-        {
-            //SetLaserDirection();
+        {            
             DrawLaser();            
             laserLine.enabled = true;
         }
@@ -43,24 +41,17 @@ public class RaycastShoot : MonoBehaviour
         
         Vector3 rayOrigin = raycastCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
-        laserLine.SetPosition(0, handEndPoint.position);
+        laserLine.SetPosition(0, gunEndPoint.position);
         if (Physics.Raycast(rayOrigin, raycastCam.transform.forward, out hit, rayRange))
         {
             laserLine.SetPosition(1, hit.point);
-            handVisual.LookAt(hit.point);
+            gunVisual.LookAt(hit.point);
         }
         else
         {
             var pos = rayOrigin + (raycastCam.transform.forward * rayRange);
             laserLine.SetPosition(1, pos);
-            handVisual.LookAt(pos);
+            gunVisual.LookAt(pos);
         }
-    }
-
-    private void SetLaserDirection() 
-    {
-        var mousePos = Input.mousePosition;
-        mousePos.z = Mathf.Abs(raycastCam.transform.position.z - destination.position.z);
-        cameraParent.transform.LookAt(Camera.main.ScreenToWorldPoint(mousePos));
-    }
+    }    
 }
