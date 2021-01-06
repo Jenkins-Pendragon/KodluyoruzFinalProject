@@ -8,7 +8,8 @@ public class InteractableBase : MonoBehaviour, IInteractable
 {
     public bool IsInteractable { get; set; }
     private Rigidbody rb;
-    private readonly float throwForce = 100f;
+    private readonly float throwForce = 50f;
+    private readonly float tweenDelay = 0.3f;
     private void Start()
     {
         IsInteractable = true;
@@ -19,7 +20,8 @@ public class InteractableBase : MonoBehaviour, IInteractable
     {
         transform.parent = parent;
         rb.isKinematic = true;
-        transform.position = destination.position;
+        transform.DOLocalMove(destination.localPosition, tweenDelay);
+        
     }
 
     public virtual void OnInteractEnd(Transform forceDirection)
