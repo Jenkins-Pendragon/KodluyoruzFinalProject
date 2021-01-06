@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class RaycastCamera : MonoBehaviour
+public class GunCameraController : MonoBehaviour
 {
     public float mouseSensivity = 100f;    
     private float xRotation = 0f;
