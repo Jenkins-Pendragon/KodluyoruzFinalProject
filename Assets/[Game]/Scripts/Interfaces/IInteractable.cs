@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    bool IsInteractable { get; set; }
+    bool IsInteractable { get;}
     void OnInteractStart(Transform parent, Transform destination);
-    void OnInteractEnd();
+    void OnInteractEnd(Transform forceDirection);
 }

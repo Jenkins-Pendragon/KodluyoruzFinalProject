@@ -76,7 +76,7 @@ public class LaserController : MonoBehaviour
     {
         if (lastSelection != null)
         {
-            lastSelection.GetComponent<IInteractable>().OnInteractEnd();
+            lastSelection.GetComponent<IInteractable>().OnInteractEnd(gunCamera.transform);
             lastSelection = null;
         }
     }
