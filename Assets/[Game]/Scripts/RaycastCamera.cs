@@ -7,9 +7,7 @@ public class RaycastCamera : MonoBehaviour
 {
     public float mouseSensivity = 100f;    
     private float xRotation = 0f;
-    private float yRotation = 0f;
-    //private float mouseX = 0f;
-    //private float mouseY = 0f;   
+    private float yRotation = 0f;     
     public Joystick joystick;
     public Transform destination;
     private void Start()
@@ -18,16 +16,22 @@ public class RaycastCamera : MonoBehaviour
     }
 
     void Update()
-    {        
-        SetCameraRot();
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            LookAtTouchPos();            
+        }        
+
+        else if (Input.GetMouseButton(0))
+        {
+            ChangeCameraRotation();
+        }       
     }    
 
-    public void SetCameraRot() 
+    public void ChangeCameraRotation() 
     {        
         float mouseY = Mathf.Abs(joystick.Vertical) * mouseSensivity * Time.deltaTime*Input.GetAxis("Mouse Y");
-        float mouseX = Mathf.Abs(joystick.Horizontal) * mouseSensivity * Time.deltaTime * Input.GetAxis("Mouse X");
-        
-
+        float mouseX = Mathf.Abs(joystick.Horizontal) * mouseSensivity * Time.deltaTime * Input.GetAxis("Mouse X");    
         xRotation -= mouseY;
         yRotation += mouseX;
         xRotation = Mathf.Clamp(xRotation, -25f, 25f);
@@ -35,22 +39,21 @@ public class RaycastCamera : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
     }    
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void LookAtTouchPos()
     {
-        Vector3 mousePos = eventData.position;
+        Vector3 mousePos = Input.mousePosition;
         mousePos.z = Mathf.Abs(transform.position.z - destination.position.z);
-        transform.LookAt(Camera.main.ScreenToWorldPoint(eventData.position));
-        xRotation = transform.eulerAngles.x;
-        yRotation = transform.eulerAngles.y;
+        transform.LookAt(Camera.main.ScreenToWorldPoint(mousePos));
+        xRotation = WrapAngle(transform.localEulerAngles.x);
+        yRotation = WrapAngle(transform.localEulerAngles.y);
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public  float WrapAngle(float angle)
     {
-        SetCameraRot();
-    }
+        angle %= 360;
+        if (angle > 180)
+            return angle - 360;
 
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
+        return angle;
     }
 }

@@ -8,35 +8,34 @@ public class CustomJoystick : Joystick
     public float MoveThreshold { get { return moveThreshold; } set { moveThreshold = Mathf.Abs(value); } }
 
     [SerializeField] private float moveThreshold = 1;
-    RaycastCamera raycastCamera;   
 
     protected override void Start()
     {
         MoveThreshold = moveThreshold;
         base.Start();
         background.gameObject.SetActive(false);
-        raycastCamera = FindObjectOfType<RaycastCamera>();
     }
 
     public override void OnPointerDown(PointerEventData eventData)
     {
+        EventManager.OnPointerUp.Invoke(eventData);
         background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
         background.gameObject.SetActive(true);
-        base.OnPointerDown(eventData);        
+        base.OnPointerDown(eventData);
     }
 
     public override void OnPointerUp(PointerEventData eventData)
     {
+        EventManager.OnPointerUp.Invoke(eventData);
         background.gameObject.SetActive(false);
         base.OnPointerUp(eventData);
-        
     }
 
     public override void OnDrag(PointerEventData eventData)
     {
+        EventManager.OnDrag.Invoke(eventData);
         base.OnDrag(eventData);
-        Debug.Log("OnDrag");
-        //raycastCamera.SetCameraRot(this);        
+        
     }
 
     protected override void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
@@ -47,5 +46,5 @@ public class CustomJoystick : Joystick
             background.anchoredPosition += difference;
         }
         base.HandleInput(magnitude, normalised, radius, cam);
-    }   
+    }
 }

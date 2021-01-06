@@ -6,9 +6,7 @@ using UnityEngine.EventSystems;
 
 public static class EventManager
 {
-    public static PointerEvent OnDrag = new PointerEvent();
-    public static PointerEvent OnPointerDown = new PointerEvent();
-    public static PointerEvent OnPointerUp = new PointerEvent();
+    public static UnityEvent OnGameStarted = new UnityEvent();
+    public static UnityEvent OnGameEnd= new UnityEvent();
 }
 
-public class PointerEvent : UnityEvent<PointerEventData> { }
