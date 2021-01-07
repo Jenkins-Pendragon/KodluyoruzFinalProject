@@ -7,7 +7,8 @@ public class GunCameraController : MonoBehaviour
 {
     public float mouseSensivity = 100f;    
     private float xRotation = 0f;
-    private float yRotation = 0f;     
+    private float yRotation = 0f;
+    private float rayRange = 50f;
     public Joystick joystick;
     public Transform destination;
     private void Start()
@@ -50,7 +51,7 @@ public class GunCameraController : MonoBehaviour
         }
         else
         {
-            mousePos.z = Mathf.Abs(transform.position.z - destination.position.z);
+            mousePos.z = Mathf.Abs(transform.position.z - destination.position.z* rayRange);
             transform.LookAt(Camera.main.ScreenToWorldPoint(mousePos));            
         }
         xRotation = WrapAngle(transform.localEulerAngles.x);
