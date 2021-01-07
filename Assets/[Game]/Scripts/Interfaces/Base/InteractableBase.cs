@@ -26,7 +26,7 @@ public class InteractableBase : MonoBehaviour, IInteractable
     {
         if (GetComponent<OutlineShader>() == null)
         {
-            transform.gameObject.AddComponent<OutlineShader>().Initiliaze(Color.yellow, 8f);
+            transform.gameObject.AddComponent<OutlineShader>().Initiliaze(Color.yellow, 8f, OutlineShader.Mode.OutlineVisible);
         }        
         transform.parent = parent;
         RigidbodyObj.isKinematic = true;

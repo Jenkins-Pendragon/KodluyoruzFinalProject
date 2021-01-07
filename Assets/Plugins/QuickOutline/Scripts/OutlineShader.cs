@@ -82,10 +82,11 @@ public class OutlineShader : MonoBehaviour {
 
 
     #region CustomAdjusments
-    public void Initiliaze(Color _outlineColor, float _outlineWidth) 
+    public void Initiliaze(Color _outlineColor, float _outlineWidth, Mode _outlineMode) 
     {
         this.OutlineWidth = _outlineWidth;
         this.OutlineColor = _outlineColor;
+        this.OutlineMode = _outlineMode;
     }
     #endregion
 
