@@ -12,6 +12,11 @@ public class InteractableBase : MonoBehaviour, IInteractable
     private readonly float tweenDelay = 0.3f;
     private void Start()
     {
+        OnStart();
+    }
+
+    public virtual void OnStart()
+    {
         IsInteractable = true;
         rb = GetComponent<Rigidbody>();
     }
@@ -21,16 +26,16 @@ public class InteractableBase : MonoBehaviour, IInteractable
         transform.parent = parent;
         rb.isKinematic = true;
         transform.DOLocalMove(destination.localPosition, tweenDelay);
-        
+
     }
 
     public virtual void OnInteractEnd(Transform forceDirection)
     {
         transform.DOKill();
         this.gameObject.transform.parent = null;
-        rb.isKinematic = false;        
+        rb.isKinematic = false;
         rb.AddForce(forceDirection.forward * throwForce, ForceMode.Impulse);
     }
 
-       
+
 }

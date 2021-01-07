@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/[Game]/Scenes/UI.unity
     guid: 4545ae5376285e24385f6e4a700be257
   - enabled: 1
-    path: Assets/[Game]/Scenes/DragDrop.unity
-    guid: b838ee718437f744da0b4da6c1482604
+    path: Assets/[Game]/Scenes/AI.unity
+    guid: f07b9d11fd4db4248b9857c23f279023
   m_configObjects: {}
