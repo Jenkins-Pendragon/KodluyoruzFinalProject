@@ -10,12 +10,14 @@ public class EnemyController : MonoBehaviour
     Animator enemyAnim;
     Transform target;
     NavMeshAgent agent;
+    Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         enemyAnim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -35,6 +37,7 @@ public class EnemyController : MonoBehaviour
 
                 if (distance <= agent.stoppingDistance)
                 {
+                    rb.isKinematic = true;
                     enemyAnim.SetBool("Running", false);
                     enemyAnim.SetBool("Punching", true);
                     FaceTarget();
