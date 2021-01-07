@@ -12,6 +12,7 @@ public class Enemy : InteractableBase, Damageable
         base.OnStart();
         agent = GetComponent<NavMeshAgent>();
         enemyAnim = GetComponent<Animator>();
+
     }
 
     public void Damage(Animator anim)
@@ -35,15 +36,19 @@ public class Enemy : InteractableBase, Damageable
         IsInteractable = false;
         agent.enabled = false;
         enemyAnim.SetBool("Running", false);
+        enemyAnim.SetBool("Punching", false);
         enemyAnim.SetBool("Catching", true);
+
 
     }
 
     public override void OnInteractEnd(Transform forceDirection)
     {
+        enemyAnim.enabled = false;
         base.OnInteractEnd(forceDirection);
         IsInteractable = true;
-        enemyAnim.SetBool("Catching", false);
+        
+
     }
 
 
