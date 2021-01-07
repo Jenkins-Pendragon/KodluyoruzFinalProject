@@ -80,7 +80,16 @@ public class OutlineShader : MonoBehaviour {
 
   private bool needsUpdate;
 
-  void Awake() {
+
+    #region CustomAdjusments
+    public void Initiliaze(Color _outlineColor, float _outlineWidth) 
+    {
+        this.OutlineWidth = _outlineWidth;
+        this.OutlineColor = _outlineColor;
+    }
+    #endregion
+
+    void Awake() {
 
     // Cache renderers
     renderers = GetComponentsInChildren<Renderer>();
