@@ -8,7 +8,7 @@ public class GunCameraController : MonoBehaviour
     public float mouseSensivity = 100f;    
     private float xRotation = 0f;
     private float yRotation = 0f;
-    private float rayRange = 50f;
+    private readonly float rayRange = 50f;
     public Joystick joystick;
     public Transform destination;
     private void Start()
