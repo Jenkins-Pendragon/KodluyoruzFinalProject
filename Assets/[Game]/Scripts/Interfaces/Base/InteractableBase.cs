@@ -42,6 +42,7 @@ public class InteractableBase : MonoBehaviour, IInteractable
         {
             Destroy(outlineShader);
         }
+        gameObject.transform.parent = null;
         RigidbodyObj.isKinematic = false;
         RigidbodyObj.AddForce(forceDirection.forward * throwForce, ForceMode.Impulse);
     }
