@@ -25,4 +25,9 @@ public class Barrel : MonoBehaviour
         }
         this.gameObject.SetActive(false);
     }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(gameObject.transform.position, radius);
+    }
 }
