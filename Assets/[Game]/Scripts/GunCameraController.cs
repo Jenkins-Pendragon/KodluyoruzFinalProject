@@ -35,8 +35,8 @@ public class GunCameraController : MonoBehaviour
         float mouseX = Mathf.Abs(joystick.Horizontal) * mouseSensivity * Time.deltaTime * Input.GetAxis("Mouse X");    
         xRotation -= mouseY;
         yRotation += mouseX;
-        xRotation = Mathf.Clamp(xRotation, -25f, 25f);
-        yRotation = Mathf.Clamp(yRotation, -18f, 18f);
+        xRotation = Mathf.Clamp(xRotation, -30f, 8f);
+        yRotation = Mathf.Clamp(yRotation, -20f, 20f);
         transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
     }    
 

@@ -33,7 +33,7 @@ public class InteractableBase : MonoBehaviour, IInteractable
     {
         transform.DOKill();
         this.gameObject.transform.parent = null;
-        rb.isKinematic = false;        
+        rb.isKinematic = false;
         rb.AddForce(forceDirection.forward * throwForce, ForceMode.Impulse);
     }
 
