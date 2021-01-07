@@ -12,6 +12,11 @@ public class InteractableBase : MonoBehaviour, IInteractable
     private readonly float tweenDelay = 0.3f;
     private void Start()
     {
+        OnStart();
+    }
+
+    public virtual void OnStart() 
+    {
         IsInteractable = true;
         rb = GetComponent<Rigidbody>();
     }
