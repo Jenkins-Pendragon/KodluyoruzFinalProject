@@ -11,8 +11,18 @@ public class LaserController : MonoBehaviour
     public float rayRange = 100f;
     private LineRenderer laserLine;
     private GameObject lastSelection = null;
-    
-    
+    private bool canDrawLaser;
+
+    private void OnEnable()
+    {
+        EventManager.OnLookAtTouchPosCompleted.AddListener(() => canDrawLaser = true);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnLookAtTouchPosCompleted.RemoveListener(() => canDrawLaser = true);
+    }
+
     void Start()
     {        
         laserLine = GetComponent<LineRenderer>();
@@ -20,32 +30,27 @@ public class LaserController : MonoBehaviour
 
     
     void Update()
-    {        
-        if (Input.GetMouseButtonDown(0))
-        {            
-            DrawLaser();            
-            laserLine.enabled = true;
-        }
-
-        else if (Input.GetMouseButtonUp(0))
+    {   
+        if (Input.GetMouseButtonUp(0))
         {
             RealaseInteractableObject();
+            canDrawLaser = false;
             laserLine.enabled = false;            
         }
 
-        else if (Input.GetMouseButton(0))
+        if (canDrawLaser)
         {
             DrawLaser();
-        }
+            if (!laserLine.enabled) laserLine.enabled = true;
+        }        
     }
 
     private void DrawLaser()
-    {
-        
+    {        
         Vector3 rayOrigin = gunCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
         laserLine.SetPosition(0, gunEndPoint.position);
-        var pos = rayOrigin + (gunCamera.transform.forward * rayRange);
+        var pos = rayOrigin + (gunVisual.forward * rayRange);
 
         if (Physics.Raycast(gunEndPoint.position, gunVisual.forward, out hit, rayRange))
         {
@@ -55,8 +60,7 @@ public class LaserController : MonoBehaviour
         else
         {            
             laserLine.SetPosition(1, pos);                      
-        }
-        gunVisual.LookAt(pos);
+        }        
     }  
 
     private void CheckInteractableObject(RaycastHit hit) 

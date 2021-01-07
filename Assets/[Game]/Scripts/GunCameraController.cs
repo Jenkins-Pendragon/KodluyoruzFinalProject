@@ -7,12 +7,13 @@ public class GunCameraController : MonoBehaviour
 {
     public float mouseSensivity = 100f;    
     private float xRotation = 0f;
-    private float yRotation = 0f;     
+    private float yRotation = 0f;
+    private readonly float rayRange = 50f;
     public Joystick joystick;
     public Transform destination;
     private void Start()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
     }
 
     void Update()
@@ -25,7 +26,7 @@ public class GunCameraController : MonoBehaviour
         else if (Input.GetMouseButton(0))
         {
             ChangeCameraRotation();
-        }       
+        }        
     }    
 
     public void ChangeCameraRotation() 
@@ -42,10 +43,20 @@ public class GunCameraController : MonoBehaviour
     public void LookAtTouchPos()
     {
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = Mathf.Abs(transform.position.z - destination.position.z);
-        transform.LookAt(Camera.main.ScreenToWorldPoint(mousePos));
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            transform.LookAt(hit.point);
+        }
+        else
+        {
+            mousePos.z = Mathf.Abs(transform.position.z - destination.position.z* rayRange);
+            transform.LookAt(Camera.main.ScreenToWorldPoint(mousePos));            
+        }
         xRotation = WrapAngle(transform.localEulerAngles.x);
         yRotation = WrapAngle(transform.localEulerAngles.y);
+        EventManager.OnLookAtTouchPosCompleted.Invoke();
     }
 
     public  float WrapAngle(float angle)

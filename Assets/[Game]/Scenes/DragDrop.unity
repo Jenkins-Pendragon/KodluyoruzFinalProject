@@ -131,7 +131,6 @@ GameObject:
   m_Component:
   - component: {fileID: 138851834}
   - component: {fileID: 138851835}
-  - component: {fileID: 138851836}
   m_Layer: 0
   m_Name: GunCamera
   m_TagString: Untagged
@@ -146,11 +145,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 138851833}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.35300004, z: 0.022000313}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1492550371}
+  m_Father: {fileID: 1535699882}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &138851835
@@ -196,21 +195,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &138851836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 138851833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd2ca6aa6976a0147ac449141d8a5912, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensivity: 125
-  joystick: {fileID: 8874565465915481225}
-  destination: {fileID: 940430767}
 --- !u!1 &180577773
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,7 +998,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940430766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 6}
+  m_LocalPosition: {x: 0, y: 0, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1535699882}
@@ -1446,7 +1430,6 @@ Transform:
   m_Children:
   - {fileID: 1535699882}
   - {fileID: 247173785}
-  - {fileID: 138851834}
   m_Father: {fileID: 676003504}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1573,6 +1556,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1535699882}
+  - component: {fileID: 1535699883}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -1593,9 +1577,26 @@ Transform:
   m_Children:
   - {fileID: 8551329722351485625}
   - {fileID: 940430767}
+  - {fileID: 138851834}
+  - {fileID: 1723748052}
   m_Father: {fileID: 1492550371}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1535699883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535699881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd2ca6aa6976a0147ac449141d8a5912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensivity: 100
+  joystick: {fileID: 8874565465915481225}
+  destination: {fileID: 940430767}
 --- !u!1 &1702974294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,6 +1720,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2900766191bde489b3be74e9a731e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1723748051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1723748052}
+  m_Layer: 0
+  m_Name: Destiantion (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1723748052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723748051}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.585, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1535699882}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1819718770
 GameObject:
   m_ObjectHideFlags: 0
