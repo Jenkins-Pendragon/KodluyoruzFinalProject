@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour
     {
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
-        enemyAnim = GetComponent<Animator>();
+        enemyAnim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -32,14 +32,14 @@ public class EnemyController : MonoBehaviour
             if (distance <= lookRadius)
             {
                 agent.SetDestination(target.position);
-                enemyAnim.SetBool("Running", true);
+                enemyAnim.SetBool("Run", true);
 
 
                 if (distance <= agent.stoppingDistance)
                 {
                     rb.isKinematic = true;
-                    enemyAnim.SetBool("Running", false);
-                    enemyAnim.SetBool("Punching", true);
+                    enemyAnim.SetBool("Run", false);
+                    enemyAnim.SetBool("Punch", true);
                     FaceTarget();
 
                 }

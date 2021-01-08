@@ -11,7 +11,7 @@ public class Enemy : InteractableBase, Damageable
     {
         base.OnStart();
         agent = GetComponent<NavMeshAgent>();
-        enemyAnim = GetComponent<Animator>();
+        enemyAnim = GetComponentInChildren<Animator>();
 
     }
 
@@ -19,7 +19,7 @@ public class Enemy : InteractableBase, Damageable
     {
         
        
-        anim.SetBool("Punching", true);
+        anim.SetBool("Punch", true);
         // punch animation and kill character
     }
 
@@ -35,9 +35,9 @@ public class Enemy : InteractableBase, Damageable
         base.OnInteractStart(parent, destination);
         IsInteractable = false;
         agent.enabled = false;
-        enemyAnim.SetBool("Running", false);
-        enemyAnim.SetBool("Punching", false);
-        enemyAnim.SetBool("Catching", true);
+        enemyAnim.SetBool("Run", false);
+        enemyAnim.SetBool("Punch", false);
+        enemyAnim.SetBool("Catch", true);
 
 
     }
