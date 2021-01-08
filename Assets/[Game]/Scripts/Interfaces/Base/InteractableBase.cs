@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody))]
-public class InteractableBase : MonoBehaviour, IInteractable
+public abstract class InteractableBase : MonoBehaviour, IInteractable
 {
     public bool IsInteractable { get; set; }
     private Rigidbody rb;
