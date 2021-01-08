@@ -6,13 +6,13 @@ public class Box : InteractableBase
 {
     public override void OnInteractStart(Transform parent, Transform destination)
     {
-        base.OnInteractStart(parent, destination);
-        IsInteractable = false;
+        base.OnInteractStart(parent, destination);        
     }
 
     public override void OnInteractEnd(Transform forceDirection)
     {
         base.OnInteractEnd(forceDirection);
         IsInteractable = true;
+        IsKillable = true; //Set false after
     }
 }

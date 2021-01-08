@@ -1,14 +1,33 @@
 ﻿using UnityEngine;
 
-public class Barrel : MonoBehaviour
+public class Barrel : InteractableBase
 {
     public float radius = 5.0f;
     public float power = 20.0f;
     public GameObject blastEffectPrefab; // Bunu daha sonra static instance'i olan bir classa atıp ordan çekelim // Örneğin GameData classı olabilir
-
-    private void OnMouseDown()
+    
+    public override void OnInteractStart(Transform parent, Transform destination)
     {
-        OnRelation();
+        base.OnInteractStart(parent, destination);        
+    }
+
+    public override void OnInteractEnd(Transform forceDirection)
+    {
+        base.OnInteractEnd(forceDirection);
+        IsKillable = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        IInteractable interactable = collision.gameObject.GetComponent<IInteractable>();
+        if (interactable!=null && interactable.IsKillable)
+        {
+            OnRelation();
+        }
+        if (IsKillable)
+        {
+            OnRelation();
+        }
     }
     public void OnRelation()
     {

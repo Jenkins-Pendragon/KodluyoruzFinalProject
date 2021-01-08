@@ -7,6 +7,7 @@ using DG.Tweening;
 public abstract class InteractableBase : MonoBehaviour, IInteractable
 {
     public bool IsInteractable { get; set; }
+    public bool IsKillable { get; set; }
     private Rigidbody rb;
     public Rigidbody RigidbodyObj { get { return (rb == null) ? rb = GetComponentInChildren<Rigidbody>() : rb; } }
   
@@ -19,11 +20,13 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
 
     public virtual void OnStart() 
     {
-        IsInteractable = true;        
+        IsInteractable = true;
+        IsKillable = false;
     }
 
     public virtual void OnInteractStart(Transform parent, Transform destination)
     {
+        IsInteractable = false;
         if (GetComponent<OutlineShader>() == null)
         {
             transform.gameObject.AddComponent<OutlineShader>().Initiliaze(Color.yellow, 8f, OutlineShader.Mode.OutlineVisible);
