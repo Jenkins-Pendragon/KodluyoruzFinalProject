@@ -17,12 +17,27 @@ public class Enemy2 : InteractableBase, IDamageable
 
     public void Die()
     {
-        
+        IsInteractable = false;
+        enemyAnim.enabled = false;
     }
 
     public void Kill()
     {
         
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Hitttt");
+        IInteractable interactable = collision.gameObject.GetComponent<IInteractable>();
+        if (interactable != null && interactable.IsKillable)
+        {
+            Die();
+        }
+        if (IsKillable)
+        {
+            Die();
+        }
     }
 
     public override void OnInteractStart(Transform parent, Transform destination)
