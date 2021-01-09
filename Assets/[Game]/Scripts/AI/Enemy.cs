@@ -6,20 +6,20 @@ using UnityEngine.AI;
 public class Enemy : InteractableBase, Damageable 
 {
     NavMeshAgent agent;
-    Animator enemyAnim;
-    public override void OnStart()
-    {
-        base.OnStart();
-        agent = GetComponent<NavMeshAgent>();
-        enemyAnim = GetComponent<Animator>();
+    Animator enemyAnim;    
 
+    protected override void Start()
+    {
+        base.Start();
+        agent = GetComponent<NavMeshAgent>();
+        enemyAnim = GetComponentInChildren<Animator>();
     }
 
     public void Damage(Animator anim)
     {
         
        
-        anim.SetBool("Punching", true);
+        anim.SetBool("Punch", true);
         // punch animation and kill character
     }
 
@@ -35,9 +35,9 @@ public class Enemy : InteractableBase, Damageable
         base.OnInteractStart(parent, destination);
         IsInteractable = false;
         agent.enabled = false;
-        enemyAnim.SetBool("Running", false);
-        enemyAnim.SetBool("Punching", false);
-        enemyAnim.SetBool("Catching", true);
+        enemyAnim.SetBool("Run", false);
+        enemyAnim.SetBool("Punch", false);
+        enemyAnim.SetBool("Catch", true);
 
 
     }
