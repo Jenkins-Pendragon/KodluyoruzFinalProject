@@ -68,7 +68,7 @@ public class LaserController : MonoBehaviour
         if (lastSelection == null)
         {
             GameObject obj = hit.collider.gameObject;
-            IInteractable interactable = obj.GetComponent<IInteractable>();
+            IInteractable interactable = obj.GetComponentInParent<IInteractable>();
             if (interactable != null && interactable.IsInteractable)
             {
                 lastSelection = obj;
@@ -81,7 +81,7 @@ public class LaserController : MonoBehaviour
     {
         if (lastSelection != null)
         {
-            lastSelection.GetComponent<IInteractable>().OnInteractEnd(gunCamera.transform);
+            lastSelection.GetComponentInParent<IInteractable>().OnInteractEnd(gunCamera.transform);
             lastSelection = null;
         }
     }
