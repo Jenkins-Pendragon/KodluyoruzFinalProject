@@ -1,18 +1,31 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterAnimationController : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+namespace AICharacterController
+{
+    public class CharacterAnimationController : MonoBehaviour
     {
-        
+
+        ICharacterBrain characterBrain;
+        ICharacterBrain CharacterBrain { get { return (characterBrain == null) ? characterBrain = GetComponentInParent<AIPetrolBrain>() : characterBrain; } }
+
+        Animator animator;
+
+        Animator Animator { get { return (animator == null) ? animator = GetComponent<Animator>() : animator; } }
+
+        private void Update()
+        {
+            UpdateAnimations();
+        }
+
+        private void UpdateAnimations()
+        {
+            Debug.Log(characterBrain.GetCurrentSpeed());
+            Animator.SetFloat("Speed", characterBrain.GetCurrentSpeed());
+        }
     }
 }
+

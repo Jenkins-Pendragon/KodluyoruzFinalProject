@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ICharacterBrain : MonoBehaviour
+namespace AICharacterController
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface ICharacterBrain
     {
-        
-    }
+        float GetCurrentSpeed();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void Initialize();
+        void Logic();
+        void Dispose();
     }
 }
+

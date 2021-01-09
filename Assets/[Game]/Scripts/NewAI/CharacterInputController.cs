@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterInputController : MonoBehaviour
+namespace AICharacterController
 {
-    // Start is called before the first frame update
-    void Start()
+    public class CharacterInputController : MonoBehaviour
     {
-        
-    }
+        ICharacterBrain characterBrain;
+        ICharacterBrain CharacterBrain { get { return (characterBrain == null) ? characterBrain = GetComponent<ICharacterBrain>() : characterBrain; } }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+        private void FixedUpdate()
+        {
+            CharacterBrain.Logic();
+        }
     }
 }
+
