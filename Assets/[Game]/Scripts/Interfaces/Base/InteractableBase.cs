@@ -16,18 +16,13 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
 
     private readonly float throwForce = 50f;
     private readonly float tweenDelay = 0.3f;
-    private void Start()
-    {
-        OnStart();
-    }
-
-    public virtual void OnStart() 
+    protected virtual void Start()
     {
         IsInteractable = true;
         IsKillable = false;
         Outline.enabled = false;
         Outline.Initiliaze(Color.yellow, 8f, OutlineShader.Mode.OutlineVisible);
-    }
+    }    
 
     public virtual void OnInteractStart(Transform parent, Transform destination)
     {

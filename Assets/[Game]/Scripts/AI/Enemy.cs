@@ -6,13 +6,13 @@ using UnityEngine.AI;
 public class Enemy : InteractableBase, Damageable 
 {
     NavMeshAgent agent;
-    Animator enemyAnim;
-    public override void OnStart()
+    Animator enemyAnim;    
+
+    protected override void Start()
     {
-        base.OnStart();
+        base.Start();
         agent = GetComponent<NavMeshAgent>();
         enemyAnim = GetComponentInChildren<Animator>();
-
     }
 
     public void Damage(Animator anim)
