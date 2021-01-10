@@ -20,7 +20,7 @@ public class Prop : InteractableBase
     {
         if (IsKillable)
         {
-            IsKillable = false;
+            //IsKillable = false;
         }
     }
 }
