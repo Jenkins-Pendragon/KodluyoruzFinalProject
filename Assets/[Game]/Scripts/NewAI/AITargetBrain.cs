@@ -49,7 +49,7 @@ namespace AICharacterController
 
                 if (distance < NavMeshAgent.stoppingDistance)
                 {
-                    CharacterAnimationController.Punch();
+                    CharacterAnimationController.Punch(true);
                     
                 }
             }

@@ -23,24 +23,14 @@ namespace AICharacterController
             UpdateAnimations();
         }
 
-        public void Punch()
+        public void Punch(bool state)
         {
-            Animator.SetBool("Punch", true);
+            Animator.SetBool("Punch", state);
         }
 
-        public void noPunch()
+        public void Catch(bool state)
         {
-            Animator.SetBool("Punch", false);
-        }
-
-        public void noRun()
-        {
-            Animator.SetFloat("Speed", 0);
-        }
-
-        public void Catch()
-        {
-            Animator.SetBool("Catch", true);
+            Animator.SetBool("Catch", state);
         }
 
       

@@ -29,8 +29,8 @@ namespace AICharacterController
             IsInteractable = false;
             //agent.isStopped = true;
             agent.enabled = false;
-            CharacterAnimationController.noPunch();
-            CharacterAnimationController.Catch();
+            CharacterAnimationController.Punch(false);
+            CharacterAnimationController.Catch(true);
             
 
 
