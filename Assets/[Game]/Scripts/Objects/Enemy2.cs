@@ -8,74 +8,39 @@ public class Enemy2 : InteractableBase, IDamageable
     NavMeshAgent agent;
     Animator enemyAnim;
     public Material deathMat;
-    public SkinnedMeshRenderer skinnedMeshRenderer;
-    private Collider[] colliderList;
-    private Rigidbody[] rigidbodyList;
-    private Collider mainCollider;
+    public SkinnedMeshRenderer skinnedMeshRenderer;    
     private Vector3 direction = Vector3.forward;
+    private RagdollController ragdoll;
+    public bool IsDead { get; protected set; }
+    public bool IsRagdoll { get; set; }
     protected override void Start()
     {
         base.Start();
         agent = GetComponent<NavMeshAgent>();
         enemyAnim = GetComponentInChildren<Animator>();
-        colliderList = GetComponentsInChildren<Collider>(true);
-        rigidbodyList = GetComponentsInChildren<Rigidbody>();
-        mainCollider = GetComponent<Collider>();
-        SetRigidbody(true);
-        //SetCollider(false);
-        //RagDoll(false);
+        ragdoll = GetComponent<RagdollController>();
+        ragdoll.DisableRagdoll();
     }
 
     public void Die()
     {
+        if (!IsRagdoll)
+        {
+            ragdoll.ActivateRagdoll();
+        }
         IsInteractable = false;
         IsKillable = false;
         enemyAnim.enabled = false;
         skinnedMeshRenderer.sharedMaterial = deathMat;
-        SetRigidbody(false);
-        //SetCollider(true);
-        /*
-        foreach (var item in rigidbodyList)
-        {
-            item.AddForce(direction * 5f, ForceMode.Impulse);
-            //item.velocity = velocity/12f;
-        }
-        */
-        //RagDoll(true);
+        agent.enabled = false;
     }
-
-    private void SetRigidbody(bool state) 
-    {
-        foreach (var item in rigidbodyList)
-        {
-            item.isKinematic = state;            
-            item.AddForce(direction * 50f, ForceMode.Impulse);
-        }
-        RigidbodyObj.isKinematic = !state;
-    }
-
-    private void SetCollider(bool state)
-    {
-        foreach (var item in colliderList)
-        {
-            item.enabled = state;
-        }
-        mainCollider.enabled = !state;
-    }
+    
 
     public void Kill()
     {
         
     }
-
-    private void RagDoll(bool isRagdoll) 
-    {
-        foreach (var item in colliderList)
-            item.enabled = !isRagdoll;
-        mainCollider.enabled = !isRagdoll;
-        enemyAnim.enabled = !isRagdoll;
-
-    }
+   
 
     private void OnTriggerEnter(Collider other)
     {
@@ -97,11 +62,11 @@ public class Enemy2 : InteractableBase, IDamageable
         IInteractable interactable = collision.gameObject.GetComponent<IInteractable>();
         if (interactable != null && interactable.IsKillable)
         {
-            //Die();
+            Die();
         }
         if (IsKillable)
         {
-            //Die();
+            Die();
         }
     }
 
@@ -121,7 +86,8 @@ public class Enemy2 : InteractableBase, IDamageable
         direction = forceDirection.forward;
         IsInteractable = true;
         IsKillable = true;
-        
+        ragdoll.ActivateRagdoll();
+        ragdoll.ForceRagdoll(direction);
     }
 
     
