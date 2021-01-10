@@ -5,11 +5,14 @@ using UnityEngine.AI;
 
 namespace AICharacterController
 {
-    public class AIPetrolBrain : CharacterBrainBase
+    public class AITargetBrain : CharacterBrainBase
     {
         public float lookRadius = 10f;
         private NavMeshAgent navMeshAgent;
         public NavMeshAgent NavMeshAgent { get { return (navMeshAgent == null) ? navMeshAgent = GetComponent<NavMeshAgent>() : navMeshAgent; } }
+
+        private Animator animator;
+        public Animator Animator { get { return (animator == null) ? animator = GetComponent<Animator>() : animator; } }
 
         private Rigidbody rigidbody;
         public Rigidbody Rigidbody { get { return (rigidbody == null) ? rigidbody = GetComponent<Rigidbody>() : rigidbody; } }
@@ -28,7 +31,7 @@ namespace AICharacterController
 
         private void FixedUpdate()
         {
-            Debug.Log(Rigidbody.velocity.magnitude);
+           // Debug.Log(Rigidbody.velocity.magnitude);
         }
 
         public override void Logic()
@@ -42,13 +45,18 @@ namespace AICharacterController
             if(distance < lookRadius)
             {
                 NavMeshAgent.SetDestination(targetPlayer.position);
+
+                if (distance < NavMeshAgent.stoppingDistance)
+                {
+                    Animator.SetBool("Punch", true);
+                }
             }
 
         }
 
-        public override float GetCurrentSpeed(float magnitude)
+        public override float GetCurrentSpeed()
         {
-            return base.GetCurrentSpeed(Rigidbody.velocity.magnitude);
+            return Rigidbody.velocity.magnitude;
         }
 
 

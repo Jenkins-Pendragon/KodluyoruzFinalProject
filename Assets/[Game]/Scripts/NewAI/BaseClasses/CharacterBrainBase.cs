@@ -21,15 +21,8 @@ namespace AICharacterController
 
         public abstract void Logic();
 
-        public virtual float GetCurrentSpeed(float magnitude)
-        {
-            return magnitude;
-        }
-
-        public float GetCurrentSpeed()
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract float GetCurrentSpeed();
+ 
     }
 }
 

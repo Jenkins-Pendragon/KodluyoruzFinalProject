@@ -10,7 +10,7 @@ namespace AICharacterController
     {
 
         ICharacterBrain characterBrain;
-        ICharacterBrain CharacterBrain { get { return (characterBrain == null) ? characterBrain = GetComponentInParent<AIPetrolBrain>() : characterBrain; } }
+        ICharacterBrain CharacterBrain { get { return (characterBrain == null) ? characterBrain = GetComponentInParent<ICharacterBrain>() : characterBrain; } }
 
         Animator animator;
 
@@ -23,8 +23,11 @@ namespace AICharacterController
 
         private void UpdateAnimations()
         {
-            Debug.Log(characterBrain.GetCurrentSpeed());
-            Animator.SetFloat("Speed", characterBrain.GetCurrentSpeed());
+            //Animator.enabled = false;
+            Debug.Log("updateanimations");
+           Animator.SetFloat("Speed", CharacterBrain.GetCurrentSpeed());
+           
+
         }
     }
 }
