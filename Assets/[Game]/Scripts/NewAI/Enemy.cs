@@ -12,9 +12,7 @@ namespace AICharacterController
         private CharacterAnimationController characterAnimationController;
         public CharacterAnimationController CharacterAnimationController { get { return (characterAnimationController == null) ? characterAnimationController = GetComponent<CharacterAnimationController>() : characterAnimationController; } }
 
-        Animator animator;
-
-        Animator Animator { get { return (animator == null) ? animator = GetComponent<Animator>() : animator; } }
+   
 
 
         protected override void Start()
