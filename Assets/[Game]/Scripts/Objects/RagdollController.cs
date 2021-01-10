@@ -45,7 +45,7 @@ public class RagdollController : MonoBehaviour
         {
             rigidbody.isKinematic = state;            
         }
-        //mainRigidbody.isKinematic = !state;
+        mainRigidbody.isKinematic = !state;
     }
 
     private void SetColliders(bool state)

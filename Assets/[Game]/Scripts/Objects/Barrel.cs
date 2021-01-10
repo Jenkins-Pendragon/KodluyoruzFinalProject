@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Barrel : InteractableBase
+public class Barrel : InteractableBase, IExplodable
 {
     public float radius = 5.0f;
     public float power = 20.0f;
@@ -22,16 +22,22 @@ public class Barrel : InteractableBase
         IInteractable interactable = collision.gameObject.GetComponent<IInteractable>();
         if (interactable!=null && interactable.IsKillable)
         {
-            OnRelation();
+            Explode();
         }
         if (IsKillable)
         {
-            OnRelation();
+            Explode();
         }
-    }
-    public void OnRelation()
+    }    
+    private void OnDrawGizmosSelected()
     {
-        Instantiate(blastEffectPrefab,transform.position,Quaternion.identity);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(gameObject.transform.position, radius);
+    }
+
+    public void Explode()
+    {
+        Instantiate(blastEffectPrefab, transform.position, Quaternion.identity);
         Vector3 explosionPos = transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
         foreach (Collider collider in colliders)
@@ -39,14 +45,9 @@ public class Barrel : InteractableBase
             Rigidbody myRigidbody = collider.GetComponent<Rigidbody>();
             if (myRigidbody != null)
             {
-                myRigidbody.AddExplosionForce(power, explosionPos, radius, 3.0f , ForceMode.Impulse);
+                myRigidbody.AddExplosionForce(power, explosionPos, radius, 3.0f, ForceMode.Impulse);
             }
         }
         this.gameObject.SetActive(false);
-    }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(gameObject.transform.position, radius);
     }
 }

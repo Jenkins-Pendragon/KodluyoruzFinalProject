@@ -30,7 +30,8 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
         if (Outline.enabled == false)
         {            
             Outline.enabled = true;
-        }        
+        }
+        IsKillable = false;
         transform.parent = parent;
         RigidbodyObj.isKinematic = true;
         transform.DOLocalMove(destination.localPosition, tweenDelay);

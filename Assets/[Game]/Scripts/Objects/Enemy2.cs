@@ -29,7 +29,7 @@ public class Enemy2 : InteractableBase, IDamageable
             ragdoll.ActivateRagdoll();
         }
         IsInteractable = false;
-        //IsKillable = false;
+        IsKillable = false;
         enemyAnim.enabled = false;
         skinnedMeshRenderer.sharedMaterial = deathMat;
         agent.enabled = false;
@@ -43,31 +43,30 @@ public class Enemy2 : InteractableBase, IDamageable
 
     public void OnRagdollCollision(Collider other) 
     {
-        Debug.Log(other.gameObject.name);
-        IInteractable interactable = other.gameObject.GetComponent<IInteractable>();
-        if (interactable != null && interactable.IsKillable)
-        {
-            Die();
-        }
-        if (IsKillable)
-        {
-            Die();
-        }
+        Debug.Log(other.gameObject.name);        
 
         if (IsKillable)
         {
-            IInteractable interactable = other.gameObject.GetComponent<IInteractable>();
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log(collision.gameObject.name);
-        IInteractable interactable = collision.gameObject.GetComponent<IInteractable>();
-        if (interactable != null && interactable.IsKillable)
-        {
+            IExplodable explodable = other.gameObject.GetComponent<IExplodable>();
+            IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+            if (explodable!=null)
+            {
+                explodable.Explode();
+            }
+
+            if (damageable !=null)
+            {
+                damageable.Die();
+            }
+
             Die();
         }
-        if (IsKillable)
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        IInteractable interactable = collision.gameObject.GetComponent<IInteractable>();
+        if (interactable != null && interactable.IsKillable)
         {
             Die();
         }
