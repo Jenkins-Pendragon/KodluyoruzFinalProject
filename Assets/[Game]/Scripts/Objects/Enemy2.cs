@@ -40,22 +40,6 @@ public class Enemy2 : InteractableBase, IDamageable
     {
         
     }
-   
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.name);
-        IInteractable interactable = other.gameObject.GetComponent<IInteractable>();
-        if (interactable != null && interactable.IsKillable)
-        {
-            Die();
-        }
-        if (IsKillable)
-        {
-            Die();
-        }
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log(collision.gameObject.name);
