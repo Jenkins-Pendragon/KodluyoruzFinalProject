@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LaserController : MonoBehaviour
-{
+{    
     public Camera gunCamera;
     public Transform gunEndPoint;
     public Transform gunVisual;

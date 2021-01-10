@@ -9,17 +9,18 @@ public class RagdollController : MonoBehaviour
     public Rigidbody mainRigidbody;
     public Collider mainCollider;
 
-    private Animator animator;
-    public Animator AnimatorRagdoll { get { return (animator == null) ? animator = GetComponentInChildren<Animator>() : animator; } }
+    
+    public Animator AnimatorRagdoll;
     private Enemy2 enemy;
     public Enemy2 EnemyScript { get { return (enemy == null) ? enemy = GetComponentInChildren<Enemy2>() : enemy; } }
-
+   
+    
     public void ActivateRagdoll() 
     {
         AnimatorRagdoll.enabled = false;
         SetRigidbodies(false);
         SetColliders(true);
-        EnemyScript.IsRagdoll = true;
+        EnemyScript.IsRagdoll = true;        
     }
 
     public void DisableRagdoll() 
@@ -44,7 +45,7 @@ public class RagdollController : MonoBehaviour
         {
             rigidbody.isKinematic = state;            
         }
-        mainRigidbody.isKinematic = !state;
+        //mainRigidbody.isKinematic = !state;
     }
 
     private void SetColliders(bool state)

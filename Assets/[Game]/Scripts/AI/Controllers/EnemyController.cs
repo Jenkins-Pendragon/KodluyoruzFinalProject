@@ -10,14 +10,13 @@ public class EnemyController : MonoBehaviour
     Animator enemyAnim;
     Transform target;
     NavMeshAgent agent;
-    Rigidbody rb;
+    public Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
-        enemyAnim = GetComponentInChildren<Animator>();
-        rb = GetComponent<Rigidbody>();
+        enemyAnim = GetComponentInChildren<Animator>();        
     }
 
     // Update is called once per frame

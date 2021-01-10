@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Enemy2 : InteractableBase, IDamageable
 {
     NavMeshAgent agent;
-    Animator enemyAnim;
+    public Animator enemyAnim;
     public Material deathMat;
     public SkinnedMeshRenderer skinnedMeshRenderer;    
     private Vector3 direction = Vector3.forward;
@@ -16,8 +16,8 @@ public class Enemy2 : InteractableBase, IDamageable
     protected override void Start()
     {
         base.Start();
-        agent = GetComponent<NavMeshAgent>();
-        enemyAnim = GetComponentInChildren<Animator>();
+        agent = GetComponentInParent<NavMeshAgent>();
+        //enemyAnim = GetComponentInChildren<Animator>();
         ragdoll = GetComponent<RagdollController>();
         ragdoll.DisableRagdoll();
     }
@@ -29,7 +29,7 @@ public class Enemy2 : InteractableBase, IDamageable
             ragdoll.ActivateRagdoll();
         }
         IsInteractable = false;
-        IsKillable = false;
+        //IsKillable = false;
         enemyAnim.enabled = false;
         skinnedMeshRenderer.sharedMaterial = deathMat;
         agent.enabled = false;
@@ -40,9 +40,28 @@ public class Enemy2 : InteractableBase, IDamageable
     {
         
     }
+
+    public void OnRagdollCollision(Collider other) 
+    {
+        Debug.Log(other.gameObject.name);
+        IInteractable interactable = other.gameObject.GetComponent<IInteractable>();
+        if (interactable != null && interactable.IsKillable)
+        {
+            Die();
+        }
+        if (IsKillable)
+        {
+            Die();
+        }
+
+        if (IsKillable)
+        {
+            IInteractable interactable = other.gameObject.GetComponent<IInteractable>();
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log(collision.gameObject.name);
+        Debug.Log(collision.gameObject.name);
         IInteractable interactable = collision.gameObject.GetComponent<IInteractable>();
         if (interactable != null && interactable.IsKillable)
         {
