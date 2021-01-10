@@ -11,13 +11,15 @@ namespace AICharacterController
         private NavMeshAgent navMeshAgent;
         public NavMeshAgent NavMeshAgent { get { return (navMeshAgent == null) ? navMeshAgent = GetComponent<NavMeshAgent>() : navMeshAgent; } }
 
-        private Animator animator;
-        public Animator Animator { get { return (animator == null) ? animator = GetComponent<Animator>() : animator; } }
-
         private Rigidbody rigidbody;
         public Rigidbody Rigidbody { get { return (rigidbody == null) ? rigidbody = GetComponent<Rigidbody>() : rigidbody; } }
         public Transform targetPlayer;
+
+        private CharacterAnimationController characterAnimationController;
+        public CharacterAnimationController CharacterAnimationController { get { return (characterAnimationController == null) ? characterAnimationController = GetComponent<CharacterAnimationController>() : characterAnimationController; } }
+
         
+
 
         private void Start()
         {
@@ -29,10 +31,6 @@ namespace AICharacterController
             base.Initialize();
         }
 
-        private void FixedUpdate()
-        {
-           // Debug.Log(Rigidbody.velocity.magnitude);
-        }
 
         public override void Logic()
         {
@@ -44,11 +42,15 @@ namespace AICharacterController
 
             if(distance < lookRadius)
             {
+                if (NavMeshAgent.enabled == false)
+                    return;
+
                 NavMeshAgent.SetDestination(targetPlayer.position);
 
                 if (distance < NavMeshAgent.stoppingDistance)
                 {
-                    Animator.SetBool("Punch", true);
+                    CharacterAnimationController.Punch();
+                    
                 }
             }
 

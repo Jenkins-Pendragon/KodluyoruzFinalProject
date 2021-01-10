@@ -3,57 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : InteractableBase, Damageable 
+
+namespace AICharacterController
 {
-    NavMeshAgent agent;
-    Animator enemyAnim;    
-
-    protected override void Start()
+    public class Enemy : InteractableBase
     {
-        base.Start();
-        agent = GetComponent<NavMeshAgent>();
-        enemyAnim = GetComponentInChildren<Animator>();
+        NavMeshAgent agent;
+        private CharacterAnimationController characterAnimationController;
+        public CharacterAnimationController CharacterAnimationController { get { return (characterAnimationController == null) ? characterAnimationController = GetComponent<CharacterAnimationController>() : characterAnimationController; } }
+
+        Animator animator;
+
+        Animator Animator { get { return (animator == null) ? animator = GetComponent<Animator>() : animator; } }
+
+
+        protected override void Start()
+        {
+            base.Start();
+            agent = GetComponent<NavMeshAgent>();
+
+        }
+
+
+        public override void OnInteractStart(Transform parent, Transform destination)
+        {
+            base.OnInteractStart(parent, destination);
+            IsInteractable = false;
+            //agent.isStopped = true;
+            agent.enabled = false;
+            CharacterAnimationController.noPunch();
+            CharacterAnimationController.Catch();
+            
+
+
+        }
+
+        public override void OnInteractEnd(Transform forceDirection)
+        {
+            
+            base.OnInteractEnd(forceDirection);
+            CharacterAnimationController.Animator.enabled = false;
+            IsInteractable = true;
+            
+
+
+        }
+
+
+
+
+
+
     }
-
-    public void Damage(Animator anim)
-    {
-        
-       
-        anim.SetBool("Punch", true);
-        // punch animation and kill character
-    }
-
-   
-
-    public void Dead()
-    {
-        
-    }
-
-    public override void OnInteractStart(Transform parent, Transform destination)
-    {
-        base.OnInteractStart(parent, destination);
-        IsInteractable = false;
-        agent.enabled = false;
-        enemyAnim.SetBool("Run", false);
-        enemyAnim.SetBool("Punch", false);
-        enemyAnim.SetBool("Catch", true);
-
-
-    }
-
-    public override void OnInteractEnd(Transform forceDirection)
-    {
-        enemyAnim.enabled = false;
-        base.OnInteractEnd(forceDirection);
-        IsInteractable = true;
-        
-
-    }
-
-
-
-
-
-
 }
+

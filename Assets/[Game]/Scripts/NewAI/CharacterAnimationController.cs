@@ -12,19 +12,43 @@ namespace AICharacterController
         ICharacterBrain characterBrain;
         ICharacterBrain CharacterBrain { get { return (characterBrain == null) ? characterBrain = GetComponentInParent<ICharacterBrain>() : characterBrain; } }
 
-        Animator animator;
+        private Animator animator;
 
-        Animator Animator { get { return (animator == null) ? animator = GetComponent<Animator>() : animator; } }
+        public Animator Animator { get { return (animator == null) ? animator = GetComponent<Animator>() : animator; } }
+
+
 
         private void Update()
         {
             UpdateAnimations();
         }
 
+        public void Punch()
+        {
+            Animator.SetBool("Punch", true);
+        }
+
+        public void noPunch()
+        {
+            Animator.SetBool("Punch", false);
+        }
+
+        public void noRun()
+        {
+            Animator.SetFloat("Speed", 0);
+        }
+
+        public void Catch()
+        {
+            Animator.SetBool("Catch", true);
+        }
+
+      
+
         private void UpdateAnimations()
         {
             //Animator.enabled = false;
-            Debug.Log("updateanimations");
+            
            Animator.SetFloat("Speed", CharacterBrain.GetCurrentSpeed());
            
 
