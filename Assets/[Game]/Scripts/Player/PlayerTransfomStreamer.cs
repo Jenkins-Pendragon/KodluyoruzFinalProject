@@ -10,21 +10,21 @@ public class PlayerTransfomStreamer : MonoBehaviour
         Instance = this;
     }
     private void OnTriggerEnter(Collider other)
-    {
-        Cannon cannon = other.GetComponent<Cannon>();
-        if (cannon!=null)
+    {        
+        IShootable cannon = other.GetComponent<IShootable>();
+        if (cannon!=null && !cannon.IsCanFire)
         {
-            cannon.canFire = true;
-            StartCoroutine(cannon.StartFire());
+            cannon.IsCanFire = true;
+            cannon.Shoot();
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        Cannon cannon = other.GetComponent<Cannon>();
+        IShootable cannon = other.GetComponent<IShootable>();
         if (cannon != null)
         {
-            cannon.canFire = false;
-            StopCoroutine(cannon.StartFire());
+            cannon.IsCanFire = false;
+            cannon.Shoot();
         }
     }
 }
