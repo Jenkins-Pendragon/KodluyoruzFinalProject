@@ -40,6 +40,9 @@ public class Enemy : InteractableBase, IDamageable
         skinnedMeshRenderer.sharedMaterial = deathMat;
         NavMeshAgent.enabled = false;
         ragdollCollider.enabled = false;
+
+        EventManager.OnEnemyDie.Invoke();
+
     }
 
     public void OnRagdollCollision(Collision other)
