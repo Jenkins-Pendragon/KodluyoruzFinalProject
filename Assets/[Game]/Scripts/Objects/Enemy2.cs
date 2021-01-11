@@ -28,6 +28,7 @@ public class Enemy2 : InteractableBase, IDamageable
         {
             ragdoll.ActivateRagdoll();
         }
+        IsDead = true;
         IsInteractable = false;
         IsKillable = false;
         enemyAnim.enabled = false;
@@ -42,11 +43,10 @@ public class Enemy2 : InteractableBase, IDamageable
     }
 
     public void OnRagdollCollision(Collision other) 
-    {
-        Debug.Log(other.gameObject.name);        
-
-        if (IsKillable)
+    {      
+        if (IsKillable && !IsDead)
         {
+            Debug.Log(other.gameObject.name);
             IExplodable explodable = other.gameObject.GetComponent<IExplodable>();
             IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
             if (explodable!=null)
@@ -65,11 +65,14 @@ public class Enemy2 : InteractableBase, IDamageable
 
     public void OnCollisionEnter(Collision collision)
     {
-        IInteractable interactable = collision.gameObject.GetComponent<IInteractable>();
-        if (interactable != null && interactable.IsKillable)
+        if (!IsDead)
         {
-            Die();
-        }
+            IInteractable interactable = collision.gameObject.GetComponent<IInteractable>();
+            if (interactable != null && interactable.IsKillable)
+            {
+                Die();
+            }
+        }        
     }
 
     public override void OnInteractStart(Transform parent, Transform destination)
