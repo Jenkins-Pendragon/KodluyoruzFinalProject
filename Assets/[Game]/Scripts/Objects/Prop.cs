@@ -15,14 +15,14 @@ public class Prop : InteractableBase
     {
         base.OnInteractEnd(forceDirection);
         IsInteractable = true;
-        IsKillable = true; //Set false after
+        IsKillable = true; 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (IsKillable)
+        if (IsKillable && collision.gameObject.CompareTag("Ground"))
         {
-            //IsKillable = false;
+            IsKillable = false;
         }
     }
 }
