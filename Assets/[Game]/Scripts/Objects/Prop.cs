@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Prop : InteractableBase
 {
     public override void OnInteractStart(Transform parent, Transform destination)
     {
+        transform.DOKill();
         base.OnInteractStart(parent, destination);
     }
 

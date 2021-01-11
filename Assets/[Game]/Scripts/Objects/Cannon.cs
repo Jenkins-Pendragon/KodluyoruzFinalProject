@@ -8,6 +8,11 @@ public class Cannon : MonoBehaviour
     public bool canFire;
     public Ease myEase;
     [SerializeField] GameObject cannonBall;
+
+    private void Start()
+    {
+        StartCoroutine(StartFire());
+    }
     public IEnumerator StartFire()
     {
         while (canFire)

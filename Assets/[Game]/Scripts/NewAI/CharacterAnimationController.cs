@@ -33,6 +33,11 @@ namespace AICharacterController
             Animator.SetBool("Catch", state);
         }
 
+        public void Run(bool state) 
+        {
+            Animator.SetBool("Run", state);
+        }
+
       
 
         private void UpdateAnimations()

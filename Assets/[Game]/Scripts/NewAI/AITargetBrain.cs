@@ -45,6 +45,7 @@ namespace AICharacterController
                 if (NavMeshAgent.enabled == false)
                     return;
 
+                CharacterAnimationController.Run(true);
                 NavMeshAgent.SetDestination(targetPlayer.position);
 
                 if (distance < NavMeshAgent.stoppingDistance)
