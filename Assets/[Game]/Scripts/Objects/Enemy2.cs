@@ -41,7 +41,7 @@ public class Enemy2 : InteractableBase, IDamageable
         
     }
 
-    public void OnRagdollCollision(Collider other) 
+    public void OnRagdollCollision(Collision other) 
     {
         Debug.Log(other.gameObject.name);        
 

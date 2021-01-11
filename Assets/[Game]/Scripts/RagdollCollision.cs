@@ -6,7 +6,7 @@ public class RagdollCollision : MonoBehaviour
 {
     private Enemy2 enemy;
     public Enemy2 Enemy { get { return (enemy == null) ? enemy = GetComponentInParent<Enemy2>() : enemy; } }
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         Enemy.OnRagdollCollision(other);
     }
