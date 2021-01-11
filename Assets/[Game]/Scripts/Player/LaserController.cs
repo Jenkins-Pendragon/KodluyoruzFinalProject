@@ -51,16 +51,23 @@ public class LaserController : MonoBehaviour
         RaycastHit hit;
         laserLine.SetPosition(0, gunEndPoint.position);
         var pos = rayOrigin + (gunVisual.forward * rayRange);
-
-        if (Physics.Raycast(gunEndPoint.position, gunVisual.forward, out hit, rayRange))
+        if (lastSelection != null)
         {
-            laserLine.SetPosition(1, hit.point);
-            CheckInteractableObject(hit);
+            laserLine.SetPosition(1, lastSelection.transform.position);
         }
         else
-        {            
-            laserLine.SetPosition(1, pos);                      
-        }        
+        {
+            if (Physics.Raycast(gunEndPoint.position, gunVisual.forward, out hit, rayRange))
+            {
+                laserLine.SetPosition(1, hit.point);
+                CheckInteractableObject(hit);
+            }
+            else
+            {
+                laserLine.SetPosition(1, pos);
+            }
+        }
+               
     }  
 
     private void CheckInteractableObject(RaycastHit hit) 
