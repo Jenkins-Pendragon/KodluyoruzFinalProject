@@ -11,6 +11,7 @@ public class Enemy2 : InteractableBase, IDamageable
     public SkinnedMeshRenderer skinnedMeshRenderer;    
     private Vector3 direction = Vector3.forward;
     private RagdollController ragdoll;
+    public Collider ragdollCollider;
     public bool IsDead { get; protected set; }
     public bool IsRagdoll { get; set; }
     protected override void Start()
@@ -34,6 +35,7 @@ public class Enemy2 : InteractableBase, IDamageable
         enemyAnim.enabled = false;
         skinnedMeshRenderer.sharedMaterial = deathMat;
         agent.enabled = false;
+        ragdollCollider.enabled = false;
     }
     
 
