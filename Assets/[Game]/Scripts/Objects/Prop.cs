@@ -15,4 +15,12 @@ public class Prop : InteractableBase
         IsInteractable = true;
         IsKillable = true; //Set false after
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (IsKillable)
+        {
+            //IsKillable = false;
+        }
+    }
 }
