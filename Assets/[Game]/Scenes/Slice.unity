@@ -5250,6 +5250,7 @@ MonoBehaviour:
   enemyAnim: {fileID: 0}
   deathMat: {fileID: 0}
   skinnedMeshRenderer: {fileID: 0}
+  ragdollCollider: {fileID: 0}
 --- !u!114 &1364065491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6544,6 +6545,7 @@ MonoBehaviour:
   enemyAnim: {fileID: 1678578643}
   deathMat: {fileID: 2100000, guid: f91168e932654a4478eec4099e95f783, type: 2}
   skinnedMeshRenderer: {fileID: 190133299}
+  ragdollCollider: {fileID: 1269236442}
 --- !u!114 &1678578639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8129,6 +8131,7 @@ MonoBehaviour:
   enemyAnim: {fileID: 1951667595}
   deathMat: {fileID: 2100000, guid: f91168e932654a4478eec4099e95f783, type: 2}
   skinnedMeshRenderer: {fileID: 641519560}
+  ragdollCollider: {fileID: 0}
 --- !u!114 &1951667591
 MonoBehaviour:
   m_ObjectHideFlags: 0
