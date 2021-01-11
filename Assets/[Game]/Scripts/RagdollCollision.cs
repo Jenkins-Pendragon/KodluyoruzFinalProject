@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RagdollCollision : MonoBehaviour
 {
-    private Enemy2 enemy;
-    public Enemy2 Enemy { get { return (enemy == null) ? enemy = GetComponentInParent<Enemy2>() : enemy; } }
+    private Enemy enemy;
+    public Enemy Enemy { get { return (enemy == null) ? enemy = GetComponentInParent<Enemy>() : enemy; } }
     private void OnCollisionEnter(Collision other)
     {
         Enemy.OnRagdollCollision(other);

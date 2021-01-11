@@ -32,8 +32,8 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
             Outline.enabled = true;
         }
         IsKillable = false;
-        transform.parent = parent;
-        RigidbodyObj.isKinematic = true;
+        transform.parent = parent;        
+        RigidbodyObj.isKinematic = true;        
         transform.DOLocalMove(destination.localPosition, tweenDelay);
         
     }
@@ -46,7 +46,7 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
             Outline.enabled = false;
         }
         gameObject.transform.parent = null;
-        RigidbodyObj.isKinematic = false;
+        RigidbodyObj.isKinematic = false;        
         RigidbodyObj.AddForce(forceDirection.forward * throwForce, ForceMode.Impulse);
     }
 

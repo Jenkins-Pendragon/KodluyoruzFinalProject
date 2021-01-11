@@ -11,8 +11,8 @@ public class RagdollController : MonoBehaviour
 
     
     public Animator AnimatorRagdoll;
-    private Enemy2 enemy;
-    public Enemy2 EnemyScript { get { return (enemy == null) ? enemy = GetComponentInChildren<Enemy2>() : enemy; } }
+    private Enemy enemy;
+    public Enemy EnemyScript { get { return (enemy == null) ? enemy = GetComponentInChildren<Enemy>() : enemy; } }
    
     
     public void ActivateRagdoll() 

@@ -4,6 +4,5 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void Die();
-    void Kill();
+    void Die();    
 }

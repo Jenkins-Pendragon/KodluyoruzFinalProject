@@ -2,61 +2,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using AICharacterController;
 
-public class Enemy2 : InteractableBase, IDamageable
+
+public class Enemy : InteractableBase, IDamageable
 {
-    NavMeshAgent agent;
-    public Animator enemyAnim;
+    #region Properties
+    private CharacterAnimationController characterAnimationController;
+    public CharacterAnimationController CharacterAnimationController { get { return (characterAnimationController == null) ? characterAnimationController = GetComponent<CharacterAnimationController>() : characterAnimationController; } }
+    private NavMeshAgent navMeshAgent;
+    public NavMeshAgent NavMeshAgent { get { return (navMeshAgent == null) ? navMeshAgent = GetComponent<NavMeshAgent>() : navMeshAgent; } }
+    private RagdollController ragdollController;
+    public RagdollController RagdollController { get { return (ragdollController == null) ? ragdollController = GetComponent<RagdollController>() : ragdollController; } }
+    #endregion
+
+
     public Material deathMat;
-    public SkinnedMeshRenderer skinnedMeshRenderer;    
-    private Vector3 direction = Vector3.forward;
-    private RagdollController ragdoll;
+    public SkinnedMeshRenderer skinnedMeshRenderer; 
     public Collider ragdollCollider;
     public bool IsDead { get; protected set; }
     public bool IsRagdoll { get; set; }
     protected override void Start()
     {
         base.Start();
-        agent = GetComponentInParent<NavMeshAgent>();
-        //enemyAnim = GetComponentInChildren<Animator>();
-        ragdoll = GetComponent<RagdollController>();
-        ragdoll.DisableRagdoll();
+        RagdollController.DisableRagdoll();
     }
 
     public void Die()
     {
         if (!IsRagdoll)
         {
-            ragdoll.ActivateRagdoll();
+            RagdollController.ActivateRagdoll();
         }
         IsDead = true;
         IsInteractable = false;
-        IsKillable = false;
-        enemyAnim.enabled = false;
+        IsKillable = false;            
         skinnedMeshRenderer.sharedMaterial = deathMat;
-        agent.enabled = false;
+        NavMeshAgent.enabled = false;
         ragdollCollider.enabled = false;
     }
-    
 
-    public void Kill()
+    public void OnRagdollCollision(Collision other)
     {
-        
-    }
-
-    public void OnRagdollCollision(Collision other) 
-    {      
         if (IsKillable && !IsDead)
         {
             Debug.Log(other.gameObject.name);
             IExplodable explodable = other.gameObject.GetComponent<IExplodable>();
             IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
-            if (explodable!=null)
+            if (explodable != null)
             {
                 explodable.Explode();
             }
 
-            if (damageable !=null)
+            if (damageable != null)
             {
                 damageable.Die();
             }
@@ -74,28 +72,28 @@ public class Enemy2 : InteractableBase, IDamageable
             {
                 Die();
             }
-        }        
+        }
     }
 
     public override void OnInteractStart(Transform parent, Transform destination)
     {
         base.OnInteractStart(parent, destination);
         IsInteractable = false;
-        agent.enabled = false;
-        enemyAnim.SetBool("Run", false);
-        enemyAnim.SetBool("Punch", false);
-        enemyAnim.SetBool("Catch", true);
+        NavMeshAgent.enabled = false;
+        CharacterAnimationController.Punch(false);
+        CharacterAnimationController.Catch(true); ;
     }
 
     public override void OnInteractEnd(Transform forceDirection)
-    {        
+    {
         base.OnInteractEnd(forceDirection);
-        direction = forceDirection.forward;
+        CharacterAnimationController.Animator.enabled = false;        
         IsInteractable = true;
         IsKillable = true;
-        ragdoll.ActivateRagdoll();
-        ragdoll.ForceRagdoll(direction);
+        RagdollController.ActivateRagdoll();
+        RagdollController.ForceRagdoll(forceDirection.forward);
     }
 
-    
+
 }
+
