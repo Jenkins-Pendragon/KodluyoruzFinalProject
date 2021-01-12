@@ -21,15 +21,12 @@ public class Cannon : MonoBehaviour, IShootable
             });
             yield return new WaitForSeconds(2f);           
         }
+
+        StopAllCoroutines();
     }
 
     public void Shoot()
     {
         StartCoroutine(StartFire());
-    }
-
-    public void StopShooting() 
-    {
-        StopAllCoroutines();
-    }
+    }    
 }

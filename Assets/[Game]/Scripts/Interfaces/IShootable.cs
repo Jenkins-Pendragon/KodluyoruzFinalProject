@@ -5,6 +5,5 @@ using UnityEngine;
 public interface IShootable 
 {
     bool IsCanFire { get; set;}
-    void Shoot();
-    void StopShooting();
+    void Shoot();    
 }

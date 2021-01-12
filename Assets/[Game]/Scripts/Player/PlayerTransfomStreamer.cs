@@ -23,8 +23,7 @@ public class PlayerTransfomStreamer : MonoBehaviour
         IShootable cannon = other.GetComponent<IShootable>();
         if (cannon != null)
         {
-            cannon.IsCanFire = false;
-            cannon.Shoot();
+            cannon.IsCanFire = false;            
         }
     }
 }
