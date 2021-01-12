@@ -102,6 +102,7 @@ public class Saw : MonoBehaviour
     {
         obj.AddComponent<MeshCollider>().convex = true;
         Rigidbody rb = obj.AddComponent<Rigidbody>();
+        rb.mass = 10f;
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         rb.AddExplosionForce(100, obj.transform.position, 20);
     }
