@@ -14,7 +14,7 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
     private OutlineShader outline;
     public OutlineShader Outline { get { return (outline == null) ? outline = GetComponentInChildren<OutlineShader>() : outline; } }
 
-    private readonly float throwForce = 50f;
+    private readonly float throwForce = 200f;
     private readonly float tweenDelay = 0.3f;
     protected virtual void Start()
     {

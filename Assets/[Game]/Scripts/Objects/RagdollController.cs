@@ -35,7 +35,7 @@ public class RagdollController : MonoBehaviour
     {
         foreach (Rigidbody rigidbody in rigidbodies)
         {
-            rigidbody.AddForce(direction * 100f, ForceMode.Impulse);
+            rigidbody.AddForce(direction * 25f, ForceMode.Impulse);
         }
     }
 
