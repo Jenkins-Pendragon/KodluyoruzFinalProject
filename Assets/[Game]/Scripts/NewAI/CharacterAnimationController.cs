@@ -24,7 +24,7 @@ namespace AICharacterController
 
         private void Update()
         {
-            UpdateAnimations();
+           // UpdateAnimations();
         }
 
         public void Punch(bool state)
