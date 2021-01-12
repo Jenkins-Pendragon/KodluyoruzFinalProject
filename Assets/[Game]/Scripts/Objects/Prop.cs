@@ -24,5 +24,14 @@ public class Prop : InteractableBase
         {
             IsKillable = false;
         }
+
+        if (IsInteractable)
+        {
+            IInteractable interactable = collision.gameObject.GetComponent<IInteractable>();
+            if (interactable!=null)
+            {
+                transform.DOKill();
+            }            
+        }
     }
 }
