@@ -14,7 +14,6 @@ public class Cannon : MonoBehaviour, IShootable
     {
         while (IsCanFire)
         {            
-            Debug.Log("fire!");
             transform.DOLookAt(PlayerTransfomStreamer.Instance.transform.position, 0.5f).OnComplete(() =>
             {
                 GameObject clone = Instantiate(cannonBall, transform.position, Quaternion.identity);

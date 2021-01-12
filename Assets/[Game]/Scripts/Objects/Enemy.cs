@@ -40,13 +40,15 @@ public class Enemy : InteractableBase, IDamageable
         skinnedMeshRenderer.sharedMaterial = deathMat;
         NavMeshAgent.enabled = false;
         ragdollCollider.enabled = false;
+
+        EventManager.OnEnemyDie.Invoke();
+
     }
 
     public void OnRagdollCollision(Collision other)
     {
         if (IsKillable && !IsDead)
         {
-            Debug.Log(other.gameObject.name);
             IExplodable explodable = other.gameObject.GetComponent<IExplodable>();
             IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
             if (explodable != null)
