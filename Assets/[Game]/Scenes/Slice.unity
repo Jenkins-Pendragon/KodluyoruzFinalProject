@@ -606,8 +606,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyList: []
   isPlatfromActive: 0
-  pointA: {fileID: 0}
-  pointB: {fileID: 0}
+  moveTo: {fileID: 0}
+  jumpTo: {fileID: 0}
 --- !u!54 &271408675
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1110,8 +1110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyList: []
   isPlatfromActive: 0
-  pointA: {fileID: 1416375936}
-  pointB: {fileID: 2084984480}
+  moveTo: {fileID: 1416375936}
+  jumpTo: {fileID: 2084984480}
 --- !u!54 &783663473
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1523,7 +1523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1416375936}
   m_Layer: 0
-  m_Name: PointA
+  m_Name: MovePoint
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2360,7 +2360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2084984480}
   m_Layer: 0
-  m_Name: PointB
+  m_Name: JumpPoint
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

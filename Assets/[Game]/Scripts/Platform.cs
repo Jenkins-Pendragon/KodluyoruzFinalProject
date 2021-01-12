@@ -10,8 +10,8 @@ public class Platform : MonoBehaviour
     public List<IShootable> shootables = new List<IShootable>();
     [HideInInspector]
     public bool isPlatfromActive;
-    public Transform pointA;
-    public Transform pointB;
+    public Transform moveTo;
+    public Transform jumpTo;
 
 
     private void OnTriggerEnter(Collider other)

@@ -50,26 +50,33 @@ public class PlatformController : MonoBehaviour
     void NextPlatform()
     {
         SetPlatformObjects(false);
-        Vector3 pos = platformList[currentPlatform].pointA.position;
-        pos.y = Player.transform.position.y;
-        Player.transform.DORotate(platformList[currentPlatform].pointB.rotation.eulerAngles, 2f);
-        Sequence playerMovement = DOTween.Sequence();
-        playerMovement.Append(Player.transform.DOMove(pos, 2f));        
-        playerMovement.Append(Player.transform.DOJump(platformList[currentPlatform].pointB.position, 1f, 1, 1f)).OnComplete(
-            ()=> 
-            {               
-                currentPlatform += 1;
-                if (currentPlatform == platformList.Count)
-                {
-                    isAllPlatformEnded = true;
-                    EventManager.OnLevelSuccess.Invoke();
-                }
-                else
-                    SetPlatformObjects(true);
-                    CheckPlatformStatus();
-            });
-
         
+        Sequence playerMovement = DOTween.Sequence();
+        if (platformList[currentPlatform].moveTo != null)
+        {
+            Vector3 pos = platformList[currentPlatform].moveTo.position;
+            pos.y = Player.transform.position.y;
+            playerMovement.Append(Player.transform.DOMove(pos, 2f));
+        }
+
+        if (platformList[currentPlatform].jumpTo != null)
+        {
+            Player.transform.DORotate(platformList[currentPlatform].jumpTo.rotation.eulerAngles, 2f);
+            playerMovement.Append(Player.transform.DOJump(platformList[currentPlatform].jumpTo.position, 1f, 1, 1f));
+        }
+        playerMovement.OnComplete(() =>
+        {
+            currentPlatform += 1;
+            if (currentPlatform == platformList.Count)
+            {
+                isAllPlatformEnded = true;
+                EventManager.OnLevelSuccess.Invoke();
+            }
+            else
+                SetPlatformObjects(true);
+            CheckPlatformStatus();
+            Debug.Log("Bitti");
+        });
     }
 
     private void SetPlatformObjects(bool state) 
