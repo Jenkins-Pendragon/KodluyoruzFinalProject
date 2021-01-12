@@ -42,11 +42,16 @@ public class Barrel : InteractableBase, IExplodable
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
         foreach (Collider collider in colliders)
         {
-            Rigidbody myRigidbody = collider.GetComponent<Rigidbody>();
-            if (myRigidbody != null)
+            Rigidbody rb = collider.GetComponent<Rigidbody>();
+            IDamageable damageable = collider.GetComponent<IDamageable>();
+            if (damageable != null)
             {
-                myRigidbody.AddExplosionForce(power, explosionPos, radius, 3.0f, ForceMode.Impulse);
+                damageable.Die();
             }
+            if (rb != null)
+            {
+                rb.AddExplosionForce(power, explosionPos, radius, 3.0f, ForceMode.Impulse);
+            }            
         }
         this.gameObject.SetActive(false);
     }
