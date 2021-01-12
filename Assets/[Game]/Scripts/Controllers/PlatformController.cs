@@ -21,9 +21,10 @@ public class PlatformController : MonoBehaviour
         EventManager.OnEnemyDie.RemoveListener(CheckPlatformStatus);
     }
 
-   
-       
-    
+    private void Awake()
+    {
+        platformList[0].isPlatfromActive = true;
+    }
 
     void CheckPlatformStatus()
     {
@@ -49,25 +50,38 @@ public class PlatformController : MonoBehaviour
 
     void NextPlatform()
     {
+        SetPlatformObjects(false);
         Vector3 pos = platformList[currentPlatform].pointA.position;
         pos.y = Player.transform.position.y;
         Sequence playerMovement = DOTween.Sequence();
         playerMovement.Append(Player.transform.DOMove(pos, 2f));
         playerMovement.Append(Player.transform.DORotate(platformList[currentPlatform].pointB.rotation.eulerAngles, 0.5f));
-        playerMovement.Append(Player.transform.DOJump(platformList[currentPlatform].pointB.position, 1f, 1, 1f));
-        
-        currentPlatform += 1;
+        playerMovement.Append(Player.transform.DOJump(platformList[currentPlatform].pointB.position, 1f, 1, 1f)).OnComplete(
+            ()=> 
+            {               
+                currentPlatform += 1;
+                if (currentPlatform == platformList.Count)
+                {
+                    isAllPlatformEnded = true;
+                    EventManager.OnLevelSuccess.Invoke();
+                }
+                else
+                    SetPlatformObjects(true);
+            });
+    }
 
-       
-        
-
-        if (currentPlatform == platformList.Count)
+    private void SetPlatformObjects(bool state) 
+    {
+        List<Enemy> enemyList = platformList[currentPlatform].enemyList;
+        List<IShootable> shootables = platformList[currentPlatform].shootables;
+        for (int i = 0; i < enemyList.Count; i++)
         {
-            isAllPlatformEnded = true;
-            EventManager.OnLevelSuccess.Invoke();
+            enemyList[i].NavMeshAgent.enabled = state;
         }
 
-        
-
+        for (int i = 0; i < shootables.Count; i++)
+        {
+            shootables[i].IsCanFire = state;
+        }
     }
 }
