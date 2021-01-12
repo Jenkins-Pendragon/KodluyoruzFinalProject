@@ -17,6 +17,10 @@ namespace AICharacterController
         public Animator Animator { get { return (animator == null) ? animator = GetComponent<Animator>() : animator; } }
 
 
+        public void Shoot(bool state)
+        {
+            Animator.SetBool("Shoot", state);
+        }
 
         private void Update()
         {

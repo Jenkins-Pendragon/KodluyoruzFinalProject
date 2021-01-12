@@ -350,7 +350,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 823
 --- !u!114 &180577775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,6 +586,28 @@ Transform:
   m_Father: {fileID: 1492550371}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &299380771 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4457493536712235134, guid: 7e11dd1bb1b8b5f44a923114e8013cc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 4458492439201513740}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &299380776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299380771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2404e3c32eff4334aab8a19008101ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet: {fileID: 6449012980734497598, guid: 59e58592b771d9c49960bc5637cfcacb, type: 3}
+  targetEnemy: {fileID: 676003504}
+  waitTime: 0
+  shootSpeed: 5
 --- !u!4 &302849573 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8498674566021189430, guid: b087ef61b710aa74189e349f6c6c7c7a,
@@ -1608,6 +1630,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyViaRagdoll2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8498674566021189417, guid: b087ef61b710aa74189e349f6c6c7c7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8498674566021189425, guid: b087ef61b710aa74189e349f6c6c7c7a,
         type: 3}
@@ -3552,6 +3579,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyViaRagdoll2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8498674566021189417, guid: b087ef61b710aa74189e349f6c6c7c7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8498674566021189425, guid: b087ef61b710aa74189e349f6c6c7c7a,
         type: 3}
       propertyPath: m_UpdateMode
@@ -4734,7 +4766,7 @@ PrefabInstance:
     - target: {fileID: 8498674566021189417, guid: b087ef61b710aa74189e349f6c6c7c7a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8498674566021189428, guid: b087ef61b710aa74189e349f6c6c7c7a,
         type: 3}
@@ -7202,25 +7234,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeeca260d2448144584e67bdc264b559, type: 3}
---- !u!1 &3496355900507036166 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 962136903833819914, guid: 7e11dd1bb1b8b5f44a923114e8013cc1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4458492439201513740}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3496355900507036167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3496355900507036166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2404e3c32eff4334aab8a19008101ccf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bullet: {fileID: 6445433229709596284, guid: 59e58592b771d9c49960bc5637cfcacb, type: 3}
 --- !u!4 &3496355900507036185 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 962136903833819925, guid: 7e11dd1bb1b8b5f44a923114e8013cc1,
@@ -7238,6 +7251,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ShooterEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 962136903833819914, guid: 7e11dd1bb1b8b5f44a923114e8013cc1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 962136903833819924, guid: 7e11dd1bb1b8b5f44a923114e8013cc1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 962136903833819925, guid: 7e11dd1bb1b8b5f44a923114e8013cc1,
         type: 3}
@@ -7570,7 +7593,7 @@ PrefabInstance:
     - target: {fileID: 8498674566021189417, guid: b087ef61b710aa74189e349f6c6c7c7a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8498674566021189428, guid: b087ef61b710aa74189e349f6c6c7c7a,
         type: 3}
