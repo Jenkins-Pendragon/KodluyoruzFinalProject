@@ -53,7 +53,7 @@ public class PlatformController : MonoBehaviour
         pos.y = Player.transform.position.y;
         Sequence playerMovement = DOTween.Sequence();
         playerMovement.Append(Player.transform.DOMove(pos, 2f));
-        playerMovement.Append(Player.transform.DORotate(platformList[currentPlatform].pointB.rotation.eulerAngles, 0.2f));
+        playerMovement.Append(Player.transform.DORotate(platformList[currentPlatform].pointB.rotation.eulerAngles, 0.5f));
         playerMovement.Append(Player.transform.DOJump(platformList[currentPlatform].pointB.position, 1f, 1, 1f));
         
         currentPlatform += 1;
