@@ -49,7 +49,6 @@ public class Enemy : InteractableBase, IDamageable
     {
         if (IsKillable && !IsDead)
         {
-            Debug.Log(other.gameObject.name);
             IExplodable explodable = other.gameObject.GetComponent<IExplodable>();
             IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
             if (explodable != null)

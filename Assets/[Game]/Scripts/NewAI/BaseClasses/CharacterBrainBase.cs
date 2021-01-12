@@ -11,12 +11,12 @@ namespace AICharacterController
 
         public virtual void Dispose()
         {
-            Debug.Log("Brain Disposed " + gameObject.GetType());
+
         }
 
         public virtual void Initialize()
         {
-            Debug.Log("Brain Intialized " + gameObject.GetType());
+
         }
 
         public abstract void Logic();
