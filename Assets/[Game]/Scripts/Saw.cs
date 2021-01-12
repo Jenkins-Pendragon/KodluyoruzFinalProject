@@ -8,43 +8,33 @@ public class Saw : MonoBehaviour
     public Material material;
     public LayerMask mask;
 
-
-
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-        transform.position += new Vector3(h, v, 0) * 0.5f;
+        Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(1f, 0.1f, 0.1f), transform.rotation, mask);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        foreach (Collider item in colliders)
         {
-
-            Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(1f, 0.1f, 0.1f), transform.rotation, mask);
-
-            foreach (Collider item in colliders)
+            SliceChibi sliceChibi = item.GetComponent<SliceChibi>();
+            if (sliceChibi != null)
             {
-                SliceChibi sliceChibi = item.GetComponent<SliceChibi>();
-                if (sliceChibi != null)
-                {
-                    GameObject obj = sliceChibi.Slice();
-                    SlicedHull slicedHull = Slice(obj.GetComponent<Collider>().gameObject, material);
-                    GameObject upperHull = slicedHull.CreateUpperHull(obj.gameObject, material);
-                    GameObject lowerHull = slicedHull.CreateLowerHull(obj.gameObject, material);
-                    AddComponents(upperHull);
-                    AddComponents(lowerHull);
-                    Destroy(obj.gameObject);
-                }
-                else
-                {
-                    SlicedHull slicedHull = Slice(item.GetComponent<Collider>().gameObject, material);
-                    GameObject upperHull = slicedHull.CreateUpperHull(item.gameObject, material);
-                    GameObject lowerHull = slicedHull.CreateLowerHull(item.gameObject, material);
-                    AddComponents(upperHull);
-                    AddComponents(lowerHull);
-                    Destroy(item.gameObject);
-                }
-
+                GameObject obj = sliceChibi.Slice();
+                SlicedHull slicedHull = Slice(obj.GetComponent<Collider>().gameObject, material);
+                GameObject upperHull = slicedHull.CreateUpperHull(obj.gameObject, material);
+                GameObject lowerHull = slicedHull.CreateLowerHull(obj.gameObject, material);
+                AddComponents(upperHull);
+                AddComponents(lowerHull);
+                obj.gameObject.SetActive(false);
             }
+            else
+            {
+                SlicedHull slicedHull = Slice(item.GetComponent<Collider>().gameObject, material);
+                GameObject upperHull = slicedHull.CreateUpperHull(item.gameObject, material);
+                GameObject lowerHull = slicedHull.CreateLowerHull(item.gameObject, material);
+                AddComponents(upperHull);
+                AddComponents(lowerHull);
+                Destroy(item.gameObject);
+            }
+
         }
     }
 
