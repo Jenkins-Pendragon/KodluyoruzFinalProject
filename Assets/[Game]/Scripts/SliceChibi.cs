@@ -20,7 +20,7 @@ public class SliceChibi : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //Slice();
+            Slice();
         }
     }
 
