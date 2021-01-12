@@ -43,7 +43,6 @@ public class PlatformController : MonoBehaviour
 
         if (isAllEnemiesDead)
         {
-
             NextPlatform();
         }
     }
@@ -53,9 +52,9 @@ public class PlatformController : MonoBehaviour
         SetPlatformObjects(false);
         Vector3 pos = platformList[currentPlatform].pointA.position;
         pos.y = Player.transform.position.y;
+        Player.transform.DORotate(platformList[currentPlatform].pointB.rotation.eulerAngles, 2f);
         Sequence playerMovement = DOTween.Sequence();
-        playerMovement.Append(Player.transform.DOMove(pos, 2f));
-        playerMovement.Append(Player.transform.DORotate(platformList[currentPlatform].pointB.rotation.eulerAngles, 0.5f));
+        playerMovement.Append(Player.transform.DOMove(pos, 2f));        
         playerMovement.Append(Player.transform.DOJump(platformList[currentPlatform].pointB.position, 1f, 1, 1f)).OnComplete(
             ()=> 
             {               
@@ -67,7 +66,10 @@ public class PlatformController : MonoBehaviour
                 }
                 else
                     SetPlatformObjects(true);
+                    CheckPlatformStatus();
             });
+
+        
     }
 
     private void SetPlatformObjects(bool state) 
