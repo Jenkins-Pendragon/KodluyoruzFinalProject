@@ -70,7 +70,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _FoamSmooth: 0.02
-    - _FoamSpread: 2
+    - _FoamSpread: 1.74
     - _FoamStrength: 0.8
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -90,7 +90,7 @@ Material:
     - _UVWaveAmplitude: 0.05
     - _UVWaveFrequency: 1
     - _UVWaveSpeed: 1
-    - _WaveFrequency: 3.57
+    - _WaveFrequency: 4.93
     - _WaveHeight: 0.2
     - _WaveSpeed: 1
     - _ZWrite: 1
@@ -103,5 +103,5 @@ Material:
     - _FoamColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
     - _FoamSpeed: {r: 1, g: 1, b: -1, a: -1}
     - _HColor: {r: 0.9485294, g: 0.9485294, b: 0.9485294, a: 1}
-    - _RimColor: {r: 0.04411763, g: 0.6440159, b: 1, a: 0.27450982}
+    - _RimColor: {r: 0.14587043, g: 0.18454479, b: 0.20754719, a: 0.27058825}
     - _SColor: {r: 0, g: 0.31257612, b: 0.6764706, a: 1}

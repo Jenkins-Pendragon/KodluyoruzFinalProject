@@ -24,6 +24,11 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
         Outline.Initiliaze(Color.yellow, 8f, OutlineShader.Mode.OutlineVisible);
     }    
 
+    protected virtual void OnDisable() 
+    {
+        transform.DOKill();
+    }
+
     public virtual void OnInteractStart(Transform parent, Transform destination)
     {
         IsInteractable = false;
