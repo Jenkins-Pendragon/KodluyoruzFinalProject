@@ -6,6 +6,7 @@ public class Saw : Prop
 {
     public Material material;
     public LayerMask mask;
+    private float propMass = 4f;
     private Collider col;
     public Collider Collider { get { return (col == null) ? col = GetComponentInChildren<Collider>() : col; } }
 
@@ -40,17 +41,17 @@ public class Saw : Prop
             {
                 SlicedHull slicedHull = Slice(other.GetComponent<Collider>().gameObject, material);
                 if (slicedHull == null) return;
-                Slice(slicedHull, other.gameObject);                
+                Slice(slicedHull, other.gameObject, true);                
             }
         }        
     }    
 
-    private void Slice(SlicedHull slicedHull, GameObject obj) 
+    private void Slice(SlicedHull slicedHull, GameObject obj, bool interactable = false) 
     {
         GameObject upperHull = slicedHull.CreateUpperHull(obj, material);
         GameObject lowerHull = slicedHull.CreateLowerHull(obj, material);
-        AddComponents(upperHull);
-        AddComponents(lowerHull);
+        AddComponents(upperHull, interactable);
+        AddComponents(lowerHull, interactable);
         Destroy(obj);
     }
 
@@ -59,14 +60,19 @@ public class Saw : Prop
         return obj.Slice(transform.position, transform.up, material);
     }
 
-    private void AddComponents(GameObject obj)
+    private void AddComponents(GameObject obj, bool interactable)
     {
         obj.AddComponent<MeshCollider>().convex = true;
         Rigidbody rb = obj.AddComponent<Rigidbody>();
-        rb.mass = 10f;
+        rb.mass = propMass;
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         rb.AddExplosionForce(100, obj.transform.position, 5);
         obj.layer = 10;
+
+        if (interactable)
+        {
+            obj.AddComponent<Prop>();
+        }
     }
 
        
