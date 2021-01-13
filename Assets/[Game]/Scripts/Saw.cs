@@ -12,8 +12,8 @@ public class Saw : Prop
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.layer);
-        Debug.Log(mask.value);
+        //Debug.Log(other.gameObject.layer);
+        //Debug.Log(mask.value);
         if (!IsKillable) return;
 
         if (other.gameObject.layer == 10)
@@ -28,7 +28,7 @@ public class Saw : Prop
                 {                    
                     Destroy(obj.gameObject);
                     other.gameObject.SetActive(true);
-                    Debug.Log("Kesme Hatası Chibi");
+                    Debug.LogError("Kesme Hatası Chibi");
                 }
                 else
                 {
@@ -66,7 +66,7 @@ public class Saw : Prop
         Rigidbody rb = obj.AddComponent<Rigidbody>();
         rb.mass = propMass;
         rb.interpolation = RigidbodyInterpolation.Interpolate;
-        rb.AddExplosionForce(100, obj.transform.position, 5);
+        rb.AddExplosionForce(300, obj.transform.position, 20);
         obj.layer = 10;
 
         if (interactable)

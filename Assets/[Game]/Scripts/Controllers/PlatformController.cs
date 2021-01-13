@@ -56,7 +56,7 @@ public class PlatformController : MonoBehaviour
         {
             Vector3 pos = platformList[currentPlatform].moveTo.position;
             pos.y = Player.transform.position.y;
-            playerMovement.Append(Player.transform.DOMove(pos, 2f));
+            playerMovement.Append(Player.transform.DOMove(pos, 2f).SetEase(Ease.Linear));
         }
 
         if (platformList[currentPlatform].jumpTo != null)
