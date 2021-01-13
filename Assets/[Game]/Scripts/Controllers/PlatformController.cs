@@ -69,6 +69,7 @@ public class PlatformController : MonoBehaviour
             currentPlatform += 1;
             if (currentPlatform == platformList.Count)
             {
+                Debug.Log("Level Succses");
                 isAllPlatformEnded = true;
                 EventManager.OnLevelSuccess.Invoke();
             }
