@@ -33,37 +33,26 @@ namespace AICharacterController
 
 
 
-        IEnumerator EnemyShooting()
+    IEnumerator EnemyShooting()
+    {
+        while (true)
         {
-            while (true)
-            {
+            //Sequence shootMech = DOTween.Sequence();
+            var bulletObj = GameObject.Instantiate(Bullet, transform.position, Quaternion.identity);
+            bulletObj.transform.LookAt(targetEnemy);
+            //shootMech.Append(bulletObj.transform.DOLocalRotate(bulletRotate, 0));
+            //shootMech.Append(bulletObj.transform.DOMove(targetEnemy.position, shootSpeed));
+            bulletObj.transform.DOLocalRotate(bulletRotate, 0);
+            bulletObj.transform.DOMove(targetEnemy.position, shootSpeed);
 
-           
-            
-                Sequence shootMech = DOTween.Sequence();
-                var bulletObj = GameObject.Instantiate(Bullet, transform.position, Quaternion.identity);
-                bulletObj.transform.LookAt(targetEnemy);
-                shootMech.Append(bulletObj.transform.DOLocalRotate(bulletRotate, 0));
-                shootMech.Append(bulletObj.transform.DOMove(targetEnemy.position, shootSpeed));
-                CharacterAnimationController.Animator.SetTrigger("Shoot");
-                CharacterAnimationController.Animator.SetTrigger("TargetAim");
-                
-              
-
-
-
-                
-
-                yield return new WaitForSeconds(waitTime);
-
-
-
-
-            }
+            CharacterAnimationController.Animator.SetTrigger("Shoot");
+            CharacterAnimationController.Animator.SetTrigger("TargetAim");
+ 
+            yield return new WaitForSeconds(waitTime);
 
         }
 
-        
+    }
 
     }
 
