@@ -33,7 +33,7 @@ public class SliceChibi : MonoBehaviour
         if (currentFrame >= meshList.Length) currentFrame = 0;
         GameObject obj = Instantiate(cube, spawnPoint.position, transform.rotation);
         obj.GetComponent<MeshFilter>().mesh = meshList[currentFrame];
-        Destroy(gameObject);
+        gameObject.SetActive(false);
         return obj;
     }
 

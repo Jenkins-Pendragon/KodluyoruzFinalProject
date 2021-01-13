@@ -20,11 +20,21 @@ public class Saw : MonoBehaviour
             {
                 GameObject obj = sliceChibi.Slice();   
                 SlicedHull slicedHull = Slice(obj.GetComponent<Collider>().gameObject, material);
-                GameObject upperHull = slicedHull.CreateUpperHull(obj.gameObject, material);
-                GameObject lowerHull = slicedHull.CreateLowerHull(obj.gameObject, material);
-                AddComponents(upperHull);
-                AddComponents(lowerHull);
-                obj.gameObject.SetActive(false);
+                if (slicedHull == null)
+                {                    
+                    Destroy(obj.gameObject);
+                    other.gameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject upperHull = slicedHull.CreateUpperHull(obj.gameObject, material);
+                    GameObject lowerHull = slicedHull.CreateLowerHull(obj.gameObject, material);
+                    AddComponents(upperHull);
+                    AddComponents(lowerHull);
+                    Destroy(obj.gameObject);
+                    other.GetComponent<IDamageable>().Die();
+                }
+                
             }
             else
             {

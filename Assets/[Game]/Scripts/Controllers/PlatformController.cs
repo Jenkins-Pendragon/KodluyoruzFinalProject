@@ -43,14 +43,14 @@ public class PlatformController : MonoBehaviour
 
         if (isAllEnemiesDead)
         {
-            NextPlatform();
+            StartCoroutine(NextPlatform());
         }
     }
 
-    void NextPlatform()
+    private IEnumerator NextPlatform()
     {
         SetPlatformObjects(false);
-        
+        yield return new WaitForSeconds(1f);
         Sequence playerMovement = DOTween.Sequence();
         if (platformList[currentPlatform].moveTo != null)
         {
