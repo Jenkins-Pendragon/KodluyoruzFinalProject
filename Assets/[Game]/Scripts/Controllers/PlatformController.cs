@@ -21,9 +21,10 @@ public class PlatformController : MonoBehaviour
         EventManager.OnEnemyDie.RemoveListener(CheckPlatformStatus);
     }
 
-   
-       
-    
+    private void Awake()
+    {
+        platformList[0].isPlatfromActive = true;
+    }
 
     void CheckPlatformStatus()
     {
@@ -42,32 +43,55 @@ public class PlatformController : MonoBehaviour
 
         if (isAllEnemiesDead)
         {
-
-            NextPlatform();
+            StartCoroutine(NextPlatform());
         }
     }
 
-    void NextPlatform()
+    private IEnumerator NextPlatform()
     {
-        Vector3 pos = platformList[currentPlatform].pointA.position;
-        pos.y = Player.transform.position.y;
+        SetPlatformObjects(false);
+        yield return new WaitForSeconds(1f);
         Sequence playerMovement = DOTween.Sequence();
-        playerMovement.Append(Player.transform.DOMove(pos, 2f));
-        playerMovement.Append(Player.transform.DORotate(platformList[currentPlatform].pointB.rotation.eulerAngles, 0.5f));
-        playerMovement.Append(Player.transform.DOJump(platformList[currentPlatform].pointB.position, 1f, 1, 1f));
-        
-        currentPlatform += 1;
-
-       
-        
-
-        if (currentPlatform == platformList.Count)
+        if (platformList[currentPlatform].moveTo != null)
         {
-            isAllPlatformEnded = true;
-            EventManager.OnLevelSuccess.Invoke();
+            Vector3 pos = platformList[currentPlatform].moveTo.position;
+            pos.y = Player.transform.position.y;
+            playerMovement.Append(Player.transform.DOMove(pos, 2f).SetEase(Ease.Linear));
         }
 
-        
+        if (platformList[currentPlatform].jumpTo != null)
+        {
+            Player.transform.DORotate(platformList[currentPlatform].jumpTo.rotation.eulerAngles, 2f);
+            playerMovement.Append(Player.transform.DOJump(platformList[currentPlatform].jumpTo.position, 1f, 1, 1f));
+        }
+        playerMovement.OnComplete(() =>
+        {
+            currentPlatform += 1;
+            if (currentPlatform == platformList.Count)
+            {
+                Debug.Log("Level Succses");
+                isAllPlatformEnded = true;
+                EventManager.OnLevelSuccess.Invoke();
+            }
+            else
+                SetPlatformObjects(true);
+            CheckPlatformStatus();
+            Debug.Log("Bitti");
+        });
+    }
 
+    private void SetPlatformObjects(bool state) 
+    {
+        List<Enemy> enemyList = platformList[currentPlatform].enemyList;
+        List<IShootable> shootables = platformList[currentPlatform].shootables;
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            enemyList[i].NavMeshAgent.enabled = state;
+        }
+
+        for (int i = 0; i < shootables.Count; i++)
+        {
+            shootables[i].IsCanFire = state;
+        }
     }
 }

@@ -1,51 +1,58 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using EzySlice;
+using DG.Tweening;
 
-public class Saw : MonoBehaviour
+public class Saw : Prop
 {
     public Material material;
     public LayerMask mask;
+    private float propMass = 4f;
+    private Collider col;
+    public Collider Collider { get { return (col == null) ? col = GetComponentInChildren<Collider>() : col; } }
 
-
-
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-        transform.position += new Vector3(h, v, 0) * 0.5f;
+        //Debug.Log(other.gameObject.layer);
+        //Debug.Log(mask.value);
+        if (!IsKillable) return;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-
-            Collider[] colliders = Physics.OverlapBox(transform.position, new Vector3(1f, 0.1f, 0.1f), transform.rotation, mask);
-
-            foreach (Collider item in colliders)
+        if (other.gameObject.layer == 10)
+        {            
+            SliceChibi sliceChibi = other.GetComponent<SliceChibi>();
+            
+            if (sliceChibi != null)
             {
-                SliceChibi sliceChibi = item.GetComponent<SliceChibi>();
-                if (sliceChibi != null)
-                {
-                    GameObject obj = sliceChibi.Slice();
-                    SlicedHull slicedHull = Slice(obj.GetComponent<Collider>().gameObject, material);
-                    GameObject upperHull = slicedHull.CreateUpperHull(obj.gameObject, material);
-                    GameObject lowerHull = slicedHull.CreateLowerHull(obj.gameObject, material);
-                    AddComponents(upperHull);
-                    AddComponents(lowerHull);
+                GameObject obj = sliceChibi.Slice();   
+                SlicedHull slicedHull = Slice(obj.GetComponent<Collider>().gameObject, material);
+                if (slicedHull == null)
+                {                    
                     Destroy(obj.gameObject);
+                    other.gameObject.SetActive(true);
+                    Debug.LogError("Kesme Hatası Chibi");
                 }
                 else
                 {
-                    SlicedHull slicedHull = Slice(item.GetComponent<Collider>().gameObject, material);
-                    GameObject upperHull = slicedHull.CreateUpperHull(item.gameObject, material);
-                    GameObject lowerHull = slicedHull.CreateLowerHull(item.gameObject, material);
-                    AddComponents(upperHull);
-                    AddComponents(lowerHull);
-                    Destroy(item.gameObject);
+                    Slice(slicedHull, obj);
                 }
-
+                IDamageable damageable = other.GetComponent<IDamageable>();
+                if (damageable != null) damageable.Die();
             }
-        }
+            else
+            {
+                SlicedHull slicedHull = Slice(other.GetComponent<Collider>().gameObject, material);
+                if (slicedHull == null) return;
+                Slice(slicedHull, other.gameObject, true);                
+            }
+        }        
+    }    
+
+    private void Slice(SlicedHull slicedHull, GameObject obj, bool interactable = false) 
+    {
+        GameObject upperHull = slicedHull.CreateUpperHull(obj, material);
+        GameObject lowerHull = slicedHull.CreateLowerHull(obj, material);
+        AddComponents(upperHull, interactable);
+        AddComponents(lowerHull, interactable);
+        Destroy(obj);
     }
 
     private SlicedHull Slice(GameObject obj, Material material)
@@ -53,11 +60,36 @@ public class Saw : MonoBehaviour
         return obj.Slice(transform.position, transform.up, material);
     }
 
-    private void AddComponents(GameObject obj)
+    private void AddComponents(GameObject obj, bool interactable)
     {
         obj.AddComponent<MeshCollider>().convex = true;
         Rigidbody rb = obj.AddComponent<Rigidbody>();
+        rb.mass = propMass;
         rb.interpolation = RigidbodyInterpolation.Interpolate;
-        rb.AddExplosionForce(100, obj.transform.position, 20);
+        rb.AddExplosionForce(300, obj.transform.position, 20);
+        obj.layer = 10;
+
+        if (interactable)
+        {
+            obj.AddComponent<Prop>();
+        }
     }
+
+       
+
+    public override void OnInteractStart(Transform parent, Transform destination)
+    {
+        Collider.isTrigger = false;
+        transform.DOKill();
+        base.OnInteractStart(parent, destination);        
+    }
+
+    public override void OnInteractEnd(Transform forceDirection)
+    {
+        Collider.isTrigger = true;
+        base.OnInteractEnd(forceDirection);
+        IsInteractable = true;
+        IsKillable = true;        
+    }
+
 }

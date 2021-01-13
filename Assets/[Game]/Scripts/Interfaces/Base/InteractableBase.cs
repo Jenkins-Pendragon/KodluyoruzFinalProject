@@ -24,6 +24,11 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
         Outline.Initiliaze(Color.yellow, 8f, OutlineShader.Mode.OutlineVisible);
     }    
 
+    protected virtual void OnDisable() 
+    {
+        transform.DOKill();
+    }
+
     public virtual void OnInteractStart(Transform parent, Transform destination)
     {
         IsInteractable = false;
@@ -32,7 +37,8 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
             Outline.enabled = true;
         }
         IsKillable = false;
-        transform.parent = parent;        
+        transform.parent = parent;
+        RigidbodyObj.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
         RigidbodyObj.isKinematic = true;        
         transform.DOLocalMove(destination.localPosition, tweenDelay);
         
@@ -46,7 +52,8 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
             Outline.enabled = false;
         }
         gameObject.transform.parent = null;
-        RigidbodyObj.isKinematic = false;        
+        RigidbodyObj.isKinematic = false;
+        RigidbodyObj.collisionDetectionMode = CollisionDetectionMode.Continuous;
         RigidbodyObj.AddForce(forceDirection.forward * throwForce, ForceMode.Impulse);
     }
 

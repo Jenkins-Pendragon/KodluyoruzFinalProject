@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public interface IShootable 
 {
-    bool IsCanFire { get; set;}
-    void Shoot();
-    void StopShooting();
+    bool IsCanFire { get; set;}    
 }

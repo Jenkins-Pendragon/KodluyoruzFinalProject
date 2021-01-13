@@ -45,7 +45,16 @@ public class RagdollController : MonoBehaviour
         {
             rigidbody.isKinematic = state;            
         }
+        if (!state)
+        {
+            mainRigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+        }
+        else
+        {
+            mainRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        }
         mainRigidbody.isKinematic = !state;
+
     }
 
     private void SetColliders(bool state)
