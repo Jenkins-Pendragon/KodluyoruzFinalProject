@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 namespace AICharacterController
 {
-    public class AITargetBrain : CharacterBrainBase
+    public class AITargetBrain : MonoBehaviour, ICharacterBrain
     {
         public float lookRadius = 10f;
         private NavMeshAgent navMeshAgent;
@@ -19,23 +19,8 @@ namespace AICharacterController
         public CharacterAnimationController CharacterAnimationController { get { return (characterAnimationController == null) ? characterAnimationController = GetComponent<CharacterAnimationController>() : characterAnimationController; } }
 
         
-
-
-        private void Start()
+        public void Logic()
         {
-            Initialize();
-        }
-
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
-
-
-        public override void Logic()
-        {
-         
-
             
             float distance = Vector3.Distance(targetPlayer.position, transform.position);
 
@@ -56,13 +41,6 @@ namespace AICharacterController
             }
 
         }
-
-        public override float GetCurrentSpeed()
-        {
-            return Rigidbody.velocity.magnitude;
-        }
-
-
 
         private void OnDrawGizmosSelected()
         {

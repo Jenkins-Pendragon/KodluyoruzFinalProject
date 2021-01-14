@@ -6,11 +6,7 @@ namespace AICharacterController
 {
     public interface ICharacterBrain
     {
-        float GetCurrentSpeed();
-
-        void Initialize();
         void Logic();
-        void Dispose();
     }
 }
 

@@ -15,7 +15,7 @@ public class Prop : InteractableBase
     {
         base.OnInteractEnd(forceDirection);
         IsInteractable = true;
-        IsKillable = true; 
+        IsKillable = true;        
     }
 
     private void OnCollisionEnter(Collision collision)
