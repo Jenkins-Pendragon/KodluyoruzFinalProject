@@ -8,26 +8,17 @@ public class SliceChibi : MonoBehaviour
     public GameObject cube;
     public SkinnedMeshRenderer skinnedMeshRenderer;
     public Transform spawnPoint;
-    private Animator playerAnimator;
-    private Mesh mesh;
-
+    private Animator playerAnimator; 
 
     private void Start()
     {
         playerAnimator = GetComponent<Animator>();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Slice();
-        }
-    }
+    } 
 
     public GameObject Slice()
     {
         AnimatorClipInfo[] animationClip = playerAnimator.GetCurrentAnimatorClipInfo(0);
+        Debug.Log(animationClip[0].clip.name);
         int frameNum = (int)(animationClip[0].weight * (animationClip[0].clip.length * animationClip[0].clip.frameRate));
         int currentFrame = (int)(playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime * (frameNum)) % frameNum;
         if (currentFrame >= meshList.Length) currentFrame = 0;
@@ -35,16 +26,5 @@ public class SliceChibi : MonoBehaviour
         obj.GetComponent<MeshFilter>().mesh = meshList[currentFrame];
         gameObject.SetActive(false);
         return obj;
-    }
-
-    public GameObject Slice2()
-    {
-        mesh = new Mesh();
-        mesh = skinnedMeshRenderer.sharedMesh;
-        mesh.RecalculateNormals();
-        GameObject obj = Instantiate(cube, transform.position, Quaternion.identity);
-        cube.GetComponent<MeshFilter>().mesh = mesh;
-        Destroy(gameObject);
-        return obj;
-    }
+    }    
 }

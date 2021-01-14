@@ -20,6 +20,7 @@ public class Enemy : InteractableBase, IDamageable
     public Material deathMat;
     public SkinnedMeshRenderer skinnedMeshRenderer; 
     public Collider ragdollCollider;
+    public bool canRun = true;
     public bool IsDead { get; protected set; }
     public bool IsRagdoll { get; set; }
     protected override void Start()

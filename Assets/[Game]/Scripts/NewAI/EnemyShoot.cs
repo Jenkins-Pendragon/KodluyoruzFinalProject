@@ -13,6 +13,7 @@ public class EnemyShoot : Enemy, IShootable
     public Transform targetEnemy;
     public Transform gundEndPoint;
     public Transform enemyBody;
+    public Transform enemyRotation;
     private float waitTime = 5f;   
     public float shootSpeed = 5f;
 
@@ -21,9 +22,9 @@ public class EnemyShoot : Enemy, IShootable
         base.Start();
         StartCoroutine(EnemyShooting());
         enemyBody.LookAt(targetEnemy);
+        canRun = false;
+    }    
 
-    }
-      
     IEnumerator EnemyShooting()
     {
         while (true)
@@ -37,11 +38,23 @@ public class EnemyShoot : Enemy, IShootable
         }
     }
 
+    public override void OnInteractStart(Transform parent, Transform destination)
+    {
+        base.OnInteractStart(parent, destination);
+        CharacterAnimationController.Shoot(false);
+    }
+
     public void ShootBullet() 
     {        
         var bulletObj = Instantiate(Bullet, gundEndPoint.position, Quaternion.identity);
         bulletObj.transform.LookAt(targetEnemy);
         bulletObj.transform.DOMove(targetEnemy.position, shootSpeed);         
+    }
+
+    public void ResetRotation() 
+    {
+        enemyRotation.transform.localEulerAngles = new Vector3(0, 180, 0);
+        enemyBody.transform.localEulerAngles = new Vector3(0, 0, 0);
     }
 
 }
