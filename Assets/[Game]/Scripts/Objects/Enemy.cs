@@ -37,8 +37,7 @@ public class Enemy : InteractableBase, IDamageable
         IsDead = true;
         IsInteractable = false;
         IsKillable = false;            
-        skinnedMeshRenderer.sharedMaterial = deathMat;
-        NavMeshAgent.enabled = false;
+        skinnedMeshRenderer.sharedMaterial = deathMat;        
         ragdollCollider.enabled = false;
 
         EventManager.OnEnemyDie.Invoke();
