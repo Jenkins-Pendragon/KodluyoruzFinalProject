@@ -6,10 +6,7 @@ using AICharacterController;
 
 
 public class EnemyShoot : Enemy, IShootable
-{
-    private CharacterAnimationController characterAnimationController;
-    public CharacterAnimationController AnimationController { get { return (characterAnimationController == null) ? characterAnimationController = GetComponentInParent<CharacterAnimationController>() : characterAnimationController; } }
-
+{   
     public bool IsCanFire { get; set;}
 
     [SerializeField] private GameObject Bullet;
@@ -32,8 +29,8 @@ public class EnemyShoot : Enemy, IShootable
         while (true)
         {
             if (IsCanFire)
-            {               
-                AnimationController.Shoot(true);
+            {
+                CharacterAnimationController.Shoot(true);
                 yield return new WaitForSeconds(waitTime);
             }
             yield return null;

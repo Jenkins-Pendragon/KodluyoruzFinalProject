@@ -19,6 +19,7 @@ public class Gun : Prop
     {        
         base.OnInteractStart(parent, destination);        
         enemyShoot.IsCanFire = false;
+        Debug.Log("girdi");
         if (enemyShoot.NavMeshAgent != null && !enemyShoot.IsDead) 
         {
             enemyShoot.NavMeshAgent.enabled = true; 
