@@ -42,7 +42,7 @@ namespace AICharacterController
 
             if(distance < lookRadius)
             {
-                if (NavMeshAgent.enabled == false)
+                if (NavMeshAgent == null || NavMeshAgent.enabled == false)
                     return;
 
                 CharacterAnimationController.Run(true);

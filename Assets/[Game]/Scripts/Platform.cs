@@ -21,7 +21,7 @@ public class Platform : MonoBehaviour
 
         if (enemy!=null && !enemyList.Contains(enemy))
         {
-            enemy.NavMeshAgent.enabled = isPlatfromActive;
+            if(enemy.NavMeshAgent !=null) enemy.NavMeshAgent.enabled = isPlatfromActive;
             enemyList.Add(enemy);
         }
 
