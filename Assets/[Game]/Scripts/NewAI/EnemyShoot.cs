@@ -15,14 +15,19 @@ public class EnemyShoot : MonoBehaviour, IShootable
     [SerializeField] private GameObject Bullet;
     public Transform targetEnemy;
     public Transform gundEndPoint;
+    public Transform enemyBody;
     private float waitTime = 5f;   
-
-    public float shootSpeed = 5f;
-    private Vector3 bulletRotate = new Vector3(-90f, 0f, 0f);
+    public float shootSpeed = 5f;   
 
     private void Start()
     {
-        StartCoroutine(EnemyShooting()); 
+        StartCoroutine(EnemyShooting());
+        
+    }
+
+    private void Update()
+    {
+        enemyBody.LookAt(targetEnemy);
     }
 
     IEnumerator EnemyShooting()
@@ -30,20 +35,13 @@ public class EnemyShoot : MonoBehaviour, IShootable
         while (true)
         {
             if (IsCanFire)
-            {
-                //Sequence shootMech = DOTween.Sequence();
+            {                
                 var bulletObj = GameObject.Instantiate(Bullet, gundEndPoint.position, Quaternion.identity);
                 bulletObj.transform.LookAt(targetEnemy);
-                //shootMech.Append(bulletObj.transform.DOLocalRotate(bulletRotate, 0));
-                //shootMech.Append(bulletObj.transform.DOMove(targetEnemy.position, shootSpeed));
-                bulletObj.transform.DOLocalRotate(bulletRotate, 0);
-                bulletObj.transform.DOMove(targetEnemy.position, shootSpeed);
-
-                //CharacterAnimationController.Animator.SetTrigger("Shoot");
-                //CharacterAnimationController.Animator.SetTrigger("TargetAim");
+                bulletObj.transform.DOMove(targetEnemy.position, shootSpeed);                
                 AnimationController.Shoot(true);
-                yield return new WaitForSeconds(waitTime);
-            }  
+            }
+            yield return new WaitForSeconds(waitTime);
         }
     }
 

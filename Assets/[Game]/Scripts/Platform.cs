@@ -25,7 +25,7 @@ public class Platform : MonoBehaviour
             enemyList.Add(enemy);
         }
 
-        else if (shootable != null && !shootables.Contains(shootable))
+        if (shootable != null && !shootables.Contains(shootable))
         {
             shootable.IsCanFire = isPlatfromActive;
             shootables.Add(shootable);
