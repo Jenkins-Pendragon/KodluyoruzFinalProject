@@ -5,7 +5,7 @@ using DG.Tweening;
 using AICharacterController;
 
 
-public class EnemyShoot : MonoBehaviour, IShootable
+public class EnemyShoot : Enemy, IShootable
 {
     private CharacterAnimationController characterAnimationController;
     public CharacterAnimationController AnimationController { get { return (characterAnimationController == null) ? characterAnimationController = GetComponentInParent<CharacterAnimationController>() : characterAnimationController; } }
@@ -19,11 +19,14 @@ public class EnemyShoot : MonoBehaviour, IShootable
     private float waitTime = 5f;   
     public float shootSpeed = 5f;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         StartCoroutine(EnemyShooting());
         enemyBody.LookAt(targetEnemy);
-    }  
+
+    }
+      
     IEnumerator EnemyShooting()
     {
         while (true)

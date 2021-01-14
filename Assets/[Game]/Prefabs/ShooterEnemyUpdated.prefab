@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyShoot: {fileID: 2269733496526011868}
-  enemy: {fileID: 2269733496526011861}
+  enemy: {fileID: 2269733496526011861, guid: 7e11dd1bb1b8b5f44a923114e8013cc1, type: 3}
 --- !u!1 &2269733494855092428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1929,14 +1929,13 @@ GameObject:
   - component: {fileID: 2269733496526011817}
   - component: {fileID: 2269733496526011819}
   - component: {fileID: 2269733496526011818}
-  - component: {fileID: 2269733496526011861}
   - component: {fileID: 2269733496526011860}
   - component: {fileID: 2269733496526011862}
   - component: {fileID: 2269733496526011856}
   - component: {fileID: 2269733496526011859}
   - component: {fileID: 2269733496526011868}
   m_Layer: 10
-  m_Name: ShooterEnemy
+  m_Name: ShooterEnemyUpdated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1949,7 +1948,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2269733496526011869}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -2.6, y: 1.668, z: 4.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2010,21 +2009,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &2269733496526011861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2269733496526011869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7452cc3cdc0e87c4d864f940db6d27b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathMat: {fileID: 2100000, guid: f91168e932654a4478eec4099e95f783, type: 2}
-  skinnedMeshRenderer: {fileID: 2269733496332156594}
-  ragdollCollider: {fileID: 2269733495090149941}
 --- !u!114 &2269733496526011860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2142,6 +2126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2404e3c32eff4334aab8a19008101ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathMat: {fileID: 2100000, guid: f91168e932654a4478eec4099e95f783, type: 2}
+  skinnedMeshRenderer: {fileID: 2269733496332156594}
+  ragdollCollider: {fileID: 2269733495090149941}
   Bullet: {fileID: 159379329170851175, guid: 75f620605eadc264c987c45cf1f5b844, type: 3}
   targetEnemy: {fileID: 0}
   gundEndPoint: {fileID: 3900108765841479786}
