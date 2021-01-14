@@ -36,7 +36,8 @@ public class Enemy : InteractableBase, IDamageable
         }
         IsDead = true;
         IsInteractable = false;
-        IsKillable = false;            
+        IsKillable = false;
+        if (NavMeshAgent != null) NavMeshAgent.enabled = false;      
         skinnedMeshRenderer.sharedMaterial = deathMat;        
         ragdollCollider.enabled = false;
 
@@ -80,7 +81,7 @@ public class Enemy : InteractableBase, IDamageable
     {
         base.OnInteractStart(parent, destination);
         IsInteractable = false;
-        NavMeshAgent.enabled = false;
+        if (NavMeshAgent != null) NavMeshAgent.enabled = false;
         CharacterAnimationController.Punch(false);
         CharacterAnimationController.Catch(true); ;
     }
