@@ -11,6 +11,12 @@ public class GunCameraController : MonoBehaviour
     private readonly float rayRange = 50f;
     public Joystick joystick;
     public Transform destination;
+    public static GunCameraController Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         //Cursor.visible = false;

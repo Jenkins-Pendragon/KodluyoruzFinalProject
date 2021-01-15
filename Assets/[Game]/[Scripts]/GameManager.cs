@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        UIManager.instance.Assignments();
+        SceneLoadStatement.isLoaded = true;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        SceneLoadStatement.isLoaded = false;
+        UIManager.instance.ResetValues();
     }
 }

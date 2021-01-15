@@ -22,11 +22,43 @@ public class UIManager : MonoBehaviour
     public CanvasGroup Pause;     
     public CanvasGroup gameplayInfo;
     public static UIManager instance;
+    public int enemyCount;
+    public Slider mapSlider;
+    public Joystick joystick;
     public void Awake()
     {
         instance = this;
         DefaultLayout();
         AddButonListeners();
+    }
+    private IEnumerator Start()
+    {
+        yield return new WaitUntil(()=> SceneLoadStatement.isLoaded);
+        GunCameraController.Instance.joystick = joystick;
+        mapSlider.maxValue = enemyCount;
+    }
+    public void Assignments()
+    {
+        GunCameraController.Instance.joystick = joystick;
+        mapSlider.maxValue = enemyCount;
+    }
+    public void ResetValues()
+    {
+        enemyCount = 0;
+        mapSlider.maxValue = 0;
+        mapSlider.value = 0;
+    }
+    public void OnEnable()
+    {
+        EventManager.OnEnemyDie.AddListener(UpdateTheSlider);
+    }
+    private void OnDisable()
+    {
+        EventManager.OnEnemyDie.RemoveListener(UpdateTheSlider);
+    }
+    public void UpdateTheSlider()
+    {
+        mapSlider.value++;
     }
     // Related Panels Pause-Resume
     public void PauseTheGame()
