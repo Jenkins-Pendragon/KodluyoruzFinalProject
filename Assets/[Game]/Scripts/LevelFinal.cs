@@ -15,20 +15,24 @@ public class LevelFinal : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.OnLevelSuccess.AddListener(() => player.transform.DOMove(finishPoint.position, 1f));
-        EventManager.OnLevelSuccess.AddListener(() => finalGameCanvas.SetActive(true));
-        EventManager.OnLevelSuccess.AddListener(() => Instantiate(enemyPrefab, finishPoint.transform.position, Quaternion.Euler(transform.forward), enemyPrefab.transform));
+        EventManager.OnLevelSuccess.AddListener(FinalPrepare);
 
     }
 
     private void OnDisable()
     {
-        EventManager.OnLevelSuccess.RemoveListener(() => player.transform.DOMove(finishPoint.position, 1f));
-        EventManager.OnLevelSuccess.RemoveListener(() => finalGameCanvas.SetActive(true));
-        EventManager.OnLevelSuccess.RemoveListener(() => Instantiate(enemyPrefab, finishPoint.transform.position, Quaternion.Euler(transform.forward), enemyPrefab.transform));
+        EventManager.OnLevelSuccess.RemoveListener(FinalPrepare);
 
     }
 
+
+    private void FinalPrepare()
+    {
+        player.transform.DOMove(finishPoint.position, 1f);
+        finalGameCanvas.SetActive(true);
+        Instantiate(enemyPrefab, finishPoint.transform.position, Quaternion.Euler(transform.forward), enemyPrefab.transform);
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
