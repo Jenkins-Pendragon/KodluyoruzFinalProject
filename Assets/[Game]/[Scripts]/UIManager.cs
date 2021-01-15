@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using System;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -26,7 +27,6 @@ public class UIManager : MonoBehaviour
         instance = this;
         DefaultLayout();
         AddButonListeners();
-       // Won.AddListener(() => { EventManager.OnConfettieParty.Invoke(); });
     }
     // Related Panels Pause-Resume
     public void PauseTheGame()
@@ -46,18 +46,18 @@ public class UIManager : MonoBehaviour
     {
         int i = PlayerPrefs.GetInt("Level");
         PlayerPrefs.SetInt("Level", i + 1);
-        SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex );
+        ReloadScene();
     }
     public void RestartLevel() 
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex );
+        ReloadScene();
 
     }
     public void FailedLevel() 
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        ReloadScene();
     }
     // Methods
     private void DefaultLayout()
@@ -68,7 +68,7 @@ public class UIManager : MonoBehaviour
         Lose.Close();
         Pause.Close();
         gameplayInfo.Open();
-       // EventManager.OnTapStart.AddListener(() => { gameplayInfo.Close(); });
+        EventManager.OnTapStart.AddListener(() => { gameplayInfo.Close(); });
     }
     private void AddButonListeners()
     {
@@ -87,6 +87,17 @@ public class UIManager : MonoBehaviour
     {
         gamePlay.Close();
         Lose.Open();
+    }
+    public void ReloadScene()
+    {
+        StartCoroutine(LevelButtonCo());
+    }
+    IEnumerator LevelButtonCo()
+    {
+        yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        yield return SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
+        SceneManager.SetActiveScene(SceneManager.GetSceneAt(2));
+        DefaultLayout();
     }
 }
 public static class CanvasProp
