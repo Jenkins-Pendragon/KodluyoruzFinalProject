@@ -66,8 +66,9 @@ namespace EzySlice {
          * See -> Slice(Mesh, Plane) for more info
          */
         public static SlicedHull Slice(GameObject obj, Plane pl, TextureRegion crossRegion, Material crossMaterial) {
-            MeshFilter filter = obj.GetComponent<MeshFilter>();
-            
+            //MeshFilter filter = obj.GetComponent<MeshFilter>();
+            MeshFilter filter = obj.GetComponentInChildren<MeshFilter>();
+
 
             // cannot continue without a proper filter
             if (filter == null) {
@@ -76,8 +77,9 @@ namespace EzySlice {
                 return null;
             }
 
-            MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
-            
+            //MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
+            MeshRenderer renderer = obj.GetComponentInChildren<MeshRenderer>();
+
 
             // cannot continue without a proper renderer
             if (renderer == null) {
