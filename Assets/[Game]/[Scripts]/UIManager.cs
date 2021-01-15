@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour
         instance = this;
         DefaultLayout();
         AddButonListeners();
-        Won.AddListener(() => { EventManager.OnConfettieParty.Invoke(); });
+       // Won.AddListener(() => { EventManager.OnConfettieParty.Invoke(); });
     }
     // Related Panels Pause-Resume
     public void PauseTheGame()
@@ -46,20 +46,18 @@ public class UIManager : MonoBehaviour
     {
         int i = PlayerPrefs.GetInt("Level");
         PlayerPrefs.SetInt("Level", i + 1);
-        EventManager.OnLevelComplete.Invoke(); // For SDK Manager
         SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex );
     }
     public void RestartLevel() 
     {
         Time.timeScale = 1;
         SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex );
-        EventManager.OnLevelRestarted.Invoke(); // For SDK Manager
+
     }
     public void FailedLevel() 
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        EventManager.OnLevelFailed.Invoke(); // For SDK Manager
     }
     // Methods
     private void DefaultLayout()
@@ -70,7 +68,7 @@ public class UIManager : MonoBehaviour
         Lose.Close();
         Pause.Close();
         gameplayInfo.Open();
-        EventManager.OnTapStart.AddListener(() => { gameplayInfo.Close(); });
+       // EventManager.OnTapStart.AddListener(() => { gameplayInfo.Close(); });
     }
     private void AddButonListeners()
     {
