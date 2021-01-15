@@ -29,12 +29,6 @@ public class LevelFinal : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        
-            //player.transform.DOMove(finishPoint.position, 1f);
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
