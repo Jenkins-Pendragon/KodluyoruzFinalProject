@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public class PlatformController : MonoBehaviour
 {
-    bool isAllPlatformEnded = false;
+    public bool isAllPlatformEnded = false;
     public List<Platform> platformList = new List<Platform>();
     private int currentPlatform = 0;
     public GameObject Player;
