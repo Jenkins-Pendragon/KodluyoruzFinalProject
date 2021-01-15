@@ -20,26 +20,22 @@ namespace AICharacterController
 
         
         public void Logic()
-        {
-            
+        {            
             float distance = Vector3.Distance(targetPlayer.position, transform.position);
-
-
             if(distance < lookRadius)
             {
                 if (NavMeshAgent == null || NavMeshAgent.enabled == false)
                     return;
-
                 CharacterAnimationController.Run(true);
                 NavMeshAgent.SetDestination(targetPlayer.position);
 
                 if (distance < NavMeshAgent.stoppingDistance)
                 {
+                    NavMeshAgent.enabled = false;
                     CharacterAnimationController.Punch(true);
-                    
+                    if(!PlayerData.Instance.IsPlayerDead) EventManager.OnLevelFailed.Invoke();
                 }
             }
-
         }
 
         private void OnDrawGizmosSelected()

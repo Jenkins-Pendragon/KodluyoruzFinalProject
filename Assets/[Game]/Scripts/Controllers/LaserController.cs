@@ -38,7 +38,7 @@ public class LaserController : MonoBehaviour
             laserLine.enabled = false;            
         }
 
-        if (canDrawLaser)
+        if (canDrawLaser && !PlayerData.Instance.IsPlayerDead)
         {
             DrawLaser();
             if (!laserLine.enabled) laserLine.enabled = true;

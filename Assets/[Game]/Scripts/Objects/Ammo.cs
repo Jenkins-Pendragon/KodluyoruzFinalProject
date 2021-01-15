@@ -18,7 +18,7 @@ public class Ammo : Prop, IPlayerKillable
         {            
             transform.DOKill();
             RigidbodyObj.useGravity = true;
-            IsDeadly = false;
+            if (!collision.gameObject.CompareTag("Player")) IsDeadly = false;
         }
     }
 }
