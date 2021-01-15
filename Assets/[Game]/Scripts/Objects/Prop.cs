@@ -18,10 +18,10 @@ public class Prop : InteractableBase
         IsKillable = true;        
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
+    protected virtual void OnCollisionEnter(Collision collision)
+    {        
         if (IsKillable && collision.gameObject.CompareTag("Ground"))
-        {
+        {            
             IsKillable = false;
         }        
     }

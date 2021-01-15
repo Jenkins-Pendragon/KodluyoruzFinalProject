@@ -62,7 +62,8 @@ public class Saw : Prop
 
     private void AddComponents(GameObject obj, bool interactable)
     {
-        obj.AddComponent<MeshCollider>().convex = true;
+        //obj.AddComponent<MeshCollider>().convex = true;
+        obj.AddComponent<BoxCollider>();
         Rigidbody rb = obj.AddComponent<Rigidbody>();
         rb.mass = propMass;
         rb.interpolation = RigidbodyInterpolation.Interpolate;

@@ -5,36 +5,43 @@ using DG.Tweening;
 using AICharacterController;
 
 
-public class EnemyShoot : MonoBehaviour, IShootable
-{
-    private CharacterAnimationController characterAnimationController;
-    public CharacterAnimationController AnimationController { get { return (characterAnimationController == null) ? characterAnimationController = GetComponentInParent<CharacterAnimationController>() : characterAnimationController; } }
-
+public class EnemyShoot : Enemy, IShootable
+{   
     public bool IsCanFire { get; set;}
 
     [SerializeField] private GameObject Bullet;
     public Transform targetEnemy;
     public Transform gundEndPoint;
     public Transform enemyBody;
+    public Transform enemyRotation;
     private float waitTime = 5f;   
     public float shootSpeed = 5f;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         StartCoroutine(EnemyShooting());
         enemyBody.LookAt(targetEnemy);
-    }  
+        canRun = false;
+    }    
+
     IEnumerator EnemyShooting()
     {
         while (true)
         {
             if (IsCanFire)
-            {               
-                AnimationController.Shoot(true);
+            {
+                CharacterAnimationController.Shoot(true);
                 yield return new WaitForSeconds(waitTime);
             }
             yield return null;
         }
+    }
+
+    public override void OnInteractStart(Transform parent, Transform destination)
+    {
+        base.OnInteractStart(parent, destination);
+        CharacterAnimationController.Shoot(false);
     }
 
     public void ShootBullet() 
@@ -42,6 +49,12 @@ public class EnemyShoot : MonoBehaviour, IShootable
         var bulletObj = Instantiate(Bullet, gundEndPoint.position, Quaternion.identity);
         bulletObj.transform.LookAt(targetEnemy);
         bulletObj.transform.DOMove(targetEnemy.position, shootSpeed);         
+    }
+
+    public void ResetRotation() 
+    {
+        enemyRotation.transform.localEulerAngles = new Vector3(0, 180, 0);
+        enemyBody.transform.localEulerAngles = new Vector3(0, 0, 0);
     }
 
 }

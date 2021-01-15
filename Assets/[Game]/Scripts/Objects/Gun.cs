@@ -5,8 +5,7 @@ using DG.Tweening;
 
 public class Gun : Prop
 {
-    public EnemyShoot enemyShoot;
-    public Enemy enemy;
+    public EnemyShoot enemyShoot;    
     private Collider col;
     public Collider Collider { get { return (col == null) ? col = GetComponentInChildren<Collider>() : col; } }
     protected override void Start()
@@ -20,9 +19,11 @@ public class Gun : Prop
     {        
         base.OnInteractStart(parent, destination);        
         enemyShoot.IsCanFire = false;
-        if (enemy.NavMeshAgent != null && !enemy.IsDead) 
-        { 
-            enemy.NavMeshAgent.enabled = true; 
+        enemyShoot.canRun = true;        
+        if (enemyShoot.NavMeshAgent != null && !enemyShoot.IsDead) 
+        {
+            enemyShoot.ResetRotation();
+            enemyShoot.NavMeshAgent.enabled = true; 
         }
     }
 

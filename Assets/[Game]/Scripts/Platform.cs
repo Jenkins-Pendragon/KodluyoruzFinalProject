@@ -16,12 +16,12 @@ public class Platform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Enemy enemy = other.GetComponent<Enemy>();
+        Enemy enemy = other.GetComponent<Enemy>();        
         IShootable shootable = other.GetComponent<IShootable>();
 
         if (enemy!=null && !enemyList.Contains(enemy))
         {
-            if(enemy.NavMeshAgent !=null) enemy.NavMeshAgent.enabled = isPlatfromActive;
+            if(enemy.NavMeshAgent !=null && enemy.canRun) enemy.NavMeshAgent.enabled = isPlatfromActive;
             enemyList.Add(enemy);
         }
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1789644877558714422}
   - component: {fileID: 1778577119743628684}
   - component: {fileID: 1767924122136023980}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: crate-box-traingle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 1808870706678237497}
   - component: {fileID: 1808870706678237496}
   - component: {fileID: 1808870706678237495}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CrateBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1808870706678237493}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.97, z: 2.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 7448891792771481777}
   - component: {fileID: 7437859878574288613}
   - component: {fileID: 7429360018374124109}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: crate-box-outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}

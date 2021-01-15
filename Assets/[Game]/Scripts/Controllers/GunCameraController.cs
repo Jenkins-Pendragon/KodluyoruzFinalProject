@@ -20,11 +20,13 @@ public class GunCameraController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            LookAtTouchPos();            
+           if (PlayerData.Instance.IsPlayerDead) return;            
+           LookAtTouchPos();            
         }        
 
         else if (Input.GetMouseButton(0))
         {
+            if (PlayerData.Instance.IsPlayerDead) return;            
             ChangeCameraRotation();
         }        
     }    
@@ -35,8 +37,8 @@ public class GunCameraController : MonoBehaviour
         float mouseX = Mathf.Abs(joystick.Horizontal) * mouseSensivity * Time.deltaTime * Input.GetAxis("Mouse X");    
         xRotation -= mouseY;
         yRotation += mouseX;
-        xRotation = Mathf.Clamp(xRotation, -35f, 8f);
-        yRotation = Mathf.Clamp(yRotation, -20f, 20f);
+        xRotation = Mathf.Clamp(xRotation, -45f, 15f);
+        yRotation = Mathf.Clamp(yRotation, -40f, 30f);
         transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
     }    
 
