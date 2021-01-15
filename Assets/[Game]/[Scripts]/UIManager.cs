@@ -7,8 +7,6 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
-    public static UnityEvent Won = new UnityEvent();
-    public static UnityEvent Lost = new UnityEvent();
     [Header("UI Buttons")]
     public Button pauseButton;
     public Button nextButton;
@@ -19,12 +17,13 @@ public class UIManager : MonoBehaviour
     public CanvasGroup gamePlay;
     public CanvasGroup Win;  // Açılması İçin Ayarlanmadı Karakter Bitişe Vardığında ---> UIManager.Won.Invoke(); ' u çağırınız
     public CanvasGroup Lose; // Açılması İçin Ayarlanmadı Karakter Öldüğü Zaman      ---> UIManager.Lost.Invoke(); ' u çağırınız
-    public CanvasGroup Pause;     
+    public CanvasGroup Pause;
     public CanvasGroup gameplayInfo;
     public static UIManager instance;
     public int enemyCount;
     public Slider mapSlider;
     public Joystick joystick;
+
     public void Awake()
     {
         instance = this;
@@ -33,7 +32,7 @@ public class UIManager : MonoBehaviour
     }
     private IEnumerator Start()
     {
-        yield return new WaitUntil(()=> SceneLoadStatement.isLoaded);
+        yield return new WaitUntil(() => SceneLoadStatement.isLoaded);
         GunCameraController.Instance.joystick = joystick;
         mapSlider.maxValue = enemyCount;
     }
@@ -51,10 +50,20 @@ public class UIManager : MonoBehaviour
     public void OnEnable()
     {
         EventManager.OnEnemyDie.AddListener(UpdateTheSlider);
+        EventManager.OnTapStart.AddListener(CloseTheHelpMenu);
+        EventManager.OnLevelFailed.AddListener(OpenLostPanel);
+    }
+    private void CloseTheHelpMenu()
+    {
+         gameplayInfo.Close(); EventManager.OnLevelStart.Invoke();
     }
     private void OnDisable()
     {
         EventManager.OnEnemyDie.RemoveListener(UpdateTheSlider);
+        EventManager.OnTapStart.RemoveListener(CloseTheHelpMenu);
+        EventManager.OnLevelFailed.RemoveListener(OpenLostPanel);
+
+
     }
     public void UpdateTheSlider()
     {
@@ -80,13 +89,13 @@ public class UIManager : MonoBehaviour
         PlayerPrefs.SetInt("Level", i + 1);
         ReloadScene();
     }
-    public void RestartLevel() 
+    public void RestartLevel()
     {
         Time.timeScale = 1;
         ReloadScene();
 
     }
-    public void FailedLevel() 
+    public void FailedLevel()
     {
         Time.timeScale = 1;
         ReloadScene();

@@ -376,6 +376,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2062631526805611902, guid: 1a34955a6af5446a586f497a045717f1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -138
+      objectReference: {fileID: 0}
+    - target: {fileID: 2062631526805611902, guid: 1a34955a6af5446a586f497a045717f1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 2472036388474997041, guid: 1a34955a6af5446a586f497a045717f1,
         type: 3}
       propertyPath: m_Enabled
@@ -399,6 +409,11 @@ PrefabInstance:
     - target: {fileID: 5763927171100091981, guid: 1a34955a6af5446a586f497a045717f1,
         type: 3}
       propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6677898351713356134, guid: 1a34955a6af5446a586f497a045717f1,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7108292023029421667, guid: 1a34955a6af5446a586f497a045717f1,
@@ -772,7 +787,7 @@ PrefabInstance:
     - target: {fileID: 8058503887778337069, guid: 1a34955a6af5446a586f497a045717f1,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8669493174461570535, guid: 1a34955a6af5446a586f497a045717f1,
         type: 3}
@@ -830,6 +845,7 @@ GameObject:
   - component: {fileID: 1884949715}
   - component: {fileID: 1884949714}
   - component: {fileID: 1884949713}
+  - component: {fileID: 1884949716}
   m_Layer: 5
   m_Name: Dynamic Joystick
   m_TagString: Untagged
@@ -914,6 +930,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884949711}
   m_CullTransparentMesh: 0
+--- !u!114 &1884949716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884949711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7898b1b60a951fd418c14bc477cd0812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2117236657
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,7 +977,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 16183
 --- !u!114 &2117236659
 MonoBehaviour:
   m_ObjectHideFlags: 0

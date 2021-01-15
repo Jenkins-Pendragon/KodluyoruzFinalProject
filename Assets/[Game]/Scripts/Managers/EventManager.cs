@@ -13,5 +13,6 @@ public static class EventManager
     public static UnityEvent OnLevelFailed = new UnityEvent();
     public static UnityEvent OnLevelSuccess = new UnityEvent();
     public static UnityEvent OnTapStart = new UnityEvent();
+    public static UnityEvent OnLevelStart = new UnityEvent();
 }
 
