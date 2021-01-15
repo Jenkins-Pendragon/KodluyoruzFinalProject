@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
     public static PlayerData Instance;
+    [HideInInspector]
     public bool IsPlayerDead = false;
     private void Awake()
     {        

@@ -31,7 +31,7 @@ public class LaserController : MonoBehaviour
     
     void Update()
     {   
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) || (lastSelection != null && PlayerData.Instance.IsPlayerDead))
         {
             RealaseInteractableObject();
             canDrawLaser = false;
@@ -42,7 +42,7 @@ public class LaserController : MonoBehaviour
         {
             DrawLaser();
             if (!laserLine.enabled) laserLine.enabled = true;
-        }        
+        }       
     }
 
     private void DrawLaser()
