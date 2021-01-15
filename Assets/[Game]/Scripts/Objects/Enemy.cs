@@ -16,7 +16,6 @@ public class Enemy : InteractableBase, IDamageable
     public RagdollController RagdollController { get { return (ragdollController == null) ? ragdollController = GetComponent<RagdollController>() : ragdollController; } }
     #endregion
 
-
     public Material deathMat;
     public SkinnedMeshRenderer skinnedMeshRenderer; 
     public Collider ragdollCollider;

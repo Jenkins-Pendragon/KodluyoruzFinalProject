@@ -67,6 +67,7 @@ namespace EzySlice {
          */
         public static SlicedHull Slice(GameObject obj, Plane pl, TextureRegion crossRegion, Material crossMaterial) {
             MeshFilter filter = obj.GetComponent<MeshFilter>();
+            
 
             // cannot continue without a proper filter
             if (filter == null) {
@@ -76,6 +77,7 @@ namespace EzySlice {
             }
 
             MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
+            
 
             // cannot continue without a proper renderer
             if (renderer == null) {

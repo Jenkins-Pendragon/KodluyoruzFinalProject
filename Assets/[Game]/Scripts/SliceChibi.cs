@@ -22,7 +22,9 @@ public class SliceChibi : MonoBehaviour
         List<Mesh> meshList;
         AnimatorClipInfo[] animationClip = playerAnimator.GetCurrentAnimatorClipInfo(0);
         string animationName = animationClip[0].clip.name;
+        Debug.Log(animationName);
         int frameNum = (int)(animationClip[0].weight * (animationClip[0].clip.length * animationClip[0].clip.frameRate));
+        if (frameNum == 0) frameNum = 1; //Avoid to DivideByZeroException
         int currentFrame = (int)(playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime * (frameNum)) % frameNum;
 
         if (animationName == "Running") meshList = runningMeshList;
