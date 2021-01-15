@@ -6,10 +6,8 @@ using DG.Tweening;
 public class PowerBar : MonoBehaviour
 {
     public GameObject pointer;
-    public Transform startPoint;
-    public Transform endPoint;
     public bool isActive = false;
-    public GameObject bar;
+    
 
     private void OnEnable()
     {
@@ -34,10 +32,8 @@ public class PowerBar : MonoBehaviour
         while (true)
         {
 
-            pointer.transform.position = Vector3.MoveTowards(pointer.transform.position, bar.transform.position, Time.deltaTime);
-
-            //pointer.transform.DOMoveY(startPoint.position.y, 1f).OnComplete(() => pointer.transform.DOMoveY(endPoint.position.y, 1f));
-            //yield return new WaitForSeconds(2f);
+            pointer.transform.DORotate(new Vector3(0f, 0f, 40f), 0.5f).OnComplete(() => pointer.transform.DORotate(new Vector3(0f, 0f, -40f), 0.5f));
+           
         }
 
 
