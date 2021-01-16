@@ -5,8 +5,8 @@ using DG.Tweening;
 
 
 public class PlatformController : MonoBehaviour
-{
-    public bool isAllPlatformEnded = false;
+{    
+    bool isAllPlatformEnded = false;
     public List<Platform> platformList = new List<Platform>();
     private int currentPlatform = 0;
     public GameObject Player;
@@ -14,11 +14,13 @@ public class PlatformController : MonoBehaviour
     private void OnEnable()
     {
         EventManager.OnEnemyDie.AddListener(CheckPlatformStatus);
+        EventManager.OnLevelStart.AddListener(() => SetPlatformObjects(true));
     }
 
     private void OnDisable()
     {
         EventManager.OnEnemyDie.RemoveListener(CheckPlatformStatus);
+        EventManager.OnLevelStart.RemoveListener(() => SetPlatformObjects(true));
     }
 
     private void Awake()
@@ -69,8 +71,10 @@ public class PlatformController : MonoBehaviour
             currentPlatform += 1;
             if (currentPlatform == platformList.Count)
             {
+                if (PlayerData.Instance.IsPlayerDead) return;                
                 Debug.Log("Level Succses");
                 isAllPlatformEnded = true;
+                //EventManager.OnLevelSuccess.Invoke();
                 EventManager.OnLastPlatform.Invoke();
             }
             else
@@ -86,7 +90,7 @@ public class PlatformController : MonoBehaviour
         List<IShootable> shootables = platformList[currentPlatform].shootables;
         for (int i = 0; i < enemyList.Count; i++)
         {
-            if(enemyList[i].NavMeshAgent != null) enemyList[i].NavMeshAgent.enabled = state;
+            if(enemyList[i].NavMeshAgent != null && enemyList[i].canRun && !enemyList[i].IsDead) enemyList[i].NavMeshAgent.enabled = state;
         }
 
         for (int i = 0; i < shootables.Count; i++)

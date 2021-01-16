@@ -21,10 +21,10 @@ public class Cannon : MonoBehaviour, IShootable
         {
             if (IsCanFire)
             {
-                firePoint.DOLookAt(PlayerTransfomStreamer.Instance.transform.position, 0.5f).OnComplete(() =>
+                firePoint.DOLookAt(PlayerData.Instance.transform.position, 0.5f).OnComplete(() =>
                 {
                     GameObject clone = Instantiate(cannonBall, firePoint.position, Quaternion.identity);
-                    clone.transform.DOJump(PlayerTransfomStreamer.Instance.transform.position, 6, 1, 5f).SetEase(myEase);
+                    clone.transform.DOJump(PlayerData.Instance.transform.position, 6, 1, 5f).SetEase(myEase);
                 });
             }            
             yield return new WaitForSeconds(5f);           

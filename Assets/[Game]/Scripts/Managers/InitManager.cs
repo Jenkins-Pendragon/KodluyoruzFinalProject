@@ -9,7 +9,8 @@ public class InitManager : MonoBehaviour
         //Init Game Here
         yield return SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
         yield return SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
-        SceneManager.SetActiveScene(SceneManager.GetSceneAt(2));        
+        SceneManager.SetActiveScene(SceneManager.GetSceneAt(2));
+        GameManager.Instance.StartGame();
         Destroy(gameObject);
     } 
 

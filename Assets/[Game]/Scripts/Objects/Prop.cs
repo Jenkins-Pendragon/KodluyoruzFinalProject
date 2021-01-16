@@ -8,7 +8,7 @@ public class Prop : InteractableBase
     public override void OnInteractStart(Transform parent, Transform destination)
     {
         transform.DOKill();
-        base.OnInteractStart(parent, destination);
+        base.OnInteractStart(parent, destination);        
     }
 
     public override void OnInteractEnd(Transform forceDirection)
@@ -18,10 +18,10 @@ public class Prop : InteractableBase
         IsKillable = true;        
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
+    protected virtual void OnCollisionEnter(Collision collision)
+    {        
         if (IsKillable && collision.gameObject.CompareTag("Ground"))
-        {
+        {            
             IsKillable = false;
         }        
     }

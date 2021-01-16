@@ -4,47 +4,38 @@ using UnityEngine;
 
 public class SliceChibi : MonoBehaviour
 {
-    public Mesh[] meshList;
+    public List<Mesh> runningMeshList;
+    public List<Mesh> shootingMeshList;
+    public List<Mesh> tauntMeshList;
     public GameObject cube;
     public SkinnedMeshRenderer skinnedMeshRenderer;
     public Transform spawnPoint;
-    private Animator playerAnimator;
-    private Mesh mesh;
-
+    private Animator playerAnimator; 
 
     private void Start()
     {
         playerAnimator = GetComponent<Animator>();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Slice();
-        }
-    }
+    } 
 
     public GameObject Slice()
     {
+        List<Mesh> meshList;
         AnimatorClipInfo[] animationClip = playerAnimator.GetCurrentAnimatorClipInfo(0);
+        string animationName = animationClip[0].clip.name;
+        Debug.Log(animationName);
         int frameNum = (int)(animationClip[0].weight * (animationClip[0].clip.length * animationClip[0].clip.frameRate));
+        if (frameNum == 0) frameNum = 1; //Avoid to DivideByZeroException
         int currentFrame = (int)(playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime * (frameNum)) % frameNum;
-        if (currentFrame >= meshList.Length) currentFrame = 0;
+
+        if (animationName == "Running") meshList = runningMeshList;
+        else if (animationName == "Shooting" || animationName == "DefaultStateShooting") meshList = shootingMeshList;
+        else if(animationName == "Taunt") meshList = tauntMeshList;
+        else meshList = runningMeshList;
+
+        if (currentFrame >= meshList.Count) currentFrame = 0;
         GameObject obj = Instantiate(cube, spawnPoint.position, transform.rotation);
         obj.GetComponent<MeshFilter>().mesh = meshList[currentFrame];
         gameObject.SetActive(false);
         return obj;
-    }
-
-    public GameObject Slice2()
-    {
-        mesh = new Mesh();
-        mesh = skinnedMeshRenderer.sharedMesh;
-        mesh.RecalculateNormals();
-        GameObject obj = Instantiate(cube, transform.position, Quaternion.identity);
-        cube.GetComponent<MeshFilter>().mesh = mesh;
-        Destroy(gameObject);
-        return obj;
-    }
+    }    
 }
