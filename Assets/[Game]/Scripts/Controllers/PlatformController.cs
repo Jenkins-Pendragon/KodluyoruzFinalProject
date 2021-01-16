@@ -5,7 +5,7 @@ using DG.Tweening;
 
 
 public class PlatformController : MonoBehaviour
-{
+{    
     bool isAllPlatformEnded = false;
     public List<Platform> platformList = new List<Platform>();
     private int currentPlatform = 0;
@@ -74,7 +74,8 @@ public class PlatformController : MonoBehaviour
                 if (PlayerData.Instance.IsPlayerDead) return;                
                 Debug.Log("Level Succses");
                 isAllPlatformEnded = true;
-                EventManager.OnLevelSuccess.Invoke();
+                //EventManager.OnLevelSuccess.Invoke();
+                EventManager.OnLastPlatform.Invoke();
             }
             else
                 SetPlatformObjects(true);
