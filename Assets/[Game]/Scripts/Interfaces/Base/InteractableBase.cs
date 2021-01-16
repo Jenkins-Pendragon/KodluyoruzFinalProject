@@ -17,8 +17,8 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
     public OutlineShader Outline { get { return (outline == null) ? outline = GetComponentInChildren<OutlineShader>() : outline; } }
 
     private readonly float throwForce = 200f;
-    private readonly float tweenDelay = 0.3f;
-    private GameObject interactableParent;
+    private readonly float tweenDelay = 0.3f;    
+    private Vector3 offSet;
     protected virtual void Start()
     {
         IsInteractable = true;
@@ -33,26 +33,24 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
     }
 
     public virtual void OnInteractStart(Transform parent, Transform destination)
-    {
-        interactableParent = new GameObject();
+    {        
         IsInteractable = false;
         if (Outline.enabled == false)
         {            
             Outline.enabled = true;
         }
         IsKillable = false;
-        interactableParent.transform.position = Collider.bounds.center;
-        transform.parent = interactableParent.transform;
-        interactableParent.transform.parent = parent;
+        offSet = Collider.bounds.center - transform.position;        
+        transform.parent = parent;        
         RigidbodyObj.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
         RigidbodyObj.isKinematic = true;
-        interactableParent.transform.DOLocalMove(destination.localPosition, tweenDelay);
+        transform.DOLocalMove(destination.localPosition - offSet, tweenDelay);
         
     }
 
     public virtual void OnInteractEnd(Transform forceDirection)
     {
-        interactableParent.transform.DOKill();
+        transform.DOKill();
         if (Outline.enabled == true)
         {
             Outline.enabled = false;
@@ -60,9 +58,7 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
         gameObject.transform.parent = null;
         RigidbodyObj.isKinematic = false;
         RigidbodyObj.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        RigidbodyObj.AddForce(forceDirection.forward * throwForce, ForceMode.Impulse);
-        if (interactableParent.transform.childCount == 0) Destroy(interactableParent);
-        
+        RigidbodyObj.AddForce(forceDirection.forward * throwForce, ForceMode.Impulse);  
     }
 
        
