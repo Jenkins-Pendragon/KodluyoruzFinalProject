@@ -53,6 +53,7 @@ public class PlatformController : MonoBehaviour
 
     private IEnumerator NextPlatform()
     {
+        PlayerData.Instance.IsImmune = true;
         SetPlatformObjects(false);
         yield return new WaitForSeconds(1f);
         Sequence playerMovement = DOTween.Sequence();
@@ -83,6 +84,7 @@ public class PlatformController : MonoBehaviour
                 SetPlatformObjects(true);
             CheckPlatformStatus();
             Debug.Log("Bitti");
+            PlayerData.Instance.IsImmune = false;
         });
     }
 

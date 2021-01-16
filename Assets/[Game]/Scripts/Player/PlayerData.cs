@@ -9,6 +9,8 @@ public class PlayerData : MonoBehaviour
     public bool IsPlayerDead = false;
     [HideInInspector]
     public bool IsControlable = true;
+    [HideInInspector]
+    public bool IsImmune = false;
     private void Awake()
     {        
         Instance = this;

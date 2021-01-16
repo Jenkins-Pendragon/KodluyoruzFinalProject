@@ -13,6 +13,7 @@ public class PlayerDeath : MonoBehaviour
     private void OnDisable()
     {
         EventManager.OnLevelFailed.RemoveListener(Death);
+        DOTween.KillAll();
     }
 
     private void Death() 
