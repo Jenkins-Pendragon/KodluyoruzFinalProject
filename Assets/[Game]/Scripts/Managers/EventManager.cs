@@ -15,6 +15,7 @@ public static class EventManager
     public static UnityEvent OnTapStart = new UnityEvent();
     public static UnityEvent OnLevelStart = new UnityEvent();
     public static UnityEvent OnFinishLine = new UnityEvent();
+    public static UnityEvent OnPlayerDeath = new UnityEvent();
     public static UnityEvent OnTapBar = new UnityEvent();
 }
 

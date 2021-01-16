@@ -15,12 +15,14 @@ public class PlatformController : MonoBehaviour
     {
         EventManager.OnEnemyDie.AddListener(CheckPlatformStatus);
         EventManager.OnLevelStart.AddListener(() => SetPlatformObjects(true));
+        EventManager.OnPlayerDeath.AddListener(()=> SetShootables(false));
     }
 
     private void OnDisable()
     {
         EventManager.OnEnemyDie.RemoveListener(CheckPlatformStatus);
         EventManager.OnLevelStart.RemoveListener(() => SetPlatformObjects(true));
+        EventManager.OnPlayerDeath.RemoveListener(()=> SetShootables(false));
     }
 
     private void Awake()
@@ -86,13 +88,22 @@ public class PlatformController : MonoBehaviour
 
     private void SetPlatformObjects(bool state) 
     {
+        SetEnemies(state);
+        SetShootables(state);
+    }
+
+    private void SetEnemies(bool state) 
+    {
         List<Enemy> enemyList = platformList[currentPlatform].enemyList;
-        List<IShootable> shootables = platformList[currentPlatform].shootables;
         for (int i = 0; i < enemyList.Count; i++)
         {
-            if(enemyList[i].NavMeshAgent != null && enemyList[i].canRun && !enemyList[i].IsDead) enemyList[i].NavMeshAgent.enabled = state;
+            if (enemyList[i].NavMeshAgent != null && enemyList[i].canRun && !enemyList[i].IsDead) enemyList[i].NavMeshAgent.enabled = state;
         }
+    }
 
+    private void SetShootables(bool state) 
+    {
+        List<IShootable> shootables = platformList[currentPlatform].shootables;
         for (int i = 0; i < shootables.Count; i++)
         {
             shootables[i].IsCanFire = state;
