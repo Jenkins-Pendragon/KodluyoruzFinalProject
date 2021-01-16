@@ -27,10 +27,9 @@ public class Enemy : InteractableBase, IDamageable
         base.Start();
         RagdollController.DisableRagdoll();
     }
-    private void Awake()
+    protected virtual void Awake()
     {
-        UIController.Instance.enemyCount++;
-        Debug.Log("Enemy");
+        UIController.Instance.enemyCount++;        
     }
 
     public void Die()

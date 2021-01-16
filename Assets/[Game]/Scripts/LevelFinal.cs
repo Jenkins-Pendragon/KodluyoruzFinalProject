@@ -42,7 +42,7 @@ public class LevelFinal : MonoBehaviour
     {
         player.transform.DOMove(finishPoint.position, 1f);
         finalGameCanvas.SetActive(true);
-        Instantiate(enemyPrefab, transform.position + Vector3.forward, Quaternion.identity);
+        //Instantiate(enemyPrefab, transform.position + Vector3.forward, Quaternion.identity);
 
     }
 

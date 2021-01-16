@@ -6,6 +6,8 @@ public class GoldenEnemy : Enemy
 {
     public GameObject ragdoll;
 
+    protected override void Awake() { }
+    
     public override void OnInteractStart(Transform parent, Transform destination)
     {
         base.OnInteractStart(parent, destination);

@@ -7,6 +7,8 @@ public class PlayerData : MonoBehaviour
     public static PlayerData Instance;
     [HideInInspector]
     public bool IsPlayerDead = false;
+    [HideInInspector]
+    public bool IsControlable = true;
     private void Awake()
     {        
         Instance = this;
