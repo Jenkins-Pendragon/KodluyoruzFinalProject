@@ -775,7 +775,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0017307773, y: 0.40980113, z: 0.0001512561}
+  m_ConnectedAnchor: {x: 0.001730755, y: 0.40980086, z: 0.00015126541}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -2220,7 +2220,7 @@ MonoBehaviour:
   skinnedMeshRenderer: {fileID: 2269733496332156594}
   ragdollCollider: {fileID: 2269733495090149941}
   canRun: 0
-  Bullet: {fileID: 4311004549659634726, guid: 75f620605eadc264c987c45cf1f5b844, type: 3}
+  Bullet: {fileID: 6263973625902018993, guid: 193202d6d23e5dc45bb0af5b8c52cb2a, type: 3}
   targetEnemy: {fileID: 0}
   gundEndPoint: {fileID: 3900108765841479786}
   enemyBody: {fileID: 3900108766415601885}
@@ -2473,7 +2473,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000058906153, y: 0.26387766, z: 0.000000014901161}
+  m_ConnectedAnchor: {x: 0.0000001359731, y: 0.26387745, z: -0.00000008940697}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:

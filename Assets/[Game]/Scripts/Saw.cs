@@ -28,7 +28,7 @@ public class Saw : Prop
                 {                    
                     Destroy(obj.gameObject);
                     other.gameObject.SetActive(true);
-                    Debug.LogError("Kesme Hatası Chibi");
+                    Debug.LogWarning("Kesme Hatası Chibi");
                 }
                 else
                 {
