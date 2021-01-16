@@ -21,17 +21,19 @@ public class GunCameraController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!PlayerData.Instance.IsPlayerDead && PlayerData.Instance.IsControlable)
         {
-           if (PlayerData.Instance.IsPlayerDead) return;            
-           LookAtTouchPos();            
-        }        
+            if (Input.GetMouseButtonDown(0))
+            {                
+                LookAtTouchPos();
+            }
 
-        else if (Input.GetMouseButton(0))
-        {
-            if (PlayerData.Instance.IsPlayerDead) return;            
-            ChangeCameraRotation();
-        }        
+            else if (Input.GetMouseButton(0))
+            {                
+                ChangeCameraRotation();
+            }
+        }
+           
     }    
 
     public void ChangeCameraRotation() 

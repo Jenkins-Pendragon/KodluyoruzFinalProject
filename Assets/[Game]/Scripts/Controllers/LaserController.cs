@@ -10,6 +10,7 @@ public class LaserController : MonoBehaviour
     public Transform destination;
     public float rayRange = 100f;
     private LineRenderer laserLine;
+    public LineRenderer LaserLine { get { return (laserLine == null) ? laserLine = GetComponent<LineRenderer>() : laserLine; } }
     private GameObject lastSelection = null;
     private Collider lastSelectionCollider = null;
     private bool canDrawLaser;
@@ -22,51 +23,48 @@ public class LaserController : MonoBehaviour
     private void OnDisable()
     {
         EventManager.OnLookAtTouchPosCompleted.RemoveListener(() => canDrawLaser = true);
-    }
-
-    void Start()
-    {        
-        laserLine = GetComponent<LineRenderer>();
-    }
-
-    
+    }        
     void Update()
-    {   
-        if (Input.GetMouseButtonUp(0) || (lastSelection != null && PlayerData.Instance.IsPlayerDead))
+    {
+        if (PlayerData.Instance.IsControlable)
         {
-            RealaseInteractableObject();
-            canDrawLaser = false;
-            laserLine.enabled = false;            
-        }
+            if (Input.GetMouseButtonUp(0) || (lastSelection != null && (PlayerData.Instance.IsPlayerDead)))
+            {
+                RealaseInteractableObject();
+                canDrawLaser = false;
+                LaserLine.enabled = false;
+            }
 
-        if (canDrawLaser && !PlayerData.Instance.IsPlayerDead)
-        {
-            DrawLaser();
-            if (!laserLine.enabled) laserLine.enabled = true;
-        }       
+            if (canDrawLaser && !PlayerData.Instance.IsPlayerDead)
+            {
+                DrawLaser();
+                if (!LaserLine.enabled) LaserLine.enabled = true;
+            }
+        }
+        
     }
 
-    private void DrawLaser()
+    public void DrawLaser()
     {        
         Vector3 rayOrigin = gunCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
-        laserLine.SetPosition(0, gunEndPoint.position);
+        LaserLine.SetPosition(0, gunEndPoint.position);
         var pos = rayOrigin + (gunVisual.forward * rayRange);
         if (lastSelectionCollider != null)
         {
             //laserLine.SetPosition(1, lastSelection.transform.position);
-            laserLine.SetPosition(1, lastSelectionCollider.bounds.center);
+            LaserLine.SetPosition(1, lastSelectionCollider.bounds.center);
         }
         else
         {
             if (Physics.Raycast(gunEndPoint.position, gunVisual.forward, out hit, rayRange))
             {
-                laserLine.SetPosition(1, hit.point);
+                LaserLine.SetPosition(1, hit.point);
                 CheckInteractableObject(hit);
             }
             else
             {
-                laserLine.SetPosition(1, pos);
+                LaserLine.SetPosition(1, pos);
             }
         }
                
@@ -87,7 +85,7 @@ public class LaserController : MonoBehaviour
         }
     }
 
-    private void RealaseInteractableObject() 
+    public void RealaseInteractableObject() 
     {
         if (lastSelection != null)
         {

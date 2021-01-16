@@ -75,7 +75,7 @@ public class PlatformController : MonoBehaviour
                 Debug.Log("Level Succses");
                 isAllPlatformEnded = true;
                 //EventManager.OnLevelSuccess.Invoke();
-                EventManager.OnLastPlatform.Invoke();
+                EventManager.OnFinishLine.Invoke();
             }
             else
                 SetPlatformObjects(true);

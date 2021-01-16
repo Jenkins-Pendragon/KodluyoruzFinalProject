@@ -23,6 +23,7 @@ public class UIController : MonoBehaviour
     public int enemyCount;
     public Slider mapSlider;
     public Joystick joystick;
+    public GameObject powerBar;
 
     public void Awake()
     {
@@ -42,17 +43,25 @@ public class UIController : MonoBehaviour
         EventManager.OnEnemyDie.AddListener(UpdateTheSlider);
         EventManager.OnLevelStart.AddListener(OnLevelStart);
         EventManager.OnLevelFailed.AddListener(OpenLostPanel);
+        EventManager.OnFinishLine.AddListener(OnFinishLine);
     }
     private void OnDisable()
     {
         EventManager.OnEnemyDie.RemoveListener(UpdateTheSlider);
         EventManager.OnLevelStart.RemoveListener(OnLevelStart);
         EventManager.OnLevelFailed.RemoveListener(OpenLostPanel);
+        EventManager.OnFinishLine.RemoveListener(OnFinishLine);
     }
     private void OnLevelStart()
     {
         gameplayInfo.Close();
         mapSlider.maxValue = enemyCount;
+    }
+
+    private void OnFinishLine() 
+    {        
+        mapSlider.gameObject.SetActive(false);
+        powerBar.gameObject.SetActive(true);
     }
     
     public void UpdateTheSlider()
@@ -94,6 +103,8 @@ public class UIController : MonoBehaviour
     private void DefaultLayout()
     {
         Time.timeScale = 1;
+        mapSlider.gameObject.SetActive(true);
+        powerBar.gameObject.SetActive(false);
         gamePlay.Open();
         Win.Close();
         Lose.Close();
