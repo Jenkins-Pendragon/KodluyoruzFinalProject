@@ -5,9 +5,8 @@ using DG.Tweening;
 
 public class Gun : Prop
 {
-    public EnemyShoot enemyShoot;    
-    private Collider col;
-    public Collider Collider { get { return (col == null) ? col = GetComponentInChildren<Collider>() : col; } }
+    public EnemyShoot enemyShoot;   
+    
     protected override void Start()
     {
         base.Start();

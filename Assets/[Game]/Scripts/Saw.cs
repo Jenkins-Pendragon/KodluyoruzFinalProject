@@ -6,9 +6,7 @@ public class Saw : Prop
 {
     public Material material;
     public LayerMask mask;
-    private float propMass = 4f;
-    private Collider col;
-    public Collider Collider { get { return (col == null) ? col = GetComponentInChildren<Collider>() : col; } }
+    private float propMass = 4f;    
 
     private void OnTriggerEnter(Collider other)
     {
