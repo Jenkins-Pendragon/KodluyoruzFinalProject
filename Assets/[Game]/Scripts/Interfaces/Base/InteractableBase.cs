@@ -11,11 +11,14 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
     public bool IsKillable { get; set; }
     private Rigidbody rb;
     public Rigidbody RigidbodyObj { get { return (rb == null) ? rb = GetComponentInChildren<Rigidbody>() : rb; } }
+    private Collider col;
+    public Collider Collider { get { return (col == null) ? col = GetComponentInChildren<Collider>() : col; } }
     private OutlineShader outline;
     public OutlineShader Outline { get { return (outline == null) ? outline = GetComponentInChildren<OutlineShader>() : outline; } }
 
     private readonly float throwForce = 200f;
-    private readonly float tweenDelay = 0.3f;
+    private readonly float tweenDelay = 0.3f;    
+    private Vector3 offSet;
     protected virtual void Start()
     {
         IsInteractable = true;
@@ -30,23 +33,24 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
     }
 
     public virtual void OnInteractStart(Transform parent, Transform destination)
-    {
+    {        
         IsInteractable = false;
         if (Outline.enabled == false)
         {            
             Outline.enabled = true;
         }
         IsKillable = false;
-        transform.parent = parent;
+        offSet = Collider.bounds.center - transform.position;        
+        transform.parent = parent;        
         RigidbodyObj.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
-        RigidbodyObj.isKinematic = true;        
-        transform.DOLocalMove(destination.localPosition, tweenDelay);
+        RigidbodyObj.isKinematic = true;
+        transform.DOLocalMove(destination.localPosition - offSet, tweenDelay);
         
     }
 
     public virtual void OnInteractEnd(Transform forceDirection)
     {
-        transform.DOKill();        
+        transform.DOKill();
         if (Outline.enabled == true)
         {
             Outline.enabled = false;
@@ -54,7 +58,7 @@ public abstract class InteractableBase : MonoBehaviour, IInteractable
         gameObject.transform.parent = null;
         RigidbodyObj.isKinematic = false;
         RigidbodyObj.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        RigidbodyObj.AddForce(forceDirection.forward * throwForce, ForceMode.Impulse);
+        RigidbodyObj.AddForce(forceDirection.forward * throwForce, ForceMode.Impulse);  
     }
 
        

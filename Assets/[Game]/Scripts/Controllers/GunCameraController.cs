@@ -10,15 +10,12 @@ public class GunCameraController : MonoBehaviour
     private float yRotation = 0f;
     private readonly float rayRange = 50f;
     public Joystick joystick;
-    public Transform destination;
-    public static GunCameraController Instance;
+    public Transform destination;    
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+    
     private void Start()
     {
+        joystick = UIController.Instance.joystick;
         //Cursor.visible = false;
     }
 

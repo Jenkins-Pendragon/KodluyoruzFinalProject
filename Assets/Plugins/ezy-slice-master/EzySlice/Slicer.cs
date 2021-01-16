@@ -69,6 +69,7 @@ namespace EzySlice {
             MeshFilter filter = obj.GetComponent<MeshFilter>();
             
 
+
             // cannot continue without a proper filter
             if (filter == null) {
                 Debug.LogWarning("EzySlice::Slice -> Provided GameObject must have a MeshFilter Component.");
@@ -78,6 +79,7 @@ namespace EzySlice {
 
             MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
             
+
 
             // cannot continue without a proper renderer
             if (renderer == null) {

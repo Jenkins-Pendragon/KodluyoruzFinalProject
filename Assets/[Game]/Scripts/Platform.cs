@@ -31,6 +31,4 @@ public class Platform : MonoBehaviour
             shootables.Add(shootable);
         }
     }
-
-
 }

@@ -6,9 +6,7 @@ public class Saw : Prop
 {
     public Material material;
     public LayerMask mask;
-    private float propMass = 4f;
-    private Collider col;
-    public Collider Collider { get { return (col == null) ? col = GetComponentInChildren<Collider>() : col; } }
+    private float propMass = 4f;    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,7 +26,7 @@ public class Saw : Prop
                 {                    
                     Destroy(obj.gameObject);
                     other.gameObject.SetActive(true);
-                    Debug.LogError("Kesme Hatası Chibi");
+                    Debug.LogWarning("Kesme Hatası Chibi");
                 }
                 else
                 {
@@ -62,13 +60,13 @@ public class Saw : Prop
 
     private void AddComponents(GameObject obj, bool interactable)
     {
-        //obj.AddComponent<MeshCollider>().convex = true;
-        obj.AddComponent<BoxCollider>();
+        obj.AddComponent<MeshCollider>().convex = true;
+        //obj.AddComponent<BoxCollider>();
         Rigidbody rb = obj.AddComponent<Rigidbody>();
         rb.mass = propMass;
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         rb.AddExplosionForce(300, obj.transform.position, 20);
-        obj.layer = 10;
+        //obj.layer = 10;
 
         if (interactable)
         {
