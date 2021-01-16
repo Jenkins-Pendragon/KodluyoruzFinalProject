@@ -249,6 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointer: {fileID: 1085337274}
   isPowerStart: 1
+  rootPanel: {fileID: 946789637}
 --- !u!1 &169492174
 GameObject:
   m_ObjectHideFlags: 0

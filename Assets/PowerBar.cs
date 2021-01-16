@@ -9,6 +9,7 @@ public class PowerBar : MonoBehaviour
     public bool isPowerStart = true;
     private RectTransform powerBar;
     float ForceSpeed = 0;
+    public GameObject rootPanel;
     //sağ kırmızı z -31.6 ~ -44
     //sağ turuncu z -18.4 ~ -31.6
     //sağ sarı z -18.4 ~ -6.2
@@ -25,7 +26,7 @@ public class PowerBar : MonoBehaviour
         EventManager.OnLevelSuccess.AddListener(ActivatePowerPoint);
         EventManager.OnTapBar.AddListener(StopTheBar);
         EventManager.OnTapBar.AddListener(ForcePower);
-        EventManager.OnTapBar.AddListener(() => this.gameObject.transform.root.gameObject.SetActive(false));
+        EventManager.OnTapBar.AddListener(() => rootPanel.SetActive(false));
         
     }
 
@@ -34,7 +35,7 @@ public class PowerBar : MonoBehaviour
         EventManager.OnLevelSuccess.RemoveListener(ActivatePowerPoint);
         EventManager.OnTapBar.RemoveListener(StopTheBar);
         EventManager.OnTapBar.RemoveListener(ForcePower);
-        EventManager.OnTapBar.RemoveListener(() => this.gameObject.transform.root.gameObject.SetActive(false));
+        EventManager.OnTapBar.RemoveListener(() => rootPanel.SetActive(false));
 
     }
 
