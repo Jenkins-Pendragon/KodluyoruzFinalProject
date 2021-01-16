@@ -14,11 +14,13 @@ public class PlatformController : MonoBehaviour
     private void OnEnable()
     {
         EventManager.OnEnemyDie.AddListener(CheckPlatformStatus);
+        EventManager.OnLevelStart.AddListener(() => SetPlatformObjects(true));
     }
 
     private void OnDisable()
     {
         EventManager.OnEnemyDie.RemoveListener(CheckPlatformStatus);
+        EventManager.OnLevelStart.RemoveListener(() => SetPlatformObjects(true));
     }
 
     private void Awake()

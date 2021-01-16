@@ -21,14 +21,14 @@ public class Platform : MonoBehaviour
 
         if (enemy!=null && !enemyList.Contains(enemy))
         {
-            if(enemy.NavMeshAgent !=null && enemy.canRun) enemy.NavMeshAgent.enabled = isPlatfromActive;
+            //if(enemy.NavMeshAgent !=null && enemy.canRun) enemy.NavMeshAgent.enabled = isPlatfromActive;
             enemyList.Add(enemy);
         }
 
         if (shootable != null && !shootables.Contains(shootable))
         {
-            shootable.IsCanFire = isPlatfromActive;
+            //shootable.IsCanFire = isPlatfromActive;
             shootables.Add(shootable);
         }
-    }
+    }  
 }
