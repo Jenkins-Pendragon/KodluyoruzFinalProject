@@ -29,7 +29,8 @@ public class Enemy : InteractableBase, IDamageable
     }
     private void Awake()
     {
-        UIManager.instance.enemyCount++;
+        UIController.Instance.enemyCount++;
+        Debug.Log("Enemy");
     }
 
     public void Die()
