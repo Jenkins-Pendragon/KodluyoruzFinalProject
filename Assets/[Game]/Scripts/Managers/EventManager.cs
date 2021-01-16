@@ -12,5 +12,8 @@ public static class EventManager
     public static UnityEvent OnEnemyDie = new UnityEvent();
     public static UnityEvent OnLevelFailed = new UnityEvent();
     public static UnityEvent OnLevelSuccess = new UnityEvent();
+    public static UnityEvent OnLastPlatform = new UnityEvent();
+    public static UnityEvent OnTapBar = new UnityEvent();
+
 }
 

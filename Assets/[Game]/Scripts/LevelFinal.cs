@@ -12,17 +12,29 @@ public class LevelFinal : MonoBehaviour
     public GameObject player;
     public GameObject finalGameCanvas;
     public GameObject enemyPrefab;
+    public GameObject powerCanvas;
+
 
     private void OnEnable()
     {
-        EventManager.OnLevelSuccess.AddListener(FinalPrepare);
+        EventManager.OnLastPlatform.AddListener(FinalPrepare);
+        EventManager.OnLastPlatform.AddListener(EnablePowerCanvas);
+
 
     }
 
+
     private void OnDisable()
     {
-        EventManager.OnLevelSuccess.RemoveListener(FinalPrepare);
+        EventManager.OnLastPlatform.RemoveListener(FinalPrepare);
+        EventManager.OnLastPlatform.RemoveListener(EnablePowerCanvas);
 
+    }
+
+
+    private void EnablePowerCanvas()
+    {
+        powerCanvas.SetActive(true);
     }
 
 
@@ -30,12 +42,14 @@ public class LevelFinal : MonoBehaviour
     {
         player.transform.DOMove(finishPoint.position, 1f);
         finalGameCanvas.SetActive(true);
-        Instantiate(enemyPrefab, finishPoint.transform.position, Quaternion.Euler(transform.forward), enemyPrefab.transform);
+        Instantiate(enemyPrefab, transform.position + Vector3.forward * 5 + Vector3.up * 3f, Quaternion.identity);
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
+
+        EventManager.OnLevelSuccess.Invoke();
         
         if(other.gameObject.tag == "Player")
         {

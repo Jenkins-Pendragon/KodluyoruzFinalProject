@@ -8,6 +8,7 @@ public class RagdollController : MonoBehaviour
     public List<Collider> colliders;
     public Rigidbody mainRigidbody;
     public Collider mainCollider;
+    public static float force = 25f;
 
     
     public Animator AnimatorRagdoll;
@@ -35,7 +36,7 @@ public class RagdollController : MonoBehaviour
     {
         foreach (Rigidbody rigidbody in rigidbodies)
         {
-            rigidbody.AddForce(direction * 25f, ForceMode.Impulse);
+            rigidbody.AddForce(direction * force, ForceMode.Impulse);
         }
     }
 
