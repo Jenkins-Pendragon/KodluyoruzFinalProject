@@ -19,6 +19,12 @@ public class Ammo : Prop, IPlayerKillable
         base.OnInteractStart(parent, destination);
         TrailRenderer.enabled = false;
     }
+
+    public override void OnInteractEnd(Transform forceDirection)
+    {
+        base.OnInteractEnd(forceDirection);
+        RigidbodyObj.useGravity = true;
+    }
     protected override void OnCollisionEnter(Collision collision)
     {
         base.OnCollisionEnter(collision);
