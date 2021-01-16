@@ -8,16 +8,18 @@ using DG.Tweening;
 
 public class Announcer : MonoBehaviour
 {
+    public static Announcer Instance;
     public List<GameObject> coins;
     public RectTransform targetRect;
     public WaitForSeconds coinWaitTime = new WaitForSeconds(0.08f);
     public WaitForSeconds textWaitTime = new WaitForSeconds(0.05f);
     public Text moneyText;
     private Vector3 defaultPos;
-    public int multiplier = 5;
+    public float multiplier = 5;
     int currentVal;
     private void Awake()
     {
+        Instance = this;
         defaultPos = coins[0].transform.position;
     }
     private void OnEnable()
@@ -48,9 +50,9 @@ public class Announcer : MonoBehaviour
             x.SetActive(true);
             x.transform.DOMove(targetRect.transform.position, 0.3f).SetEase(Ease.InOutBack).OnComplete(() =>
             {
-                int currentVal = Convert.ToInt32(moneyText.text);
-                currentVal *= multiplier / 10;
-                moneyText.text = currentVal.ToString();
+                float value = currentVal;
+                value *= multiplier / 10;
+                moneyText.text = value.ToString();
                 x.transform.position = defaultPos;
                 x.SetActive(false);
             });

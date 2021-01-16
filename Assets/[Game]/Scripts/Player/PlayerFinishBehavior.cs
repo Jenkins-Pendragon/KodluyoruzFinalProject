@@ -53,7 +53,7 @@ public class PlayerFinishBehavior : MonoBehaviour
     }
 
     private void Realase() 
-    {
+    {        
         laserController.RealaseInteractableObject();
         laserController.LaserLine.enabled = false;
     }

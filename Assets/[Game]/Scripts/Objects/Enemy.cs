@@ -32,7 +32,7 @@ public class Enemy : InteractableBase, IDamageable
         UIController.Instance.enemyCount++;        
     }
 
-    public void Die()
+    public virtual void Die()
     {
         if (!IsRagdoll)
         {

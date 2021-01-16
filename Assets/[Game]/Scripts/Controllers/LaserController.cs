@@ -11,7 +11,7 @@ public class LaserController : MonoBehaviour
     public float rayRange = 100f;
     private LineRenderer laserLine;
     public LineRenderer LaserLine { get { return (laserLine == null) ? laserLine = GetComponent<LineRenderer>() : laserLine; } }
-    public LayerMask ignoreLayer;
+    public LayerMask ignoreLayer;    
     private GameObject lastSelection = null;
     private Collider lastSelectionCollider = null;
     private bool canDrawLaser;
