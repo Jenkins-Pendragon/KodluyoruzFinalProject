@@ -32,11 +32,13 @@ public class RagdollController : MonoBehaviour
         EnemyScript.IsRagdoll = false;
     }
 
-    public void ForceRagdoll(Vector3 direction) 
+    public void ForceRagdoll(Vector3 direction, float _force = -1) 
     {
+        if (_force == -1) _force = force;        
+
         foreach (Rigidbody rigidbody in rigidbodies)
         {
-            rigidbody.AddForce(direction * force, ForceMode.Impulse);
+            rigidbody.AddForce(direction * _force, ForceMode.Impulse);
         }
     }
 

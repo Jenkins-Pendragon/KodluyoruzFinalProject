@@ -85,7 +85,7 @@ public class LaserController : MonoBehaviour
         }
     }
 
-    private void RealaseInteractableObject() 
+    public void RealaseInteractableObject() 
     {
         if (lastSelection != null)
         {

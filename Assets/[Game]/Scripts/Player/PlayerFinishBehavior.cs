@@ -10,6 +10,7 @@ public class PlayerFinishBehavior : MonoBehaviour
     public Vector3 gunRotation;
     public LaserController laserController;
     private bool canDraw;
+    private bool isFinish;
     private void OnEnable()
     {
         EventManager.OnFinishLine.AddListener(Finish);   
@@ -23,10 +24,21 @@ public class PlayerFinishBehavior : MonoBehaviour
 
     private void Update()
     {
-        if (canDraw)
+        if (isFinish)
         {
-            laserController.DrawLaser();
-            if (!laserController.LaserLine.enabled) laserController.LaserLine.enabled = true;
+            if (canDraw)
+            {
+                laserController.DrawLaser();
+                if (!laserController.LaserLine.enabled) laserController.LaserLine.enabled = true;
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                isFinish = false;
+                EventManager.OnTapBar.Invoke();
+                laserController.RealaseInteractableObject();
+                laserController.LaserLine.enabled = false;
+                canDraw = false;
+            }
         }
     }
 
@@ -35,6 +47,7 @@ public class PlayerFinishBehavior : MonoBehaviour
         PlayerData.Instance.IsControlable = false;
         gunVisual.transform.LookAt(goldenEnemy.transform);
         canDraw = true;
+        isFinish = true;
         Sequence player = DOTween.Sequence();          
         player.Append(gunVisual.transform.DORotate(gunRotation, 0.5f));
     }
