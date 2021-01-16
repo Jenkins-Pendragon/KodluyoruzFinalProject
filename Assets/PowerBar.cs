@@ -26,7 +26,7 @@ public class PowerBar : MonoBehaviour
         EventManager.OnLevelSuccess.AddListener(ActivatePowerPoint);
         EventManager.OnTapBar.AddListener(StopTheBar);
         EventManager.OnTapBar.AddListener(ForcePower);
-        EventManager.OnTapBar.AddListener(() => rootPanel.SetActive(false));
+        EventManager.OnTapBar.AddListener(PanelActive);
         
     }
 
@@ -35,10 +35,14 @@ public class PowerBar : MonoBehaviour
         EventManager.OnLevelSuccess.RemoveListener(ActivatePowerPoint);
         EventManager.OnTapBar.RemoveListener(StopTheBar);
         EventManager.OnTapBar.RemoveListener(ForcePower);
-        EventManager.OnTapBar.RemoveListener(() => rootPanel.SetActive(false));
+        EventManager.OnTapBar.RemoveListener(PanelActive);
 
     }
-
+    
+    public void PanelActive()
+    {
+        rootPanel.SetActive(false);
+    }
 
 
     public void StopTheBar()
