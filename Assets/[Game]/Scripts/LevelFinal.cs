@@ -17,8 +17,8 @@ public class LevelFinal : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.OnLastPlatform.AddListener(FinalPrepare);
-        EventManager.OnLastPlatform.AddListener(EnablePowerCanvas);
+        EventManager.OnFinishLine.AddListener(FinalPrepare);
+        EventManager.OnFinishLine.AddListener(EnablePowerCanvas);
 
 
     }
@@ -26,8 +26,8 @@ public class LevelFinal : MonoBehaviour
 
     private void OnDisable()
     {
-        EventManager.OnLastPlatform.RemoveListener(FinalPrepare);
-        EventManager.OnLastPlatform.RemoveListener(EnablePowerCanvas);
+        EventManager.OnFinishLine.RemoveListener(FinalPrepare);
+        EventManager.OnFinishLine.RemoveListener(EnablePowerCanvas);
 
     }
 

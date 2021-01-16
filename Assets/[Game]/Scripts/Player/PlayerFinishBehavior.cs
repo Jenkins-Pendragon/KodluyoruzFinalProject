@@ -4,8 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 
 public class PlayerFinishBehavior : MonoBehaviour
-{
-    public Transform finishPoint;
+{    
     public GameObject gunVisual;
     public GameObject goldenEnemy;
     public Vector3 gunRotation;
@@ -13,13 +12,13 @@ public class PlayerFinishBehavior : MonoBehaviour
     private bool canDraw;
     private void OnEnable()
     {
-        EventManager.OnLastPlatform.AddListener(Finish);   
+        EventManager.OnFinishLine.AddListener(Finish);   
     }
 
 
     private void OnDisable()
     {
-        EventManager.OnLastPlatform.RemoveListener(Finish);
+        EventManager.OnFinishLine.RemoveListener(Finish);
     }
 
     private void Update()
@@ -33,16 +32,10 @@ public class PlayerFinishBehavior : MonoBehaviour
 
     private void Finish() 
     {
-        PlayerData.Instance.IsControlable = false;        
-        Vector3 pos = finishPoint.position;
-        pos.y = transform.position.y;
-
-        Sequence player = DOTween.Sequence();
-        player.Append(transform.DOMove(pos, 1f).OnComplete(() =>
-        {            
-            gunVisual.transform.LookAt(goldenEnemy.transform);
-            canDraw = true;                     
-        }));
+        PlayerData.Instance.IsControlable = false;
+        gunVisual.transform.LookAt(goldenEnemy.transform);
+        canDraw = true;
+        Sequence player = DOTween.Sequence();          
         player.Append(gunVisual.transform.DORotate(gunRotation, 0.5f));
     }
 }

@@ -53,8 +53,7 @@ public class PowerBar : MonoBehaviour
 
 
     private void ActivatePowerPoint()
-    {
-     
+    {     
         StartCoroutine(PowerPoint());
     }
 

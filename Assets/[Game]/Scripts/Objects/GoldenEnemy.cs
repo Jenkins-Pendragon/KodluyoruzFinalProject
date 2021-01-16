@@ -6,8 +6,24 @@ public class GoldenEnemy : Enemy
 {
     public GameObject ragdoll;
 
-    protected override void Awake() { }
-    
+    protected override void Awake(){} //Dont delete.
+    protected override void Start()
+    {
+        base.Start();
+        IsInteractable = false;
+    }
+
+    private void OnEnable()
+    {
+        EventManager.OnFinishLine.AddListener(() => IsInteractable = true);
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        EventManager.OnFinishLine.AddListener(() => IsInteractable = true);
+    }
+
     public override void OnInteractStart(Transform parent, Transform destination)
     {
         base.OnInteractStart(parent, destination);
