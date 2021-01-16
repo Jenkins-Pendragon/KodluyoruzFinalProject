@@ -11,6 +11,7 @@ public class LaserController : MonoBehaviour
     public float rayRange = 100f;
     private LineRenderer laserLine;
     private GameObject lastSelection = null;
+    private Collider lastSelectionCollider = null;
     private bool canDrawLaser;
 
     private void OnEnable()
@@ -51,9 +52,10 @@ public class LaserController : MonoBehaviour
         RaycastHit hit;
         laserLine.SetPosition(0, gunEndPoint.position);
         var pos = rayOrigin + (gunVisual.forward * rayRange);
-        if (lastSelection != null)
+        if (lastSelectionCollider != null)
         {
-            laserLine.SetPosition(1, lastSelection.transform.position);
+            //laserLine.SetPosition(1, lastSelection.transform.position);
+            laserLine.SetPosition(1, lastSelectionCollider.bounds.center);
         }
         else
         {
@@ -79,6 +81,7 @@ public class LaserController : MonoBehaviour
             if (interactable != null && interactable.IsInteractable)
             {
                 lastSelection = obj;
+                lastSelectionCollider = lastSelection.GetComponent<Collider>();
                 interactable.OnInteractStart(gunVisual, destination);
             }
         }
@@ -90,6 +93,7 @@ public class LaserController : MonoBehaviour
         {
             lastSelection.GetComponent<IInteractable>().OnInteractEnd(gunCamera.transform);
             lastSelection = null;
+            lastSelectionCollider = null;
         }
     }
 }

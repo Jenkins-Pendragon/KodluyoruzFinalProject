@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/[Game]/Graphics/Animations/Materials.meta
+guid: eb793e2c26165684783ffd988ea55e1e
+========
 guid: a2766b71d3ad744e2a02e5bddd7f6a67
+>>>>>>>> master:Assets/Plugins/Fonts.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

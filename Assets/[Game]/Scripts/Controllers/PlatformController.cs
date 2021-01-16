@@ -5,7 +5,7 @@ using DG.Tweening;
 
 
 public class PlatformController : MonoBehaviour
-{
+{    
     bool isAllPlatformEnded = false;
     public List<Platform> platformList = new List<Platform>();
     private int currentPlatform = 0;
@@ -14,11 +14,13 @@ public class PlatformController : MonoBehaviour
     private void OnEnable()
     {
         EventManager.OnEnemyDie.AddListener(CheckPlatformStatus);
+        EventManager.OnLevelStart.AddListener(() => SetPlatformObjects(true));
     }
 
     private void OnDisable()
     {
         EventManager.OnEnemyDie.RemoveListener(CheckPlatformStatus);
+        EventManager.OnLevelStart.RemoveListener(() => SetPlatformObjects(true));
     }
 
     private void Awake()
@@ -69,9 +71,11 @@ public class PlatformController : MonoBehaviour
             currentPlatform += 1;
             if (currentPlatform == platformList.Count)
             {
+                if (PlayerData.Instance.IsPlayerDead) return;                
                 Debug.Log("Level Succses");
                 isAllPlatformEnded = true;
-                EventManager.OnLevelSuccess.Invoke();
+                //EventManager.OnLevelSuccess.Invoke();
+                EventManager.OnLastPlatform.Invoke();
             }
             else
                 SetPlatformObjects(true);
