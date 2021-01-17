@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using System;
 using System.Collections;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class UIController : MonoBehaviour
     public Slider mapSlider;
     public Joystick joystick;
     public GameObject powerBar;
+    public TextMeshProUGUI levelIndex;
 
     public void Awake()
     {
@@ -39,7 +41,8 @@ public class UIController : MonoBehaviour
         mapSlider.value = 0;
     }
     public void OnEnable()
-    {        
+    {
+        EventManager.OnGameStarted.AddListener(GameStarted);
         EventManager.OnEnemyDie.AddListener(UpdateTheSlider);
         EventManager.OnLevelStart.AddListener(OnLevelStart);
         EventManager.OnLevelFailed.AddListener(OpenLostPanel);
@@ -48,11 +51,17 @@ public class UIController : MonoBehaviour
     }
     private void OnDisable()
     {
+        EventManager.OnGameStarted.RemoveListener(GameStarted);
         EventManager.OnEnemyDie.RemoveListener(UpdateTheSlider);
         EventManager.OnLevelStart.RemoveListener(OnLevelStart);
         EventManager.OnLevelFailed.RemoveListener(OpenLostPanel);
         EventManager.OnFinishLine.RemoveListener(OnFinishLine);
         EventManager.OnLevelSuccess.RemoveListener(LevelSucces);
+    }
+
+    private void GameStarted() 
+    {
+        levelIndex.text = LevelManager.Instance.LevelIndex.ToString();
     }
     private void OnLevelStart()
     {

@@ -59,7 +59,7 @@ public class LevelManager : Singleton<LevelManager>
             buildIndex = 2;
             LevelIndex = 1;
         }
-        LevelIndex = buildIndex;
+        LevelIndex = buildIndex - 1;
         //Load the scene
         yield return SceneManager.LoadSceneAsync(buildIndex, LoadSceneMode.Additive);
         Scene levelScene = SceneManager.GetSceneByBuildIndex(buildIndex);

@@ -6,8 +6,11 @@ using DG.Tweening;
 public class GoldenEnemy : Enemy
 {
     public GameObject ragdoll;
-
-    protected override void Awake(){} //Dont delete.
+    public static GoldenEnemy Instance;
+    protected override void Awake()
+    {
+        Instance = this;
+    }
     protected override void Start()
     {
         base.Start();
