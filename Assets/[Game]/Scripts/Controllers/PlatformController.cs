@@ -55,6 +55,7 @@ public class PlatformController : MonoBehaviour
         PlayerData.Instance.IsImmune = true;              
         SetPlatformObjects(false);
         yield return new WaitForSeconds(1f);
+        PlayerData.Instance.transform.DOKill();
         Sequence playerMovement = DOTween.Sequence();
         if (platformList[currentPlatform].moveTo != null)
         {

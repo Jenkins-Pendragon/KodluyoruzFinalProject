@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using System;
 using System.Collections;
 using TMPro;
+using DG.Tweening;
 
 public class UIController : MonoBehaviour
 {
@@ -61,6 +62,7 @@ public class UIController : MonoBehaviour
 
     private void GameStarted() 
     {
+        gameplayInfo.Open();
         levelIndex.text = LevelManager.Instance.LevelIndex.ToString();
     }
     private void OnLevelStart()
@@ -72,7 +74,7 @@ public class UIController : MonoBehaviour
     private void LevelSucces() 
     {
         gamePlay.Close();
-        Win.Open();
+        Win.Open(true);
     }
 
     private void OnFinishLine() 
@@ -127,7 +129,7 @@ public class UIController : MonoBehaviour
         Win.Close();
         Lose.Close();
         Pause.Close();
-        gameplayInfo.Open();
+        //gameplayInfo.Open();
         ResetValues();        
     }
     private void AddButonListeners()
@@ -142,7 +144,7 @@ public class UIController : MonoBehaviour
     public void OpenLostPanel()
     {
         gamePlay.Close();
-        Lose.Open();
+        Lose.Open(true);
     }
     public void ReloadScene()
     {
@@ -168,9 +170,10 @@ public static class CanvasProp
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
     }
-    public static void Open(this CanvasGroup canvasGroup)
+    public static void Open(this CanvasGroup canvasGroup, bool DOTween = false)
     {
-        canvasGroup.alpha = 1;
+        if (DOTween) canvasGroup.DOFade(1, 0.5f);
+        else canvasGroup.alpha = 1;  
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
     }
