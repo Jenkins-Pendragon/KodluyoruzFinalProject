@@ -44,7 +44,7 @@ public class PlatformController : MonoBehaviour
             }
         }
 
-        if (isAllEnemiesDead)
+        if (isAllEnemiesDead && !PlayerData.Instance.IsPlayerDead)
         {
             StartCoroutine(NextPlatform());
         }
@@ -52,7 +52,7 @@ public class PlatformController : MonoBehaviour
 
     private IEnumerator NextPlatform()
     {
-        PlayerData.Instance.IsImmune = true;
+        PlayerData.Instance.IsImmune = true;              
         SetPlatformObjects(false);
         yield return new WaitForSeconds(1f);
         Sequence playerMovement = DOTween.Sequence();
