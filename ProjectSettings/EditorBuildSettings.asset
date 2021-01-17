@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/[Game]/Scenes/LevelFinish.unity
     guid: 9cad0996addf7c3479412c71ecf96b35
-  - enabled: 0
+  - enabled: 1
     path: Assets/[Game]/Scenes/SliceMuh.unity
     guid: e1810a11f3c7be74ab63e8489f3f8a9d
-  - enabled: 1
+  - enabled: 0
     path: Assets/[Game]/Scenes/Scene01.unity
     guid: 29ee39303130bf64188bdd34e91eb59f
   m_configObjects: {}
