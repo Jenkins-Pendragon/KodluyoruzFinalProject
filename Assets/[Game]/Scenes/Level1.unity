@@ -413,12 +413,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25d0e77f2edc1044aafdd16e50f82da6, type: 3}
---- !u!1 &234567735 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6389202837716014782, guid: bbe17a1e55e4c27409a385f3992064aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 1445324777262653944}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &287732493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1248,10 +1242,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 676003509, guid: 4d5a662cd3e2a1e4181eb0da518fd65e, type: 3}
-      propertyPath: goldenEnemy
-      value: 
-      objectReference: {fileID: 234567735}
     - target: {fileID: 1069091621631894916, guid: 4d5a662cd3e2a1e4181eb0da518fd65e,
         type: 3}
       propertyPath: m_LocalPosition.x
