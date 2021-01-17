@@ -25,6 +25,22 @@ public class GoldenEnemy : Enemy
         EventManager.OnFinishLine.AddListener(() => IsInteractable = true);
     }
 
+    public override void Die()
+    {
+        if (!IsRagdoll)
+        {
+            RagdollController.ActivateRagdoll();
+        }
+        IsDead = true;
+        IsInteractable = false;
+        IsKillable = false;
+        if (NavMeshAgent != null) NavMeshAgent.enabled = false;
+        skinnedMeshRenderer.sharedMaterial = deathMat;
+        //ragdollCollider.enabled = false;
+
+        EventManager.OnGoldenEnemyDie.Invoke();
+    }
+
     public override void OnInteractStart(Transform parent, Transform destination)
     {
         base.OnInteractStart(parent, destination);

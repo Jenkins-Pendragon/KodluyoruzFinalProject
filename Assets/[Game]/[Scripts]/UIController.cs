@@ -44,6 +44,7 @@ public class UIController : MonoBehaviour
         EventManager.OnLevelStart.AddListener(OnLevelStart);
         EventManager.OnLevelFailed.AddListener(OpenLostPanel);
         EventManager.OnFinishLine.AddListener(OnFinishLine);
+        EventManager.OnLevelSuccess.AddListener(LevelSucces);
     }
     private void OnDisable()
     {
@@ -51,11 +52,18 @@ public class UIController : MonoBehaviour
         EventManager.OnLevelStart.RemoveListener(OnLevelStart);
         EventManager.OnLevelFailed.RemoveListener(OpenLostPanel);
         EventManager.OnFinishLine.RemoveListener(OnFinishLine);
+        EventManager.OnLevelSuccess.RemoveListener(LevelSucces);
     }
     private void OnLevelStart()
     {
         gameplayInfo.Close();
         mapSlider.maxValue = enemyCount;
+    }
+
+    private void LevelSucces() 
+    {
+        gamePlay.Close();
+        Win.Open();
     }
 
     private void OnFinishLine() 
@@ -120,11 +128,7 @@ public class UIController : MonoBehaviour
         playButton.onClick.AddListener(ResumeGame);
         replayButton.onClick.AddListener(RestartLevel);
     }
-    public void OpenWonPanel()
-    {
-        gamePlay.Close();
-        Win.Open();
-    }
+   
     public void OpenLostPanel()
     {
         gamePlay.Close();

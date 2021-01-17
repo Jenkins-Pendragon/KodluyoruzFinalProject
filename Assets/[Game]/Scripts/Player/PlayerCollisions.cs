@@ -9,7 +9,7 @@ public class PlayerCollisions : MonoBehaviour
         if (!PlayerData.Instance.IsPlayerDead)
         {
             IPlayerKillable playerKillable = collision.gameObject.GetComponent<IPlayerKillable>();
-            if (playerKillable != null && playerKillable.IsDeadly)
+            if (playerKillable != null && playerKillable.IsDeadly && !PlayerData.Instance.IsImmune)
             {
                 EventManager.OnLevelFailed.Invoke();
             }

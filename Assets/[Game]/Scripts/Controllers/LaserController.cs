@@ -11,6 +11,7 @@ public class LaserController : MonoBehaviour
     public float rayRange = 100f;
     private LineRenderer laserLine;
     public LineRenderer LaserLine { get { return (laserLine == null) ? laserLine = GetComponent<LineRenderer>() : laserLine; } }
+    public LayerMask ignoreLayer;    
     private GameObject lastSelection = null;
     private Collider lastSelectionCollider = null;
     private bool canDrawLaser;
@@ -44,8 +45,19 @@ public class LaserController : MonoBehaviour
         
     }
 
-    public void DrawLaser()
-    {        
+    public void DrawLaser(int layer = -1)
+    {
+        LayerMask layerMask;
+        if (layer == -1)
+        {
+            layer = LayerMask.NameToLayer("GoldenEnemy");
+            layerMask = ~layer;
+        }
+        else 
+        { 
+            layerMask = layer; 
+        }
+
         Vector3 rayOrigin = gunCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
         LaserLine.SetPosition(0, gunEndPoint.position);
@@ -57,7 +69,7 @@ public class LaserController : MonoBehaviour
         }
         else
         {
-            if (Physics.Raycast(gunEndPoint.position, gunVisual.forward, out hit, rayRange))
+            if (Physics.Raycast(gunEndPoint.position, gunVisual.forward, out hit, rayRange, layerMask))
             {
                 LaserLine.SetPosition(1, hit.point);
                 CheckInteractableObject(hit);

@@ -9,8 +9,7 @@ public class EnemyShoot : Enemy, IShootable
 {   
     public bool IsCanFire { get; set;}
 
-    [SerializeField] private GameObject Bullet;
-    public Transform targetEnemy;
+    [SerializeField] private GameObject Bullet;    
     public Transform gundEndPoint;
     public Transform enemyBody;
     public Transform enemyRotation;
@@ -21,7 +20,7 @@ public class EnemyShoot : Enemy, IShootable
     {
         base.Start();
         StartCoroutine(EnemyShooting());
-        enemyBody.LookAt(targetEnemy);
+        enemyBody.LookAt(PlayerData.Instance.transform);
         canRun = false;
     }    
 
@@ -47,8 +46,8 @@ public class EnemyShoot : Enemy, IShootable
     public void ShootBullet() 
     {        
         var bulletObj = Instantiate(Bullet, gundEndPoint.position, Quaternion.identity);
-        bulletObj.transform.LookAt(targetEnemy);
-        bulletObj.transform.DOMove(targetEnemy.position, shootSpeed);         
+        bulletObj.transform.LookAt(PlayerData.Instance.transform);
+        bulletObj.transform.DOMove(PlayerData.Instance.transform.position, shootSpeed);         
     }
 
     public void ResetRotation() 

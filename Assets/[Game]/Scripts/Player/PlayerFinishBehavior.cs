@@ -8,7 +8,7 @@ public class PlayerFinishBehavior : MonoBehaviour
     public GameObject gunVisual;
     public GameObject goldenEnemy;
     public Vector3 gunRotation;
-    public LaserController laserController;
+    public LaserController laserController;    
     private bool canDraw;
     private bool isFinish;
     private void OnEnable()
@@ -28,27 +28,33 @@ public class PlayerFinishBehavior : MonoBehaviour
         {
             if (canDraw)
             {
-                laserController.DrawLaser();
+                laserController.DrawLaser(LayerMask.GetMask("GoldenEnemy"));
                 if (!laserController.LaserLine.enabled) laserController.LaserLine.enabled = true;
             }
             if (Input.GetMouseButtonDown(0))
             {
                 isFinish = false;
                 EventManager.OnTapBar.Invoke();
-                laserController.RealaseInteractableObject();
-                laserController.LaserLine.enabled = false;
+                Realase();
                 canDraw = false;
             }
         }
     }
 
     private void Finish() 
-    {
+    {        
         PlayerData.Instance.IsControlable = false;
+        Realase();
         gunVisual.transform.LookAt(goldenEnemy.transform);
         canDraw = true;
         isFinish = true;
         Sequence player = DOTween.Sequence();          
         player.Append(gunVisual.transform.DORotate(gunRotation, 0.5f));
+    }
+
+    private void Realase() 
+    {        
+        laserController.RealaseInteractableObject();
+        laserController.LaserLine.enabled = false;
     }
 }

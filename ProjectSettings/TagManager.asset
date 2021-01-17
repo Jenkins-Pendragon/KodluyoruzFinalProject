@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - DeathChibi
   - LowPolyWater
   - GoldenEnemy
-  - 
+  - FinishPoint
   - 
   - 
   - 

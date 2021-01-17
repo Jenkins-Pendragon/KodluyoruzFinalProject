@@ -13,10 +13,12 @@ public class PlayerDeath : MonoBehaviour
     private void OnDisable()
     {
         EventManager.OnLevelFailed.RemoveListener(Death);
+        DOTween.KillAll();
     }
 
     private void Death() 
     {
-        transform.DORotate(new Vector3(0, 0, -30), 1.5f, RotateMode.FastBeyond360);
+        transform.DORotate(new Vector3(20, 0, 0), 1.5f, RotateMode.FastBeyond360);
+        EventManager.OnPlayerDeath.Invoke();
     }
 }
