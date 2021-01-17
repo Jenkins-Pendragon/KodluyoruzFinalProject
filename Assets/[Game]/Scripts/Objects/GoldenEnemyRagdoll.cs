@@ -46,8 +46,7 @@ public class GoldenEnemyRagdoll : MonoBehaviour
     private void Update()
     {
         if (IsCheckCollison)
-        {
-            Debug.Log(Rigidbody.velocity);
+        {            
             float velocity = Rigidbody.velocity.z;
             if (velocity <= 0.1)
             {
@@ -68,7 +67,7 @@ public class GoldenEnemyRagdoll : MonoBehaviour
         {
             Announcer.Instance.multiplier = 1f;
         }
-
+        Debug.Log("X:" + Announcer.Instance.multiplier);
         EventManager.OnCalculateScoreMultiplier.Invoke();
     }
 }
