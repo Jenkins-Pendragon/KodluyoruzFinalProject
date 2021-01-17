@@ -92,15 +92,16 @@ public class UIController : MonoBehaviour
     // Half Related Panels NextLevel-RestartLevel-Level Failed
     public void NextLevel()
     {
-        int i = PlayerPrefs.GetInt("Level");
-        PlayerPrefs.SetInt("Level", i + 1);
-        ReloadScene();
+        //int i = PlayerPrefs.GetInt("Level");
+        //PlayerPrefs.SetInt("Level", i + 1);        
+        //ReloadScene();
+        DefaultLayout();
+        LevelManager.Instance.NextLevel();
     }
     public void RestartLevel()
     {
         Time.timeScale = 1;
         ReloadScene();
-
     }
     public void FailedLevel()
     {
@@ -136,14 +137,17 @@ public class UIController : MonoBehaviour
     }
     public void ReloadScene()
     {
-        StartCoroutine(LevelButtonCo());
+        DefaultLayout();
+        LevelManager.Instance.Restart();
+        //StartCoroutine(LevelButtonCo());
     }
     IEnumerator LevelButtonCo()
     {
         DefaultLayout();
-        yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-        yield return SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
-        SceneManager.SetActiveScene(SceneManager.GetSceneAt(2));        
+        string lastLevel = PlayerPrefs.GetString("LastLevel", "Scene01");
+        yield return SceneManager.UnloadSceneAsync(lastLevel);
+        yield return SceneManager.LoadSceneAsync(lastLevel, LoadSceneMode.Additive);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(lastLevel));        
         GameManager.Instance.StartGame();
     }
 }

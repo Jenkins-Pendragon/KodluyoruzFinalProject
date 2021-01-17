@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6202588049255529673}
   - component: {fileID: 2300379720358912972}
   - component: {fileID: 487781394289771954}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: candlestick-empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
