@@ -2221,7 +2221,6 @@ MonoBehaviour:
   ragdollCollider: {fileID: 2269733495090149941}
   canRun: 0
   Bullet: {fileID: 6263973625902018993, guid: 193202d6d23e5dc45bb0af5b8c52cb2a, type: 3}
-  targetEnemy: {fileID: 0}
   gundEndPoint: {fileID: 3900108765841479786}
   enemyBody: {fileID: 3900108766415601885}
   enemyRotation: {fileID: 2269733496040002673}
@@ -2251,7 +2250,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookRadius: 100
-  targetPlayer: {fileID: 0}
 --- !u!195 &985458436
 NavMeshAgent:
   m_ObjectHideFlags: 0
