@@ -67,6 +67,7 @@ public class Saw : Prop
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         rb.AddExplosionForce(300, obj.transform.position, 20);
         //obj.layer = 10;
+        obj.layer = 12;
 
         if (interactable)
         {

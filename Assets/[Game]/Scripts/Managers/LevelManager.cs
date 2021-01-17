@@ -40,7 +40,7 @@ public class LevelManager : Singleton<LevelManager>
         for (int i = 0; i < sceneCount; i++)
         {
             Scene scene = SceneManager.GetSceneAt(i);
-            if (scene.name.Contains("Scene"))
+            if (scene.name.Contains("Level"))
             {
                 scenesToBeUnloaded.Add(scene);
             }
@@ -70,7 +70,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public IEnumerator LoadLevel() 
     {
-        string lastLevel = PlayerPrefs.GetString("LastLevel", "Scene01");
+        string lastLevel = PlayerPrefs.GetString("LastLevel", "Level1");
         yield return SceneManager.UnloadSceneAsync(lastLevel);
         yield return SceneManager.LoadSceneAsync(lastLevel, LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(lastLevel));

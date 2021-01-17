@@ -91,7 +91,7 @@ public class Announcer : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         currentVal = newScore;
         moneyText.text = currentVal.ToString();
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.5f);
         EventManager.OnLevelSuccess.Invoke();
     }
     public void SetScore()
