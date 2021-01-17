@@ -380,6 +380,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyViaRagdoll4 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2514262262392361313, guid: 25d0e77f2edc1044aafdd16e50f82da6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2514262262392361326, guid: 25d0e77f2edc1044aafdd16e50f82da6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -729,6 +734,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyViaRagdoll4 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2514262262392361313, guid: 25d0e77f2edc1044aafdd16e50f82da6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2514262262392361326, guid: 25d0e77f2edc1044aafdd16e50f82da6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -866,7 +876,7 @@ PrefabInstance:
     - target: {fileID: 2353041838717505773, guid: 223973a337d4ec6488f3ebe01b19be10,
         type: 3}
       propertyPath: m_Size.z
-      value: 0.23
+      value: 0.27288252
       objectReference: {fileID: 0}
     - target: {fileID: 2353041838717505774, guid: 223973a337d4ec6488f3ebe01b19be10,
         type: 3}
