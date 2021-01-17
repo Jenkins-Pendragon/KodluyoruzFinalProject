@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 147069974421336997}
   - component: {fileID: 8985227684422062458}
   - component: {fileID: 8276202994347319395}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lounger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

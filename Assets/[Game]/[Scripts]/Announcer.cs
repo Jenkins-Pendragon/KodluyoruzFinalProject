@@ -48,28 +48,50 @@ public class Announcer : MonoBehaviour
         StartCoroutine(OpenAndGoAsync());
     }   
     IEnumerator OpenAndGoAsync()
-    {   
-        int newScore = Convert.ToInt32(currentVal * multiplier);
-        for (int i = 0; i < newScore; i+=2)
+    {
+        //int newScore = Convert.ToInt32(currentVal * multiplier);
+        //for (int i = 0; i < newScore; i+=2)
+        //{
+        //    currentVal += 2;
+        //    if (currentVal >= newScore) currentVal = newScore;            
+        //    GameObject coin = stackCoins.Pop();
+        //    if (coin != null)
+        //    {
+        //        coin.SetActive(true);
+        //        coin.transform.DOMove(targetRect.transform.position, 0.08f).OnComplete(() =>
+        //        {                    
+        //            moneyText.text = currentVal.ToString();                    
+        //            stackCoins.Push(coin);
+        //            coin.SetActive(false);
+        //            coin.transform.position = defaultPos;
+        //        });
+        //    }
+        //    else moneyText.text = currentVal.ToString();
+        //    yield return coinWaitTime;
+        //}
+        //yield return new WaitForSeconds(0.5f);
+        //EventManager.OnLevelSuccess.Invoke();
+        int newScore = Convert.ToInt32(currentVal * multiplier);        
+        int value = Mathf.FloorToInt((float)(newScore - currentVal) / (float)coins.Count);
+        Debug.Log(newScore);
+        Debug.Log(value);
+        foreach (GameObject coin in coins)
         {
-            currentVal += 2;
-            if (currentVal >= newScore) currentVal = newScore;            
-            GameObject coin = stackCoins.Pop();
-            if (coin != null)
+            coin.SetActive(true);
+            coin.transform.DOMove(targetRect.transform.position, 0.3f).SetEase(Ease.InOutBack).OnComplete(() =>
             {
-                coin.SetActive(true);
-                coin.transform.DOMove(targetRect.transform.position, 0.08f).OnComplete(() =>
-                {                    
-                    moneyText.text = currentVal.ToString();                    
-                    stackCoins.Push(coin);
-                    coin.SetActive(false);
-                    coin.transform.position = defaultPos;
-                });
-            }
-            else moneyText.text = currentVal.ToString();
+                currentVal += value;
+                moneyText.text = currentVal.ToString();
+                coin.transform.position = defaultPos;
+                coin.SetActive(false);
+                Debug.Log(currentVal);
+            });
             yield return coinWaitTime;
-        }
+        }        
         yield return new WaitForSeconds(0.5f);
+        currentVal = newScore;
+        moneyText.text = currentVal.ToString();
+        yield return new WaitForSeconds(0.7f);
         EventManager.OnLevelSuccess.Invoke();
     }
     public void SetScore()

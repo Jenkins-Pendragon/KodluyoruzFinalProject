@@ -9,8 +9,7 @@ public class PlatformController : MonoBehaviour
     bool isAllPlatformEnded = false;
     public List<Platform> platformList = new List<Platform>();
     private int currentPlatform = 0;
-    public GameObject Player;
-
+    
     private void OnEnable()
     {
         EventManager.OnEnemyDie.AddListener(CheckPlatformStatus);
@@ -60,30 +59,28 @@ public class PlatformController : MonoBehaviour
         if (platformList[currentPlatform].moveTo != null)
         {
             Vector3 pos = platformList[currentPlatform].moveTo.position;
-            pos.y = Player.transform.position.y;
-            playerMovement.Append(Player.transform.DOMove(pos, 2f).SetEase(Ease.Linear));
+            pos.y = PlayerData.Instance.transform.position.y;
+            playerMovement.Append(PlayerData.Instance.transform.DOMove(pos, 2f).SetEase(Ease.Linear));
         }
 
         if (platformList[currentPlatform].jumpTo != null)
         {
-            Player.transform.DORotate(platformList[currentPlatform].jumpTo.rotation.eulerAngles, 2f);
-            playerMovement.Append(Player.transform.DOJump(platformList[currentPlatform].jumpTo.position, 1f, 1, 1f));
+            PlayerData.Instance.transform.DORotate(platformList[currentPlatform].jumpTo.rotation.eulerAngles, 2f);
+            playerMovement.Append(PlayerData.Instance.transform.DOJump(platformList[currentPlatform].jumpTo.position, 1f, 1, 1f));
         }
         playerMovement.OnComplete(() =>
         {
             currentPlatform += 1;
             if (currentPlatform == platformList.Count)
             {
-                if (PlayerData.Instance.IsPlayerDead) return;                
-                Debug.Log("Level Succses");
-                isAllPlatformEnded = true;
-                //EventManager.OnLevelSuccess.Invoke();
+                if (PlayerData.Instance.IsPlayerDead) return; 
+                isAllPlatformEnded = true;                
                 EventManager.OnFinishLine.Invoke();
             }
             else
                 SetPlatformObjects(true);
-            CheckPlatformStatus();
-            Debug.Log("Bitti");
+
+            CheckPlatformStatus();            
             PlayerData.Instance.IsImmune = false;
         });
     }

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using System;
 using System.Collections;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class UIController : MonoBehaviour
     public Slider mapSlider;
     public Joystick joystick;
     public GameObject powerBar;
+    public TextMeshProUGUI levelIndex;
 
     public void Awake()
     {
@@ -39,7 +41,8 @@ public class UIController : MonoBehaviour
         mapSlider.value = 0;
     }
     public void OnEnable()
-    {        
+    {
+        EventManager.OnGameStarted.AddListener(GameStarted);
         EventManager.OnEnemyDie.AddListener(UpdateTheSlider);
         EventManager.OnLevelStart.AddListener(OnLevelStart);
         EventManager.OnLevelFailed.AddListener(OpenLostPanel);
@@ -48,11 +51,17 @@ public class UIController : MonoBehaviour
     }
     private void OnDisable()
     {
+        EventManager.OnGameStarted.RemoveListener(GameStarted);
         EventManager.OnEnemyDie.RemoveListener(UpdateTheSlider);
         EventManager.OnLevelStart.RemoveListener(OnLevelStart);
         EventManager.OnLevelFailed.RemoveListener(OpenLostPanel);
         EventManager.OnFinishLine.RemoveListener(OnFinishLine);
         EventManager.OnLevelSuccess.RemoveListener(LevelSucces);
+    }
+
+    private void GameStarted() 
+    {
+        levelIndex.text = LevelManager.Instance.LevelIndex.ToString();
     }
     private void OnLevelStart()
     {
@@ -92,15 +101,16 @@ public class UIController : MonoBehaviour
     // Half Related Panels NextLevel-RestartLevel-Level Failed
     public void NextLevel()
     {
-        int i = PlayerPrefs.GetInt("Level");
-        PlayerPrefs.SetInt("Level", i + 1);
-        ReloadScene();
+        //int i = PlayerPrefs.GetInt("Level");
+        //PlayerPrefs.SetInt("Level", i + 1);        
+        //ReloadScene();
+        DefaultLayout();
+        LevelManager.Instance.NextLevel();
     }
     public void RestartLevel()
     {
         Time.timeScale = 1;
         ReloadScene();
-
     }
     public void FailedLevel()
     {
@@ -136,14 +146,17 @@ public class UIController : MonoBehaviour
     }
     public void ReloadScene()
     {
-        StartCoroutine(LevelButtonCo());
+        DefaultLayout();
+        LevelManager.Instance.Restart();
+        //StartCoroutine(LevelButtonCo());
     }
     IEnumerator LevelButtonCo()
     {
         DefaultLayout();
-        yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-        yield return SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
-        SceneManager.SetActiveScene(SceneManager.GetSceneAt(2));        
+        string lastLevel = PlayerPrefs.GetString("LastLevel", "Scene01");
+        yield return SceneManager.UnloadSceneAsync(lastLevel);
+        yield return SceneManager.LoadSceneAsync(lastLevel, LoadSceneMode.Additive);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(lastLevel));        
         GameManager.Instance.StartGame();
     }
 }

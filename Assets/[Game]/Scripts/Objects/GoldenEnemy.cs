@@ -6,8 +6,12 @@ using DG.Tweening;
 public class GoldenEnemy : Enemy
 {
     public GameObject ragdoll;
-
-    protected override void Awake(){} //Dont delete.
+    public static GoldenEnemy Instance;
+    private bool canDie;
+    protected override void Awake()
+    {
+        Instance = this;
+    }
     protected override void Start()
     {
         base.Start();
@@ -17,28 +21,33 @@ public class GoldenEnemy : Enemy
     private void OnEnable()
     {
         EventManager.OnFinishLine.AddListener(() => IsInteractable = true);
+        EventManager.OnFinishLine.AddListener(() => canDie = true);
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
         EventManager.OnFinishLine.AddListener(() => IsInteractable = true);
+        EventManager.OnFinishLine.AddListener(() => canDie = true);
     }
 
     public override void Die()
     {
-        if (!IsRagdoll)
+        if (canDie)
         {
-            RagdollController.ActivateRagdoll();
-        }
-        IsDead = true;
-        IsInteractable = false;
-        IsKillable = false;
-        if (NavMeshAgent != null) NavMeshAgent.enabled = false;
-        skinnedMeshRenderer.sharedMaterial = deathMat;
-        //ragdollCollider.enabled = false;
+            if (!IsRagdoll)
+            {
+                RagdollController.ActivateRagdoll();
+            }
+            IsDead = true;
+            IsInteractable = false;
+            IsKillable = false;
+            if (NavMeshAgent != null) NavMeshAgent.enabled = false;
+            skinnedMeshRenderer.sharedMaterial = deathMat;
+            //ragdollCollider.enabled = false;
 
-        EventManager.OnGoldenEnemyDie.Invoke();
+            EventManager.OnGoldenEnemyDie.Invoke();
+        }        
     }
 
     public override void OnInteractStart(Transform parent, Transform destination)

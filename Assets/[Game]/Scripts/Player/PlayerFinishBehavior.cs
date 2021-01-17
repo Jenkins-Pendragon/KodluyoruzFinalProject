@@ -5,8 +5,7 @@ using DG.Tweening;
 
 public class PlayerFinishBehavior : MonoBehaviour
 {    
-    public GameObject gunVisual;
-    public GameObject goldenEnemy;
+    public GameObject gunVisual;    
     public Vector3 gunRotation;
     public LaserController laserController;    
     private bool canDraw;
@@ -45,7 +44,7 @@ public class PlayerFinishBehavior : MonoBehaviour
     {        
         PlayerData.Instance.IsControlable = false;
         Realase();
-        gunVisual.transform.LookAt(goldenEnemy.transform);
+        gunVisual.transform.LookAt(GoldenEnemy.Instance.transform);
         canDraw = true;
         isFinish = true;
         Sequence player = DOTween.Sequence();          
