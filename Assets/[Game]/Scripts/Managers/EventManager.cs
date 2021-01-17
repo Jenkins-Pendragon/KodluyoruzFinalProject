@@ -18,5 +18,6 @@ public static class EventManager
     public static UnityEvent OnPlayerDeath = new UnityEvent();
     public static UnityEvent OnTapBar = new UnityEvent();
     public static UnityEvent OnGoldenEnemyDie = new UnityEvent();
+    public static UnityEvent OnCalculateScoreMultiplier = new UnityEvent();
 }
 

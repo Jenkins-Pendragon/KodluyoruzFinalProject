@@ -10,6 +10,7 @@ public class PowerBar : MonoBehaviour
     private RectTransform powerBar;
     public static float ForceSpeed;
     private float defaultForce = 25f;
+    
 
     //sağ kırmızı z -31.6 ~ -44
     //sağ turuncu z -18.4 ~ -31.6
@@ -18,23 +19,26 @@ public class PowerBar : MonoBehaviour
 
     private void Awake()
     {
-        powerBar = pointer.GetComponent<RectTransform>();        
+        powerBar = pointer.GetComponent<RectTransform>();
+        
     }
 
 
     private void OnEnable()
-    {        
+    {
+        EventManager.OnGameStarted.AddListener(() => isPowerStart = true);
         EventManager.OnTapBar.AddListener(StopTheBar);
         EventManager.OnTapBar.AddListener(ForcePower);
         ActivatePowerPoint();
     }
 
     private void OnDisable()
-    {        
+    {
+        EventManager.OnGameStarted.RemoveListener(()=> isPowerStart = true);
         EventManager.OnTapBar.RemoveListener(StopTheBar);
         EventManager.OnTapBar.RemoveListener(ForcePower);  
     }
-
+        
     public void StopTheBar()
     {
         isPowerStart = false;
@@ -94,14 +98,11 @@ public class PowerBar : MonoBehaviour
 
     IEnumerator PowerPoint()
     {
+        pointer.transform.DORotate(Vector3.zero, 0f);
         while (isPowerStart)
         { 
             pointer.transform.DORotate(new Vector3(0f, 0f, 40f), 1.25f).OnComplete(() => pointer.transform.DORotate(new Vector3(0f, 0f, -40f), 1.25f));
             yield return new WaitForSeconds(2.5f);
         }
-
-
-        
     }
-
 }

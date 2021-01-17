@@ -296,7 +296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 554, y: 482.00006}
+  m_AnchoredPosition: {x: 697, y: 36}
   m_SizeDelta: {x: 114.31671, y: 114.31671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &69461044
@@ -370,7 +370,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 554, y: 482.00006}
+  m_AnchoredPosition: {x: 697, y: 36}
   m_SizeDelta: {x: 114.31671, y: 114.31671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &95042245
@@ -444,7 +444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 554, y: 482}
+  m_AnchoredPosition: {x: 697, y: 35.99994}
   m_SizeDelta: {x: 114.31671, y: 114.31671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &304795441
@@ -518,7 +518,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 554, y: 481.99994}
+  m_AnchoredPosition: {x: 697, y: 35.999878}
   m_SizeDelta: {x: 114.31671, y: 114.31671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &340397695
@@ -592,7 +592,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 554, y: 482.00006}
+  m_AnchoredPosition: {x: 697, y: 35.99994}
   m_SizeDelta: {x: 114.31671, y: 114.31671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &356382066
@@ -740,7 +740,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 554, y: 482.00006}
+  m_AnchoredPosition: {x: 697, y: 36}
   m_SizeDelta: {x: 114.31671, y: 114.31671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &968728633
@@ -833,7 +833,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 554, y: 482.00006}
+  m_AnchoredPosition: {x: 697, y: 36}
   m_SizeDelta: {x: 114.31671, y: 114.31671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1062630811
@@ -990,7 +990,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 554, y: 482.00006}
+  m_AnchoredPosition: {x: 697, y: 36}
   m_SizeDelta: {x: 114.31671, y: 114.31671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1146065294
@@ -1064,7 +1064,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 554, y: 482.00006}
+  m_AnchoredPosition: {x: 697, y: 36}
   m_SizeDelta: {x: 114.31671, y: 114.31671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1313495583
@@ -1177,6 +1177,7 @@ MonoBehaviour:
   - {fileID: 1313495581}
   targetRect: {fileID: 1854994363026286331}
   moneyText: {fileID: 1854994363493933275}
+  multiplier: 5
 --- !u!1 &1690154401
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,7 +1212,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 554, y: 482.00006}
+  m_AnchoredPosition: {x: 697, y: 36}
   m_SizeDelta: {x: 114.31671, y: 114.31671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1690154403
@@ -1285,7 +1286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 554, y: 482.00006}
+  m_AnchoredPosition: {x: 697, y: 36}
   m_SizeDelta: {x: 114.31671, y: 114.31671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1868751532
@@ -3342,7 +3343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &5757436239814366925
 GameObject:
   m_ObjectHideFlags: 0
@@ -4487,7 +4488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 0, a: 0.92941177}
+  m_Color: {r: 0.14206217, g: 0.8207547, b: 0.058072258, a: 0.92941177}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

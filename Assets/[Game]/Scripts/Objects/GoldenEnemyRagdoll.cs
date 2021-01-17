@@ -14,6 +14,7 @@ public class GoldenEnemyRagdoll : MonoBehaviour
     private Rigidbody rb;
     public Rigidbody Rigidbody { get { return (rb == null) ? rb = GetComponent<Rigidbody>() : rb; } }
     #endregion
+        
     private void OnEnable()
     {
         EventManager.OnGoldenEnemyDie.AddListener(() => IsCheckCollison = true);
@@ -39,7 +40,7 @@ public class GoldenEnemyRagdoll : MonoBehaviour
     {
         if (GoldenEnemy.IsDead && other.gameObject.CompareTag("Water"))
         {
-            CalculateScoreMultiplier();
+            if(IsCheckCollison) CalculateScoreMultiplier();
         }
     }
     private void Update()
@@ -58,6 +59,7 @@ public class GoldenEnemyRagdoll : MonoBehaviour
     private void CalculateScoreMultiplier() 
     {
         IsCheckCollison = false;
+        FollowCamera.Instance.enabled = false;
         if (lastScorePlatform != null)
         {
             Announcer.Instance.multiplier = lastScorePlatform.multiplier;            
@@ -67,6 +69,6 @@ public class GoldenEnemyRagdoll : MonoBehaviour
             Announcer.Instance.multiplier = 1f;
         }
 
-        EventManager.OnLevelSuccess.Invoke();
+        EventManager.OnCalculateScoreMultiplier.Invoke();
     }
 }
