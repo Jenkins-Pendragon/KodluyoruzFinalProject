@@ -94,7 +94,7 @@ public class Enemy : InteractableBase, IDamageable
     {
         base.OnInteractEnd(forceDirection);
         CharacterAnimationController.Animator.enabled = false;        
-        IsInteractable = true;
+        //IsInteractable = true;
         IsKillable = true;
         RagdollController.ActivateRagdoll();
         RagdollController.ForceRagdoll(forceDirection.forward);
