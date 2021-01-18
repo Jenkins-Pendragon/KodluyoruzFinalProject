@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using DG.Tweening;
 
 public class Barrel : InteractableBase, IExplodable
 {
@@ -42,8 +43,10 @@ public class Barrel : InteractableBase, IExplodable
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
         foreach (Collider collider in colliders)
         {
+            
             Rigidbody rb = collider.GetComponent<Rigidbody>();
             IDamageable damageable = collider.GetComponent<IDamageable>();
+            Ammo ammo = collider.GetComponent<Ammo>();
             if (damageable != null)
             {
                 damageable.Die();
@@ -51,7 +54,12 @@ public class Barrel : InteractableBase, IExplodable
             if (rb != null)
             {
                 rb.AddExplosionForce(power, explosionPos, radius, 3.0f, ForceMode.Impulse);
-            }            
+            }
+
+            if (ammo != null)
+            {
+                ammo.Off();
+            }
         }
         this.gameObject.SetActive(false);
     }

@@ -29,11 +29,16 @@ public class Ammo : Prop, IPlayerKillable
     {
         base.OnCollisionEnter(collision);
         if (IsInteractable)
-        {            
-            transform.DOKill();
-            RigidbodyObj.useGravity = true;
-            TrailRenderer.enabled = false;
+        {
+            Off();
             if (!collision.gameObject.CompareTag("Player")) IsDeadly = false;
         }
+    }
+
+    public void Off() 
+    {
+        transform.DOKill();
+        RigidbodyObj.useGravity = true;
+        TrailRenderer.enabled = false;
     }
 }
