@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb2f896faa19834489b0868bf9a3af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
+  radius: 8
   power: 20
   blastEffectPrefab: {fileID: 6649054028638981966, guid: 17749527f24a38e4a8518725a42d1df3,
     type: 3}
