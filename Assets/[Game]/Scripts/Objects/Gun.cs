@@ -19,10 +19,19 @@ public class Gun : Prop
         base.OnInteractStart(parent, destination);        
         enemyShoot.IsCanFire = false;
         enemyShoot.canRun = true;        
-        if (enemyShoot.NavMeshAgent != null && !enemyShoot.IsDead) 
+        if (!enemyShoot.IsDead) 
         {
-            enemyShoot.ResetRotation();
-            enemyShoot.NavMeshAgent.enabled = true; 
+            if (!enemyShoot.onGround)
+            {
+                enemyShoot.CharacterAnimationController.StopShooting();
+                enemyShoot.CharacterAnimationController.Taunt(true);
+            }
+
+            else if (enemyShoot.NavMeshAgent != null && enemyShoot.onGround)
+            {
+                enemyShoot.ResetRotation();
+                enemyShoot.NavMeshAgent.enabled = true;
+            }         
         }
     }
 

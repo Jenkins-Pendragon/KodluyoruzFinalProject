@@ -37,6 +37,20 @@ public class EnemyShoot : Enemy, IShootable
         }
     }
 
+    public override void OnCollisionEnter(Collision collision)
+    {
+        if (!onGround && collision.gameObject.CompareTag("Ground"))
+        {
+            if (NavMeshAgent != null && !NavMeshAgent.enabled && canRun && !IsCanFire)
+            {
+                ResetRotation();
+                NavMeshAgent.enabled = true;
+            }
+        }
+        base.OnCollisionEnter(collision);
+        
+    }
+
     public override void OnInteractStart(Transform parent, Transform destination)
     {
         base.OnInteractStart(parent, destination);

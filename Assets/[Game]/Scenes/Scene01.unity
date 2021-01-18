@@ -140,6 +140,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 2
+  confettiPositions: []
+  highlightedMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 0}
 --- !u!4 &118235002 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2353041838717505774, guid: 223973a337d4ec6488f3ebe01b19be10,
@@ -165,6 +168,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 4
+  confettiPositions: []
+  highlightedMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 0}
 --- !u!1001 &188562017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -322,6 +328,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 2
+  confettiPositions: []
+  highlightedMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 0}
 --- !u!4 &245122050 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2514262262392361326, guid: 25d0e77f2edc1044aafdd16e50f82da6,
@@ -563,6 +572,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 1
+  confettiPositions: []
+  highlightedMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 0}
 --- !u!4 &543103968 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1808870706678237494, guid: cdf33999da4af37468820121bc49acb8,
@@ -1640,6 +1652,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 5
+  confettiPositions: []
+  highlightedMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 0}
 --- !u!1001 &933685600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1712,6 +1727,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1808870706678237497, guid: cdf33999da4af37468820121bc49acb8,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7442330335910595317, guid: cdf33999da4af37468820121bc49acb8,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1744,6 +1764,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 5
+  confettiPositions: []
+  highlightedMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 0}
 --- !u!1001 &1022290119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1754,7 +1777,7 @@ PrefabInstance:
     - target: {fileID: 4041270307394853401, guid: bb6de6693e2cb604da2babcf98aaf2fd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.5084798
+      value: 0.61
       objectReference: {fileID: 0}
     - target: {fileID: 4041270307394853401, guid: bb6de6693e2cb604da2babcf98aaf2fd,
         type: 3}
@@ -1764,7 +1787,7 @@ PrefabInstance:
     - target: {fileID: 4041270307394853401, guid: bb6de6693e2cb604da2babcf98aaf2fd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.5410314
+      value: -2.69
       objectReference: {fileID: 0}
     - target: {fileID: 4041270307394853401, guid: bb6de6693e2cb604da2babcf98aaf2fd,
         type: 3}
@@ -1934,6 +1957,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 2
+  confettiPositions: []
+  highlightedMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 0}
 --- !u!1 &1214921546
 GameObject:
   m_ObjectHideFlags: 0
@@ -2049,6 +2075,11 @@ PrefabInstance:
     - target: {fileID: 1808870706678237494, guid: cdf33999da4af37468820121bc49acb8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808870706678237497, guid: cdf33999da4af37468820121bc49acb8,
+        type: 3}
+      propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2282,6 +2313,75 @@ Transform:
   m_Father: {fileID: 783663471}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1512542530
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4041270307394853401, guid: bb6de6693e2cb604da2babcf98aaf2fd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041270307394853401, guid: bb6de6693e2cb604da2babcf98aaf2fd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.541
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041270307394853401, guid: bb6de6693e2cb604da2babcf98aaf2fd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041270307394853401, guid: bb6de6693e2cb604da2babcf98aaf2fd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041270307394853401, guid: bb6de6693e2cb604da2babcf98aaf2fd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041270307394853401, guid: bb6de6693e2cb604da2babcf98aaf2fd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041270307394853401, guid: bb6de6693e2cb604da2babcf98aaf2fd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041270307394853401, guid: bb6de6693e2cb604da2babcf98aaf2fd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041270307394853401, guid: bb6de6693e2cb604da2babcf98aaf2fd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041270307394853401, guid: bb6de6693e2cb604da2babcf98aaf2fd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041270307394853401, guid: bb6de6693e2cb604da2babcf98aaf2fd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4043793661241319665, guid: bb6de6693e2cb604da2babcf98aaf2fd,
+        type: 3}
+      propertyPath: m_Name
+      value: package-box (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bb6de6693e2cb604da2babcf98aaf2fd, type: 3}
 --- !u!1 &1513854228 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4629096248197277554, guid: 440158757d253ac48874d38ceb6d0a25,
@@ -2307,6 +2407,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 10
+  confettiPositions: []
+  highlightedMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 0}
 --- !u!1 &1606383014 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3647770876794271359, guid: 2317e512184761d47804c22df465b186,
@@ -2326,6 +2429,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 10
+  confettiPositions: []
+  highlightedMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 0}
 --- !u!1 &1689077441
 GameObject:
   m_ObjectHideFlags: 0
@@ -2444,6 +2550,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 2
+  confettiPositions: []
+  highlightedMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 0}
 --- !u!1001 &1743169823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2538,6 +2647,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 3
+  confettiPositions: []
+  highlightedMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 0}
 --- !u!1 &1844408047
 GameObject:
   m_ObjectHideFlags: 0
@@ -2633,6 +2745,11 @@ PrefabInstance:
     - target: {fileID: 1808870706678237494, guid: cdf33999da4af37468820121bc49acb8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808870706678237497, guid: cdf33999da4af37468820121bc49acb8,
+        type: 3}
+      propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3554,6 +3671,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 1
+  confettiPositions: []
+  highlightedMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 0}
 --- !u!1001 &1069091621233875764
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -19,7 +19,11 @@ public class Enemy : InteractableBase, IDamageable
     public Material deathMat;
     public SkinnedMeshRenderer skinnedMeshRenderer; 
     public Collider ragdollCollider;
-    public bool canRun = true;
+    [HideInInspector]
+    public bool canRun = false;
+    [HideInInspector]
+    public bool onGround = false;
+    public bool isShooter = false;
     public bool IsDead { get; protected set; }
     public bool IsRagdoll { get; set; }
     protected override void Start()
@@ -69,8 +73,17 @@ public class Enemy : InteractableBase, IDamageable
         }
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public virtual void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            onGround = true;
+            if (NavMeshAgent != null && !NavMeshAgent.enabled && canRun && !isShooter)
+            {
+                NavMeshAgent.enabled = true;
+            }
+        }
+
         if (!IsDead)
         {
             IInteractable interactable = collision.gameObject.GetComponent<IInteractable>();
@@ -80,6 +93,8 @@ public class Enemy : InteractableBase, IDamageable
             }
         }
     }
+
+    
 
     public override void OnInteractStart(Transform parent, Transform destination)
     {

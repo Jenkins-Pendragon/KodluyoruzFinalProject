@@ -2220,6 +2220,8 @@ MonoBehaviour:
   skinnedMeshRenderer: {fileID: 2269733496332156594}
   ragdollCollider: {fileID: 2269733495090149941}
   canRun: 0
+  onGround: 0
+  isShooter: 1
   Bullet: {fileID: 6263973625902018993, guid: 193202d6d23e5dc45bb0af5b8c52cb2a, type: 3}
   gundEndPoint: {fileID: 3900108765841479786}
   enemyBody: {fileID: 3900108766415601885}

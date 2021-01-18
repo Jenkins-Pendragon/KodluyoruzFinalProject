@@ -1399,7 +1399,9 @@ MonoBehaviour:
   deathMat: {fileID: 2100000, guid: f91168e932654a4478eec4099e95f783, type: 2}
   skinnedMeshRenderer: {fileID: 2514262262601159182}
   ragdollCollider: {fileID: 2514262261360137865}
-  canRun: 1
+  canRun: 0
+  onGround: 0
+  isShooter: 0
 --- !u!114 &2514262262392361320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1454,7 +1456,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookRadius: 100
-  targetPlayer: {fileID: 0}
 --- !u!114 &2514262262392361322
 MonoBehaviour:
   m_ObjectHideFlags: 0

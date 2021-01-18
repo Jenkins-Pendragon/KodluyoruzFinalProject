@@ -101,7 +101,18 @@ public class PlatformController : MonoBehaviour
         List<Enemy> enemyList = platformList[currentPlatform].enemyList;
         for (int i = 0; i < enemyList.Count; i++)
         {
-            if (enemyList[i].NavMeshAgent != null && enemyList[i].canRun && !enemyList[i].IsDead && enemyList[i].IsInteractable) enemyList[i].NavMeshAgent.enabled = state;
+            if (enemyList[i].NavMeshAgent != null && !enemyList[i].IsDead && enemyList[i].IsInteractable)
+            {
+                if (enemyList[i].onGround && !enemyList[i].isShooter)
+                {
+                    enemyList[i].canRun = state;
+                    enemyList[i].NavMeshAgent.enabled = state;
+                }
+                else
+                {
+                    enemyList[i].canRun = state;
+                }
+            }
         }
     }
 
