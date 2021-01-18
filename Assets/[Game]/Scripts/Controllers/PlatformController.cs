@@ -7,6 +7,7 @@ using DG.Tweening;
 public class PlatformController : MonoBehaviour
 {    
     bool isAllPlatformEnded = false;
+    bool isPlayerMoving = false;
     public List<Platform> platformList = new List<Platform>();
     private int currentPlatform = 0;
     
@@ -25,7 +26,7 @@ public class PlatformController : MonoBehaviour
     }
 
     private void Awake()
-    {
+    {        
         platformList[0].isPlatfromActive = true;
     }
 
@@ -44,18 +45,20 @@ public class PlatformController : MonoBehaviour
             }
         }
 
-        if (isAllEnemiesDead)
+        if (isAllEnemiesDead && !PlayerData.Instance.IsPlayerDead && !isPlayerMoving)
         {
+            isPlayerMoving = true;
             StartCoroutine(NextPlatform());
         }
     }
 
     private IEnumerator NextPlatform()
-    {
-        PlayerData.Instance.IsImmune = true;
+    {        
+        PlayerData.Instance.IsImmune = true;              
         SetPlatformObjects(false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f);        
         Sequence playerMovement = DOTween.Sequence();
+
         if (platformList[currentPlatform].moveTo != null)
         {
             Vector3 pos = platformList[currentPlatform].moveTo.position;
@@ -70,7 +73,8 @@ public class PlatformController : MonoBehaviour
         }
         playerMovement.OnComplete(() =>
         {
-            currentPlatform += 1;
+            currentPlatform += 1;            
+            Debug.Log("OnComplete");            
             if (currentPlatform == platformList.Count)
             {
                 if (PlayerData.Instance.IsPlayerDead) return; 
@@ -80,6 +84,7 @@ public class PlatformController : MonoBehaviour
             else
                 SetPlatformObjects(true);
 
+            isPlayerMoving = false;
             CheckPlatformStatus();            
             PlayerData.Instance.IsImmune = false;
         });
@@ -96,7 +101,7 @@ public class PlatformController : MonoBehaviour
         List<Enemy> enemyList = platformList[currentPlatform].enemyList;
         for (int i = 0; i < enemyList.Count; i++)
         {
-            if (enemyList[i].NavMeshAgent != null && enemyList[i].canRun && !enemyList[i].IsDead) enemyList[i].NavMeshAgent.enabled = state;
+            if (enemyList[i].NavMeshAgent != null && enemyList[i].canRun && !enemyList[i].IsDead && enemyList[i].IsInteractable) enemyList[i].NavMeshAgent.enabled = state;
         }
     }
 

@@ -50,6 +50,7 @@ public class LaserController : MonoBehaviour
         LayerMask layerMask;
         if (layer == -1)
         {
+            //layer = LayerMask.NameToLayer("GoldenEnemy") | LayerMask.NameToLayer("Saw");
             layer = LayerMask.NameToLayer("GoldenEnemy");
             layerMask = ~layer;
         }

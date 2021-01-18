@@ -61,6 +61,7 @@ public class GoldenEnemyRagdoll : MonoBehaviour
         FollowCamera.Instance.enabled = false;
         if (lastScorePlatform != null)
         {
+            lastScorePlatform.StartHighlight();
             Announcer.Instance.multiplier = lastScorePlatform.multiplier;            
         }
         else

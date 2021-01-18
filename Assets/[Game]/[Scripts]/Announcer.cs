@@ -83,8 +83,7 @@ public class Announcer : MonoBehaviour
                 currentVal += value;
                 moneyText.text = currentVal.ToString();
                 coin.transform.position = defaultPos;
-                coin.SetActive(false);
-                Debug.Log(currentVal);
+                coin.SetActive(false);                
             });
             yield return coinWaitTime;
         }        

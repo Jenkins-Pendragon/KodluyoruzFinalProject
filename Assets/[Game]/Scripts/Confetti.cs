@@ -6,6 +6,12 @@ public class Confetti : MonoBehaviour
 {
     public ParticleSystem[] particles;
     public GameObject ragdollParent;
+    public static Confetti Instance;
+
+    public void Awake()
+    {
+        Instance = this;
+    }
 
     private void OnEnable()
     {
@@ -22,6 +28,15 @@ public class Confetti : MonoBehaviour
         for (int i = 0; i < particles.Length; i++)
         {
             particles[i].Play();
+        }
+    }
+
+    public void PlayConfetti(Transform transform) 
+    {        
+        for (int i = 0; i < particles.Length; i++)
+        {
+            ParticleSystem particle = Instantiate(particles[i], transform.position, Quaternion.identity);
+            particle.Play();
         }
     }
 

@@ -18,6 +18,7 @@ public class CharacterAnimationController : MonoBehaviour
     }
     public void Punch(bool state)
     {
+        Debug.Log("PUNCH: " +  state);
         Animator.SetBool("Punch", state);
     }
 

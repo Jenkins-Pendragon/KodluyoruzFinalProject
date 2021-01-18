@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    [HideInInspector]
+    //[HideInInspector]
     public List<Enemy> enemyList = new List<Enemy>();
     [HideInInspector]
     public List<IShootable> shootables = new List<IShootable>();
@@ -16,6 +16,8 @@ public class Platform : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (GameManager.Instance.IsLevelStarted) return;
+
         Enemy enemy = other.GetComponent<Enemy>();        
         IShootable shootable = other.GetComponent<IShootable>();
 
