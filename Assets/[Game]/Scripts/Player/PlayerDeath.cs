@@ -18,7 +18,8 @@ public class PlayerDeath : MonoBehaviour
 
     private void Death() 
     {
-        transform.DORotate(new Vector3(20, 0, 0), 1.5f, RotateMode.FastBeyond360);
+        Vector3 playerRot = transform.eulerAngles;
+        transform.DORotate(playerRot+Vector3.right*20f, 1.5f, RotateMode.FastBeyond360);
         EventManager.OnPlayerDeath.Invoke();
     }
 }
