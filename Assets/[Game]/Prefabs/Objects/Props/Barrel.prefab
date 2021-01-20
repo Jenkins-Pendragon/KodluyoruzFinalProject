@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 5
-  power: 20
+  power: 40
   blastEffectPrefab: {fileID: 6649054028638981966, guid: 17749527f24a38e4a8518725a42d1df3,
     type: 3}
 --- !u!114 &5765316022410100727
