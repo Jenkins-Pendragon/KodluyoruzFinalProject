@@ -32,7 +32,15 @@ public class GoldenEnemyRagdoll : MonoBehaviour
         ScorePlatform scorePlatform = other.gameObject.GetComponent<ScorePlatform>();
         if (scorePlatform != null)
         {
-            lastScorePlatform = scorePlatform;
+            if (lastScorePlatform == null)
+            {
+                lastScorePlatform = scorePlatform;
+            }
+            else if (lastScorePlatform != null && scorePlatform.multiplier > lastScorePlatform.multiplier)
+            {
+                lastScorePlatform = scorePlatform;
+            }
+            
         }
     }
 
