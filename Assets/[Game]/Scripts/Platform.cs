@@ -11,8 +11,7 @@ public class Platform : MonoBehaviour
     [HideInInspector]
     public bool isPlatfromActive;
     public Transform moveTo;
-    public Transform jumpTo;
-
+    public Transform jumpTo;   
 
     private void OnTriggerEnter(Collider other)
     {

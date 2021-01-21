@@ -2197,7 +2197,7 @@ GameObject:
   - component: {fileID: 4629096250304618650}
   - component: {fileID: 4629096250304618651}
   - component: {fileID: 4629096250304618648}
-  - component: {fileID: 2081391048}
+  - component: {fileID: 2625104057469279099}
   m_Layer: 9
   m_Name: RagdollCollision
   m_TagString: Untagged
@@ -2247,7 +2247,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 2
+  m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!138 &4629096250304618648
 FixedJoint:
@@ -2263,7 +2263,7 @@ FixedJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &2081391048
+--- !u!114 &2625104057469279099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2272,6 +2272,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4629096250304618655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d91b329c3351872478f9fede60204251, type: 3}
+  m_Script: {fileID: 11500000, guid: acab117111d64de4992c79cbcbc0559e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

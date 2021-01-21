@@ -7,7 +7,7 @@ public class BonusEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-        IsInteractable = false;
+        //IsInteractable = false;
     }
     
 
