@@ -28,13 +28,13 @@ public class Announcer : MonoBehaviour
     {
         EventManager.OnEnemyDie.AddListener(SetScore);
         EventManager.OnGameStarted.AddListener(ResetValues);
-        EventManager.OnCalculateScoreMultiplier.AddListener(ScoreMultiplier);
+        EventManager.OnCalculateScoreMultiplier.AddListener(ScoreMultiplier);        
     }
     private void OnDisable()
     {
         EventManager.OnEnemyDie.RemoveListener(SetScore);
         EventManager.OnGameStarted.RemoveListener(ResetValues);
-        EventManager.OnCalculateScoreMultiplier.RemoveListener(ScoreMultiplier);
+        EventManager.OnCalculateScoreMultiplier.RemoveListener(ScoreMultiplier);        
     }
     private void ResetValues()
     {
@@ -47,30 +47,9 @@ public class Announcer : MonoBehaviour
     {
         StartCoroutine(OpenAndGoAsync());
     }   
+   
     IEnumerator OpenAndGoAsync()
-    {
-        //int newScore = Convert.ToInt32(currentVal * multiplier);
-        //for (int i = 0; i < newScore; i+=2)
-        //{
-        //    currentVal += 2;
-        //    if (currentVal >= newScore) currentVal = newScore;            
-        //    GameObject coin = stackCoins.Pop();
-        //    if (coin != null)
-        //    {
-        //        coin.SetActive(true);
-        //        coin.transform.DOMove(targetRect.transform.position, 0.08f).OnComplete(() =>
-        //        {                    
-        //            moneyText.text = currentVal.ToString();                    
-        //            stackCoins.Push(coin);
-        //            coin.SetActive(false);
-        //            coin.transform.position = defaultPos;
-        //        });
-        //    }
-        //    else moneyText.text = currentVal.ToString();
-        //    yield return coinWaitTime;
-        //}
-        //yield return new WaitForSeconds(0.5f);
-        //EventManager.OnLevelSuccess.Invoke();
+    {        
         int newScore = Convert.ToInt32(currentVal * multiplier);        
         int value = Mathf.FloorToInt((float)(newScore - currentVal) / (float)coins.Count);
         Debug.Log(newScore);

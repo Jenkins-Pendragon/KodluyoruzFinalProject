@@ -53,7 +53,9 @@ public class PlatformController : MonoBehaviour
     }
 
     private IEnumerator NextPlatform()
-    {        
+    {
+        if (PlayerData.Instance.IsPlayerDead) yield return null;
+        
         PlayerData.Instance.IsImmune = true;              
         SetPlatformObjects(false);
         yield return new WaitForSeconds(1f);        
