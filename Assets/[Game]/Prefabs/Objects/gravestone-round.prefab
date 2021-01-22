@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4358875647119367316}
   - component: {fileID: 6725760447998919771}
   - component: {fileID: 8774253254355982664}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: gravestone-round
   m_TagString: Untagged
   m_Icon: {fileID: 0}
